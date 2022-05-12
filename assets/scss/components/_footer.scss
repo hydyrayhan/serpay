@@ -1,0 +1,61 @@
+.footer{
+  background: $black;
+  @include tablet{
+    display: none
+  }
+  .footer_container{
+    @include flex(row, space-between, flex-start);
+    padding: 20px 0;
+
+    .footer_box{
+      .footer_logo{
+        margin-bottom: 20px;
+      }
+
+      .applications{
+        @include flex();
+
+        .application{
+          @include flex();
+          border-radius: 10px;
+          padding: 5px 10px;
+          border: 1px solid #E5E5E5;
+
+          &:last-child{
+            margin-left: 10px;
+          }
+          .app_icon{
+            margin-right: 10px;
+          }
+          .app_name{
+            font-size: 12px;
+            div{
+              &:first-child{
+                font-size: 8px;
+              }
+              &:last-child{
+                font-size: 13px;
+              }
+              color: #E5E5E5;
+            }
+          }
+        }
+      }
+      &_links{
+        @include flex(column, flex-start, flex-start);
+        &_link{
+          color: #E5E5E5;
+          font-size: 15px;
+          margin-bottom: 20px;
+        }
+        .contact{
+          @include flex();
+          img{
+            width: 15px;
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+}

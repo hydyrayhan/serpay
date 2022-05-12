@@ -1,0 +1,40 @@
+//download with this code     npm i -D sass-loader@10.1.1 --save-exact && npm i -D sass 
+//configs
+@import './config/variables';
+@import './config/mixins';
+// @import './config/fonts';
+
+//layout
+@import './base/layout';
+
+//components
+@import './components/header';
+@import './components/footer';
+// @import './components/breadcrumb';
+// @import './components/product';
+
+//pages
+// @import './pages/index';
+// @import './pages/category';
+// @import './pages/productPage';
+
+
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  color: $black;
+  font-family: Roboto;
+}
+
+a{
+  text-decoration: none;
+}
+body{
+  overflow-x: hidden;
+  background-color: #FBFBFB;
+}
