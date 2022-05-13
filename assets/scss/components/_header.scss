@@ -1,0 +1,66 @@
+.header{
+  @include flex();
+  padding: 30px 0;
+  .header_logo{
+    img{
+      min-width: 120px;
+    }
+  }
+  .header_category{
+    background: linear-gradient(93.87deg, #FF141D 7.03%, #FE5E18 100%);
+    border-radius: 8px;
+    padding: 10px 20px;
+    @include flex;
+    cursor: pointer;
+    .header_category_icon{
+      @include flex;
+    }
+    .header_category_text{
+      color: $white;
+      margin-left: 10px;
+    }
+  }
+  .header_search{
+    width: 30%;
+    background-color: $darkWhite;
+    padding: 13px 20px;
+    @include flex;
+    cursor: pointer;
+    border-radius: 100px;
+    input{
+      background: none;
+      border: none;
+      width: 100%;
+      margin-right: 10px;
+      font-size: 12px;
+      color: rgba(132, 132, 132, 0.48);
+    }
+  }
+  .header_buttons{
+    @include flex;
+    .btn{
+      margin-left: 30px;
+      text-align: center;
+      font-size: 12px;
+      min-height: 40px;
+      cursor: pointer;
+      .text{
+        color: $gray;
+      }
+    }
+    .header_buttons_mode{
+      @include flex;
+      padding: 6px 7px;
+      background: $darkWhite;
+      border-radius: 100px;
+      min-height: auto;
+      cursor: pointer;
+      .header_buttons_mode_dark{
+        margin-right: 16px;
+      }
+      .mode{
+        @include flex;
+      }
+    }
+  }
+}
