@@ -1,16 +1,58 @@
 <template>
-  <div class="container">
+  <div class="container" style="position:relative">
      <div class="header">
-       <div class="header_logo">
+       <nuxt-link to="/" class="header_logo">
          <img src="~/assets/images/logo.svg" alt="">
+       </nuxt-link>
+       <div class="header_category" @click="categoryOpen" v-click-outside="categoryClose">
+         <div class="header_category_icon">
+           <img v-if="category" src="~/assets/images/icons/x.svg" alt="headerCategory">
+           <img v-else src="~/assets/images/icons/headerCategory.svg" alt="headerCategory">
+          </div>
+         <!-- <div class="header_category_icon"><img src="~/assets/images/icons/x.svg" alt="x"></div> -->
+         <div class="header_category_text">{{$t('category')}}</div>
+
+         <div class="header_category_con" v-if="category">
+           <div class="hidden_categories">
+             <div class="hidden_category" @click="categoryChange(i)" :class="whitchCategory === i ? 'active' : ''" v-for="(category , i) in categories" :key="i">{{category[language.name]}}</div>
+           </div>
+           <div class="hidden_subcategories">
+             <nuxt-link to="/" class="hidden_subcategory" v-for="(sub, i) in categories[whitchCategory].subCategories" :key="i">
+               <div class="icon"><img :src="sub.image" alt=""></div>
+               <div class="text">{{sub[language.name]}}</div>
+             </nuxt-link>
+           </div>
+         </div>
        </div>
-       <div class="header_category">
-         <div class="header_category_icon"><img src="~/assets/images/icons/headerCategory.svg" alt="headerCategory"></div>
-         <div class="header_category_text">Kategory</div>
-       </div>
-       <label class="header_search">
-         <input type="text" @focus="searchOutline" @blur="searchOutlineNone">
+       <label class="header_search" v-click-outside="searchOutlineNone">
+         <input type="text" @focus="searchOutline"  @keyup="startSearch">
          <img src="~/assets/images/icons/headerSearch.svg" alt="headerSearch">
+
+         <div class="header_search_history" v-if="search">
+           <div class="history_title">{{$t('history')}}</div>
+           <div class="historyCon">
+            <div class="history_history" v-for="i in 4" :key="i">
+              <div class="icon"><img src="~/assets/images/icons/headerHistory.svg" alt="headerHistory"></div>
+              <div class="text">iphone</div>
+            </div>
+           </div>
+           <div class="history_title">{{$t('recommendation')}}</div>
+           <div class="historyCon">
+            <div class="history_history" v-for="i in 4" :key="i">
+              <div class="text">myska</div>
+            </div>
+           </div>
+         </div>
+         <div class="searched_result" v-if="searchStart">
+           <div class="list" v-for="i in 5" :key="i">
+             <div class="icon">
+              <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13 12.5L10.1046 9.60457M10.1046 9.60457C11.0697 8.63943 11.6667 7.30609 11.6667 5.83333C11.6667 2.88781 9.27885 0.5 6.33333 0.5C3.38781 0.5 1 2.88781 1 5.83333C1 8.77885 3.38781 11.1667 6.33333 11.1667C7.80609 11.1667 9.13943 10.5697 10.1046 9.60457Z" stroke="#474747" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+             </div>
+             <div class="name">iphone</div>
+           </div>
+         </div>
        </label>
        <div class="header_buttons">
          <div class="header_buttons_mode btn">
@@ -25,7 +67,7 @@
             </svg>
            </div>
          </div>
-         <div class="header_buttons_location btn">
+         <div class="header_buttons_location btn" @click="openLocation" v-click-outside="closeLocation">
            <div class="icon">
             <svg width="21" height="23" viewBox="0 0 21 23" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M10.4596 23.0077L9.79161 22.4351C8.87067 21.664 0.829346 14.7192 0.829346 9.63922C0.829346 4.32056 5.14099 0.00891113 10.4596 0.00891113C15.7783 0.00891113 20.0899 4.32056 20.0899 9.63922C20.0899 14.7192 12.0486 21.664 11.1315 22.4389L10.4596 23.0077ZM10.4596 2.09126C6.29301 2.09598 2.91646 5.47254 2.91174 9.63917C2.91174 12.8305 7.85907 17.9286 10.4596 20.262C13.0603 17.9277 18.0075 12.8267 18.0075 9.63917C18.0028 5.47254 14.6263 2.09603 10.4596 2.09126Z" fill="#AEAEAE"/>
@@ -33,6 +75,14 @@
             </svg>
            </div>
            <div class="text">Aşgabat</div>
+           <div class="header_location_ul" v-if="location">
+             <div class="list active">{{$t('ashgabat')}}</div>
+             <div class="list">{{$t('ahal')}}</div>
+             <div class="list">{{$t('lebap')}}</div>
+             <div class="list">{{$t('balkan')}}</div>
+             <div class="list">{{$t('mary')}}</div>
+             <div class="list">{{$t('dashoguz')}}</div>
+           </div>
          </div>
          <div class="header_buttons_like btn">
            <div class="icon">
@@ -40,7 +90,7 @@
               <path d="M16.7706 0.837158C15.6915 0.853943 14.6359 1.15518 13.7104 1.71046C12.7849 2.26573 12.0224 3.05538 11.4998 3.99966C10.9771 3.05538 10.2146 2.26573 9.28911 1.71046C8.36365 1.15518 7.30805 0.853943 6.22892 0.837158C4.50866 0.911899 2.88789 1.66444 1.72071 2.93038C0.553538 4.19632 -0.065171 5.87274 -0.000243423 7.59341C-0.000243423 11.9509 4.58634 16.71 8.43309 19.9367C9.29196 20.6585 10.3779 21.0542 11.4998 21.0542C12.6216 21.0542 13.7075 20.6585 14.5664 19.9367C18.4132 16.71 22.9998 11.9509 22.9998 7.59341C23.0647 5.87274 22.446 4.19632 21.2788 2.93038C20.1116 1.66444 18.4909 0.911899 16.7706 0.837158ZM13.335 18.4705C12.8213 18.9031 12.1713 19.1403 11.4998 19.1403C10.8282 19.1403 10.1782 18.9031 9.66455 18.4705C4.74063 14.3391 1.91642 10.3754 1.91642 7.59341C1.85091 6.38084 2.26752 5.19157 3.0754 4.28495C3.88327 3.37834 5.01685 2.82795 6.22892 2.75382C7.44099 2.82795 8.57458 3.37834 9.38245 4.28495C10.1903 5.19157 10.6069 6.38084 10.5414 7.59341C10.5414 7.84757 10.6424 8.09133 10.8221 8.27105C11.0018 8.45077 11.2456 8.55174 11.4998 8.55174C11.7539 8.55174 11.9977 8.45077 12.1774 8.27105C12.3571 8.09133 12.4581 7.84757 12.4581 7.59341C12.3926 6.38084 12.8092 5.19157 13.6171 4.28495C14.4249 3.37834 15.5585 2.82795 16.7706 2.75382C17.9827 2.82795 19.1162 3.37834 19.9241 4.28495C20.732 5.19157 21.1486 6.38084 21.0831 7.59341C21.0831 10.3754 18.2589 14.3391 13.335 18.4667V18.4705Z" fill="#AEAEAE"/>
             </svg>
            </div>
-           <div class="text">Halanlarym</div>
+           <div class="text">{{$t('liked')}}</div>
          </div>
          <div class="header_buttons_cart btn">
            <div class="icon">
@@ -57,32 +107,197 @@
               </defs>
             </svg>
            </div>
-           <div class="text">Sebet</div>
+           <div class="text">{{$t('cart')}}</div>
          </div>
-         <div class="header_buttons_login btn">
+         <div class="header_buttons_login btn" @click="openProfile" v-click-outside="closeProfile">
            <div class="icon">
             <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M19 21V19C19 17.9391 18.5786 16.9217 17.8284 16.1716C17.0783 15.4214 16.0609 15 15 15H7C5.93913 15 4.92172 15.4214 4.17157 16.1716C3.42143 16.9217 3 17.9391 3 19V21" stroke="#AEAEAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M11 11C13.2091 11 15 9.20914 15 7C15 4.79086 13.2091 3 11 3C8.79086 3 7 4.79086 7 7C7 9.20914 8.79086 11 11 11Z" stroke="#AEAEAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
            </div>
-           <div class="text">Profile</div>
+           <div class="text">{{$t('profile')}}</div>
+
+           <div class="header_login_ul" v-if="profile">
+             <div class="list">
+               <div class="icon">
+                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="#414141" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" stroke="#414141" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+               </div>
+               <div class="text">{{$t('profile')}}</div>
+             </div>
+             <div class="list">
+               <div class="icon">
+                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="#414141" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" stroke="#414141" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+               </div>
+               <div class="text">{{$t('liked')}}</div>
+             </div>
+             <div class="list">
+               <div class="icon">
+                 <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.7706 0.837158C15.6915 0.853943 14.6359 1.15518 13.7104 1.71046C12.7849 2.26573 12.0224 3.05538 11.4998 3.99966C10.9771 3.05538 10.2146 2.26573 9.28911 1.71046C8.36365 1.15518 7.30805 0.853943 6.22892 0.837158C4.50866 0.911899 2.88789 1.66444 1.72071 2.93038C0.553538 4.19632 -0.065171 5.87274 -0.000243423 7.59341C-0.000243423 11.9509 4.58634 16.71 8.43309 19.9367C9.29196 20.6585 10.3779 21.0542 11.4998 21.0542C12.6216 21.0542 13.7075 20.6585 14.5664 19.9367C18.4132 16.71 22.9998 11.9509 22.9998 7.59341C23.0647 5.87274 22.446 4.19632 21.2788 2.93038C20.1116 1.66444 18.4909 0.911899 16.7706 0.837158ZM13.335 18.4705C12.8213 18.9031 12.1713 19.1403 11.4998 19.1403C10.8282 19.1403 10.1782 18.9031 9.66455 18.4705C4.74063 14.3391 1.91642 10.3754 1.91642 7.59341C1.85091 6.38084 2.26752 5.19157 3.0754 4.28495C3.88327 3.37834 5.01685 2.82795 6.22892 2.75382C7.44099 2.82795 8.57458 3.37834 9.38245 4.28495C10.1903 5.19157 10.6069 6.38084 10.5414 7.59341C10.5414 7.84757 10.6424 8.09133 10.8221 8.27105C11.0018 8.45077 11.2456 8.55174 11.4998 8.55174C11.7539 8.55174 11.9977 8.45077 12.1774 8.27105C12.3571 8.09133 12.4581 7.84757 12.4581 7.59341C12.3926 6.38084 12.8092 5.19157 13.6171 4.28495C14.4249 3.37834 15.5585 2.82795 16.7706 2.75382C17.9827 2.82795 19.1162 3.37834 19.9241 4.28495C20.732 5.19157 21.1486 6.38084 21.0831 7.59341C21.0831 10.3754 18.2589 14.3391 13.335 18.4667V18.4705Z" fill="#414141"/>
+                </svg>
+               </div>
+               <div class="text">{{$t('historyOrder')}}</div>
+             </div>
+             <div class="list">
+               <div class="icon">
+                <svg width="24" height="21" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22.0455 0.85783H12.4621C12.208 0.85783 11.9642 0.958797 11.7845 1.13852C11.6048 1.31824 11.5038 1.562 11.5038 1.81616V4.94992L9.2038 0.963246C9.03596 0.670546 8.79383 0.427339 8.50188 0.258204C8.20993 0.0890684 7.8785 0 7.54109 0C7.20369 0 6.87226 0.0890684 6.58031 0.258204C6.28836 0.427339 6.04622 0.670546 5.87839 0.963246L0.128392 10.9203C0.044281 11.066 0 11.2313 0 11.3995C0 11.5677 0.044281 11.733 0.128392 11.8787C0.212825 12.0249 0.334403 12.1463 0.480815 12.2304C0.627227 12.3145 0.793274 12.3585 0.962141 12.3578H5.07339C4.88732 12.9797 4.79368 13.6255 4.79547 14.2745C4.79547 16.0537 5.50224 17.76 6.76029 19.018C8.01835 20.2761 9.72464 20.9829 11.5038 20.9829C13.283 20.9829 14.9892 20.2761 16.2473 19.018C17.5054 17.76 18.2121 16.0537 18.2121 14.2745C18.2139 13.6255 18.1203 12.9797 17.9342 12.3578H22.0455C22.2996 12.3578 22.5434 12.2569 22.7231 12.0772C22.9028 11.8974 23.0038 11.6537 23.0038 11.3995V1.81616C23.0038 1.562 22.9028 1.31824 22.7231 1.13852C22.5434 0.958797 22.2996 0.85783 22.0455 0.85783ZM2.62006 10.4412L7.5363 1.92158L10.8234 7.56617C9.86498 7.67283 8.94084 7.98486 8.11395 8.481C7.28705 8.97714 6.57684 9.64572 6.03172 10.4412H2.62006ZM11.5038 19.0662C10.5561 19.0662 9.62968 18.7852 8.84169 18.2586C8.05371 17.7321 7.43955 16.9838 7.07688 16.1082C6.71421 15.2326 6.61932 14.2692 6.80421 13.3397C6.98909 12.4102 7.44546 11.5564 8.11558 10.8863C8.78571 10.2162 9.6395 9.7598 10.569 9.57491C11.4985 9.39002 12.4619 9.48491 13.3375 9.84758C14.213 10.2103 14.9614 10.8244 15.4879 11.6124C16.0144 12.4004 16.2955 13.3268 16.2955 14.2745C16.2955 15.5453 15.7906 16.7641 14.892 17.6627C13.9934 18.5613 12.7746 19.0662 11.5038 19.0662ZM21.0871 10.4412H17.0046C16.1343 9.19865 14.8722 8.28413 13.4205 7.84409V2.7745H21.0871V10.4412Z" fill="#414141"/>
+                </svg>
+               </div>
+               <div class="text">{{$t('services')}}</div>
+             </div>
+             <div class="list">
+               <div class="icon">
+                 <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 13.9829C19 14.5133 18.7893 15.0221 18.4142 15.3971C18.0391 15.7722 17.5304 15.9829 17 15.9829H5L1 19.9829V3.98291C1 3.45248 1.21071 2.94377 1.58579 2.5687C1.96086 2.19362 2.46957 1.98291 3 1.98291H17C17.5304 1.98291 18.0391 2.19362 18.4142 2.5687C18.7893 2.94377 19 3.45248 19 3.98291V13.9829Z" stroke="#414141" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+               </div>
+               <div class="text">{{$t('chatToAdmin')}}</div>
+             </div>
+             <div class="language">
+               <span :class="currentLanguage.code === 'tm' ? 'active':''" @click="changeLanguage($i18n.locales[0].code)">TM</span>
+               <span :class="currentLanguage.code === 'ru' ? 'active':''" @click="changeLanguage($i18n.locales[1].code)">RU</span>
+             </div>
+           </div>
          </div>
        </div>
      </div>
+     <div class="header_search_background" v-if="searchBackground"></div>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
 export default {
+  data(){
+    return{
+      search:false,
+      searchBackground:false,
+      location:false,
+      profile:false,
+      searchStart:false,
+      category:false,
+      whitchCategory:0,
+
+      categories:[
+        {
+          name_tm : 'Phones & accessories',
+          name_ru : 'Telefon & accessories',
+          subCategories : [
+            {
+              name_tm : "All",
+              name_ru : "Hemmesi",
+              link : "/",
+              image : require("~/assets/images/delete/sub.png")
+            },
+            {
+              name_tm : "Xiaomi",
+              name_ru : "Redmi",
+              link : "/",
+              image : require("~/assets/images/delete/sub2.png")
+            },
+            {
+              name_tm : "Apple",
+              name_ru : "Macbook",
+              link : "/",
+              image : require("~/assets/images/delete/sub3.png")
+            },
+          ]
+        },
+        {
+          name_tm : 'Clothing for Men',
+          name_ru : 'Oglanlar ucin eshikler',
+          subCategories : [
+            {
+              name_tm : "All",
+              name_ru : "Hemmesi",
+              link : "/",
+              image : require("~/assets/images/delete/sub.png")
+            },
+            {
+              name_tm : "Smartphones",
+              name_ru : "Telefonlar",
+              link : "/",
+              image : require("~/assets/images/delete/sub3.png")
+            },
+            {
+              name_tm : "Xiaomi",
+              name_ru : "Redmi",
+              link : "/",
+              image : require("~/assets/images/delete/sub2.png")
+            },
+            {
+              name_tm : "Apple",
+              name_ru : "Macbook",
+              link : "/",
+              image : require("~/assets/images/delete/sub.png")
+            },
+          ]
+        }
+      ]
+    }
+  },
+  computed:{
+    currentLanguage() {
+        return this.$i18n.locales.find(
+            (locale) => locale.code === this.$i18n.locale
+        )
+    },
+    ...mapGetters({
+      language: 'dynamicLang/language',
+    }),
+  },
   methods:{
+    ...mapActions({
+        changeLanguage: 'languages/changeLanguage',
+    }),
     searchOutline(){
       const el = document.querySelector(".header_search");
       el.style.border = '1px solid #FF141D'
+      this.search = true;
+      this.searchBackground = true;
+      document.querySelector("body").style.overflow = 'hidden';
+
     },
     searchOutlineNone(){
       const el = document.querySelector(".header_search");
       el.style.border = 'none'
+      this.search = false;
+      this.searchBackground = false;
+      document.querySelector("body").style.overflowX = 'hidden';
+      document.querySelector("body").style.overflowY = 'auto';
+    },
+    startSearch(){
+      this.search = false;
+      this.searchStart = true;
+    },
+    openLocation(){
+      this.location = true;
+    },
+    closeLocation(){
+      this.location = false;
+    },
+    openProfile(){
+      this.profile = true;
+    },
+    closeProfile(){ 
+      this.profile = false;
+    },
+    categoryOpen(){
+      this.category = true;
+    },
+    categoryClose(){
+      this.category = false;
+    },
+    categoryChange(id){
+      this.whitchCategory = Number(id);
     }
   }
 }

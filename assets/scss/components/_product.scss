@@ -4,18 +4,98 @@
   }
 }
 
-.productSlider{
-  display: flex;
-  flex-wrap: wrap;
-  &_product{
-    width: 18%;
-    margin-right: 2.5%;
-    border-radius: 5px;
-    img{
-      border-radius: 5px;
+.swiper-pagination{
+  &-bullet{
+    background-color: #555555 !important;
+  }
+}
+
+.product_info{
+  padding: 15px 20px 20px 20px;
+  background-color: #F3F3F3;
+  .product_info_price{
+    @include flex;
+    margin-bottom: 10px;
+    .new{
+      font-size: 20px;
+      font-weight: 700;
+      font-family: Inter;
+      color: black;
+      @include flex();
+      span{
+        color: white;
+        background-color: #C4C4C4;
+        font-size: 10px;
+        font-weight: 500;
+        padding: 2px 3px;
+        border-radius: 2px;
+        letter-spacing: 1px;
+        margin-left: 7px;
+        font-family: Inter;
+      }
     }
-    &:last-child{
-      margin-right: 0;
+    .old{
+      color: #888888;
+      font-size: 12px;
+      font-weight: 500;
+      font-family: Inter;
+      position: relative;
+      span{
+        font-size: 8px;
+        color: #888888;
+        font-family: Inter;
+      }
+      .hr{
+        position: absolute;
+        border-bottom: 0.5px solid $red;
+        width: 100%;
+        left: 0;
+        top: 8px;
+      }
     }
+  }
+  .product_info_name{
+    color: #545454;
+    font-family: Inter;
+  }
+}
+.product{
+  position: relative;
+  overflow: hidden;
+  .like{
+    top: 15px;
+    right: 15px;
+    position: absolute;
+    z-index: 2;
+    cursor: pointer;
+  }
+  .product_discount_top{
+    background-color: $red;
+    border-radius: 10px;
+    transform: rotate(-10deg);
+    text-align: right;
+    padding: 20px 10px 10px 20px;
+    font-family: Inter;
+    color: white;
+    font-weight: 700;
+    letter-spacing: 1px;
+    position: absolute;
+    top: -10px;
+    left: -15px;
+    z-index: 3;
+  }
+  .product_new_top{
+    background-color: $yellow;
+    color: #252525;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    border-radius: 10px;
+    padding: 20px 10px 10px 20px;
+    position: absolute;
+    z-index: 2;
+    top: 30px;
+    left: -15px;
+    transform: rotate(-10deg)
   }
 }

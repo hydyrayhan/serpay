@@ -147,3 +147,30 @@
     color: $darkGray;
   }
 }
+
+.main_category{
+  margin-bottom: 80px;
+}
+.main_like{
+  margin-bottom: 150px;
+}
+
+.main_product{
+  display: flex;
+  flex-wrap: wrap;
+  .product{
+    width: 18%;
+    margin-right: 2.5%;
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    img{
+      border-radius: 5px;
+    }
+    &:nth-child(5n){
+      margin-right: 0;
+    }
+  }
+  .like{
+    margin-bottom: 20px;
+  }
+}
