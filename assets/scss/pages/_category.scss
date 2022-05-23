@@ -1,0 +1,98 @@
+.category_name{
+  font-size: 25px;
+  color: #292929;
+  margin-bottom: 20px;
+}
+
+.category{
+  &_sidebar{
+    width: 20%;
+    background-color: white;
+    padding: 22px;
+    border-radius: 8px;
+    &_header{
+      @include flex(row,flex-start);
+      margin-bottom: 35px;
+      .icon{
+        @include flex;
+      }
+      .text{
+        font-size: 15px;
+        color: #5A5A5A;
+        margin-left: 6px;
+      }
+    }
+    .filter_header_text{
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: #5A5A5A;
+      margin-right: 10px;
+    }
+    &_price{
+      &_header{
+        @include flex(row, flex-start);
+        margin-bottom: 10px;
+        .valyut{
+          font-size: 10px;
+          font-family: Inter;
+          font-weight: 600;
+          letter-spacing: 1px;
+          border-radius: 2px;
+          background: #C4C4C4;
+          color: white;
+          padding: 2px;
+        }
+      }
+      &_inputs{
+        padding-bottom: 30px;
+        border-bottom: 1px solid #aeaeae80;
+        margin-bottom: 30px;
+        input{
+          border:1px solid #8F8F8F;
+          border-radius: 5px;
+          background-color: white;
+          padding: 8px 10px;
+          font-size: 15px;
+          color: #292929;
+          width: 40%;
+          margin-right: 10px;
+          &::placeholder{
+            font-size: 15px;
+            color: #B3B3B3;
+          }
+          &:focus{
+            border: 1px solid #FFC700;
+          }
+        }
+      }
+    }
+    &_gender{
+      &_checkbuttons{
+        margin-top: 10px;
+        .jyns{
+          @include flex;
+          padding-right: 20px;
+          .checkbutton{
+            label{
+              div{
+                border-radius: 3px;
+                border: 2px solid #E5E5E5;
+                width: 20px;
+                height: 20px;
+                @include flex(row,center);
+                cursor: pointer;
+              }
+              div.active{
+              }
+              input[type="checkbox"]:checked ~ .check{
+                background: #000;
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

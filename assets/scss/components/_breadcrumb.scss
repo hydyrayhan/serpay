@@ -1,0 +1,32 @@
+.breadcrumb{
+  display: flex;
+  margin: 24px 0 20px 0;
+  width:fit-content;
+  @include mobile{
+    margin: 24px 0 14px 0;
+  }
+  div{
+    margin-right: 10px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  // svg{
+  //   margin-right: 18px;
+  // }
+  span,a{
+    color: $gray;
+  }
+  .black{
+    color: $black;
+  }
+  .dotCon{
+    display: flex;
+    align-items: center;
+  }
+  .dot{
+    width: 3px;
+    height: 3px;
+    background-color: #D6D6D6;
+    border-radius: 100px;
+  }
+}

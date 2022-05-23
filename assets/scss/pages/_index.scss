@@ -174,3 +174,47 @@
     margin-bottom: 20px;
   }
 }
+
+.appReklama{
+  background: linear-gradient(91.86deg, #FEBE13 8.62%, #FF141D 97.91%);
+  overflow: hidden;
+  margin-bottom: 80px;
+  .container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 60px 0;
+    .left{
+      display: flex;
+      align-items: center;
+      max-width: 50%;
+      .logo{
+        margin-right: 25px;
+      }
+      .text{
+        color: #FFFFFF;
+        font-size: 24px;
+        font-weight: 600;
+        letter-spacing: 1px;
+      }
+    }
+    .right{
+      .icon{
+        margin-left: 30px;
+        position: relative;
+      }
+      .iconDynamic{
+        position: absolute;
+      }
+      #icon1{
+        top: -70px;
+        right: 365px;
+      }
+      #icon2{
+        bottom: -75px;
+        right: -100px;
+      }
+    }
+  }
+}

@@ -11,11 +11,11 @@
 @import './components/header';
 @import './components/footer';
 @import './components/product';
-// @import './components/breadcrumb';
+@import './components/breadcrumb';
 
 //pages
 @import './pages/index';
-// @import './pages/category';
+@import './pages/category';
 // @import './pages/productPage';
 
 
@@ -39,5 +39,5 @@ button{
 }
 body{
   overflow-x: hidden;
-  background-color: #FBFBFB;
+  background-color: #E7E7E7;
 }

@@ -17,10 +17,12 @@
              <div class="hidden_category" @click="categoryChange(i)" :class="whitchCategory === i ? 'active' : ''" v-for="(category , i) in categories" :key="i">{{category[language.name]}}</div>
            </div>
            <div class="hidden_subcategories">
-             <nuxt-link to="/" class="hidden_subcategory" v-for="(sub, i) in categories[whitchCategory].subCategories" :key="i">
-               <div class="icon"><img :src="sub.image" alt=""></div>
-               <div class="text">{{sub[language.name]}}</div>
-             </nuxt-link>
+             <span @click="categoryClose" v-for="(sub, i) in categories[whitchCategory].subCategories" :key="i">
+              <nuxt-link to="/category/1" class="hidden_subcategory" >
+                <div class="icon"><img :src="sub.image" alt=""></div>
+                <div class="text">{{sub[language.name]}}</div>
+              </nuxt-link>
+             </span>
            </div>
          </div>
        </div>

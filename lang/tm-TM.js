@@ -21,5 +21,15 @@ export default {
     serveces: "Hyzmatlar",
     chatToAdmin: "Admin bilen çat",
     historyOrder: "Zakaz istoriýam",
+    appReklama:"7Pay programmasyny özüňize ýüklap alyň we islendik ýerden sargaň!",
+    home:"Baş sahypa",
+    filter:"Filter",
+    price:"Bahasy",
+    min:"min",
+    max:"max",
+    gender:"Jynsy",
+    man:"Erkek",
+    woman:"Aýal",
+    child:"Çaga",
 }
   
