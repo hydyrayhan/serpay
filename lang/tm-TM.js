@@ -31,5 +31,12 @@ export default {
     man:"Erkek",
     woman:"Aýal",
     child:"Çaga",
+    clear:"Arassala",
+    startFilter:"Filterle",
+    yzygider:"Yzygider",
+    topSold:"Köp satylanlar",
+    news:"Täzeler",
+    poorTOrich:"Gymmatdan arzana",
+    richTOpoor:"Arzandan gymmada",
 }
   

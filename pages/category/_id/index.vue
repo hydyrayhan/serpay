@@ -26,22 +26,126 @@
           <div class="filter_header_text">{{$t('gender')}}</div>
           <div class="category_sidebar_gender_checkbuttons">
             <div class="jyns">
-              <span class="text">{{$t('man')}}</span> 
               <div class="checkbutton">
+                <span class="text">{{$t('man')}}</span> 
                 <label for="man">
+                  <input type="checkbox" name="man" id="man">
                   <div class="check">
                     <img src="~/assets/images/icons/checkbox-icon.svg" alt="checkbox-icon">
                   </div>
-                  <input type="checkbox" name="man" id="man">
+                </label>
+              </div>
+              <div class="checkbutton">
+                <span class="text">{{$t('woman')}}</span> 
+                <label for="woman">
+                  <input type="checkbox" name="woman" id="woman">
+                  <div class="check">
+                    <img src="~/assets/images/icons/checkbox-icon.svg" alt="checkbox-icon">
+                  </div>
+                </label>
+              </div>
+              <div class="checkbutton">
+                <span class="text">{{$t('child')}}</span> 
+                <label for="child">
+                  <input type="checkbox" name="child" id="child">
+                  <div class="check">
+                    <img src="~/assets/images/icons/checkbox-icon.svg" alt="checkbox-icon">
+                  </div>
                 </label>
               </div>
             </div>
           </div>
         </div>
+
+        <div class="category_sidebar_discounts">
+          <div class="checkbutton">
+            <span class="text">{{$t('discount')}}</span> 
+            <label for="discount">
+              <input type="checkbox" name="discount" id="discount">
+              <div class="check">
+                <img src="~/assets/images/icons/checkbox-icon.svg" alt="checkbox-icon">
+              </div>
+            </label>
+          </div>
+          <div class="checkbutton">
+            <span class="text">{{$t('new')}}</span> 
+            <label for="new">
+              <input type="checkbox" name="new" id="new">
+              <div class="check">
+                <img src="~/assets/images/icons/checkbox-icon.svg" alt="checkbox-icon">
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="category_sidebar_buttons">
+          <button class="clear">{{$t('clear')}}</button>
+          <button class="filter">
+            <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18.3332 1.5H1.6665L8.33317 9.38333V14.8333L11.6665 16.5V9.38333L18.3332 1.5Z" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+
+            {{$t('startFilter')}}
+          </button>
+        </div>
       </div>
       <div class="category_main">
-        <div class="category_main_filter"></div>
-        <div class="category_main_products"></div>
+        <div class="category_main_filter">
+          <div class="category_main_filter_left">
+            <div class="left_title">
+              <img src="~/assets/images/icons/headerFilter.svg" alt="headerFilter">
+              <span>{{$t('filter')}}:</span>
+            </div>
+            <div class="left_btn box boxBorder">
+              <span>{{$t('yzygider')}}</span>
+            </div>
+            <div class="left_btn box boxBorder">
+              <span>{{$t('richTOpoor')}}</span>
+              <div class="icons">
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="22" height="22" rx="3" fill="white" fill-opacity="0.1"/>
+                  <path d="M17.3536 7.35355C17.5488 7.15829 17.5488 6.84171 17.3536 6.64645L14.1716 3.46447C13.9763 3.2692 13.6597 3.2692 13.4645 3.46447C13.2692 3.65973 13.2692 3.97631 13.4645 4.17157L16.2929 7L13.4645 9.82843C13.2692 10.0237 13.2692 10.3403 13.4645 10.5355C13.6597 10.7308 13.9763 10.7308 14.1716 10.5355L17.3536 7.35355ZM5 7.5H17V6.5H5V7.5Z" fill="#AEAEAE"/>
+                  <path d="M4.64645 14.6464C4.45118 14.8417 4.45118 15.1583 4.64645 15.3536L7.82843 18.5355C8.02369 18.7308 8.34027 18.7308 8.53553 18.5355C8.7308 18.3403 8.7308 18.0237 8.53553 17.8284L5.70711 15L8.53553 12.1716C8.7308 11.9763 8.7308 11.6597 8.53553 11.4645C8.34027 11.2692 8.02369 11.2692 7.82843 11.4645L4.64645 14.6464ZM17 14.5L5 14.5L5 15.5L17 15.5L17 14.5Z" fill="#AEAEAE"/>
+                </svg>
+              </div>
+              <span>{{$t('poorTOrich')}}</span>
+            </div>
+            <div class="left_btn box boxBorder">
+              <span>{{$t('news')}}</span>
+            </div>
+            <div class="left_btn box boxBorder">
+              <span>{{$t('topSold')}}</span>
+            </div>
+          </div>
+          <div class="category_main_filter_right">
+            <div class="icon active" @click="changeView(0)">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.5 2.25H2.25V7.5H7.5V2.25Z" stroke="#AEAEAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M15.75 2.25H10.5V7.5H15.75V2.25Z" stroke="#AEAEAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M15.75 10.5H10.5V15.75H15.75V10.5Z" stroke="#AEAEAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M7.5 10.5H2.25V15.75H7.5V10.5Z" stroke="#AEAEAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="icon" @click="changeView(1)">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 6H21" stroke="#AEAEAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 12H21" stroke="#AEAEAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 18H21" stroke="#AEAEAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M3 6H3.01" stroke="#AEAEAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M3 12H3.01" stroke="#AEAEAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M3 18H3.01" stroke="#AEAEAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="category_main_products">
+          <span class="cube" v-if="productView">
+            <Product v-for="i in 15" :key="i"/>
+          </span>
+          <span v-else>
+            <LongProduct v-for="i in 15" :key="i"/>
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -49,8 +153,10 @@
 
 <script>
 import Breadcrumb from '~/components/Breadcrumb';
+import Product from '~/components/Product';
+import LongProduct from '~/components/LongProduct';
 export default {
-  components:{Breadcrumb},
+  components:{Breadcrumb, Product, LongProduct},
   data(){
     return{
       positions:{
@@ -63,6 +169,19 @@ export default {
           to:"/"
         },
         subcategory_name:'Sub category',
+      },
+      productView:true,
+    }
+  },
+  methods:{
+    changeView(number){
+      document.querySelectorAll('.category_main_filter_right .icon')[0].classList.remove('active')
+      document.querySelectorAll('.category_main_filter_right .icon')[1].classList.remove('active')
+      document.querySelectorAll('.category_main_filter_right .icon')[number].classList.add('active')
+      if(number == 1){
+        this.productView = false;
+      }else{
+        this.productView = true;
       }
     }
   }

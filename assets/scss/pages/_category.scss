@@ -5,11 +5,23 @@
 }
 
 .category{
+  // position: relative;
+  min-height: 600px;
+  display: flex;
   &_sidebar{
-    width: 20%;
+    position: relative;
+    height: fit-content;
+    // position: fixed;
+    // top: 215px;
+    top: 0;
+    // width: 300px;
+    min-width: 20%;
+    max-width: 20%;
+    margin-bottom: 100px;
     background-color: white;
     padding: 22px;
     border-radius: 8px;
+    padding-bottom: 65px;
     &_header{
       @include flex(row,flex-start);
       margin-bottom: 35px;
@@ -68,29 +80,151 @@
       }
     }
     &_gender{
+      padding-bottom: 30px;
+      border-bottom: 1px solid #aeaeae80;
+      margin-bottom: 30px;
       &_checkbuttons{
         margin-top: 10px;
         .jyns{
-          @include flex;
           padding-right: 20px;
-          .checkbutton{
-            label{
-              div{
-                border-radius: 3px;
-                border: 2px solid #E5E5E5;
-                width: 20px;
-                height: 20px;
-                @include flex(row,center);
-                cursor: pointer;
-              }
-              div.active{
-              }
-              input[type="checkbox"]:checked ~ .check{
-                background: #000;
-                display: none;
-              }
+        }
+      }
+    }
+    &_discounts{
+      padding-right: 20px;
+    }
+    .checkbutton{
+      @include flex;
+      margin-bottom: 10px;
+      label{
+        div{
+          border-radius: 3px;
+          border: 2px solid #E5E5E5;
+          width: 20px;
+          height: 20px;
+          @include flex(row,center);
+          cursor: pointer;
+        }
+        input{
+          display: none;
+        }
+        input:checked + div{
+          background: #000;
+        }
+      }
+    }
+    &_buttons{
+      @include flex;
+
+      margin-top: 200px;
+      // position: absolute;
+      // bottom: 22px;
+      // width: calc(100% - 46px);
+      
+      button{
+        background: none;
+        padding: 8px 15px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .clear{
+        color: #616161;
+        border: 1px solid #AEAEAE;
+        background: #FAFAFA;
+      }
+      .filter{
+        background: #FF141D;
+        color: #FFFFFF;
+        @include flex;
+        svg{
+          margin-right: 15px;
+        }
+      }
+    }
+  }
+
+  &_main{
+    // padding-left: 330px;
+    // margin-top: 40px;
+    margin-top: 20px;
+    margin-left: 30px;
+    width: calc(80% - 30px);
+    &_filter{
+      @include flex;
+      margin-bottom: 25px;
+      &_left{
+        @include flex(row , flex-start);
+        .box{
+          margin-right: 20px;
+          max-height: 30px;
+          font-size: 14px;
+          color: #687F86;
+          background: #F1F1F1;
+          padding: 4px 8px;
+          cursor: pointer;
+          @include flex();
+          .icons{
+            @include flex;
+            margin: 0 10px;
+          }
+          span{
+            color: #687F86;
+          }
+        }
+        .boxBorder{
+          border-radius: 5px;
+        }
+        .left{
+          &_title{
+            @include flex();
+            margin-right: 20px;
+            font-size: 14px;
+            color: #687F86;
+            span{
+              color: #687F86;
+            }
+            img{
+              margin-right: 5px;
             }
           }
+        }
+      }
+      &_right{
+        @include flex;
+        border-radius: 5px;
+        background: white;
+        padding: 10px 12px;
+        .icon{
+          @include flex;
+          cursor: pointer;
+          &:first-child{
+            margin-right: 15px;
+          }
+        }
+        .icon.active{
+          path{
+            stroke: #414141;
+          }
+        }
+      }
+    }
+    &_products{
+      @include flex(row , flex-start , flex-start);
+      flex-wrap: wrap;
+      span.cube{
+        width: 100%;
+        @include flex(row , flex-start , flex-start);
+        flex-wrap: wrap;
+      }
+      .product{
+        width: 24%;
+        margin-bottom: 20px;
+        margin-right: 1.33%;
+        border-radius: 5px;
+        
+        &:nth-child(4n){
+          margin-right: 0;
         }
       }
     }
