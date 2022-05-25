@@ -1655,6 +1655,18 @@
   margin-right: 0;
 }
 
+.favorite_head {
+  padding: 50px 150px 25px 160px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #292929;
+  font-size: 25px;
+}
+
+.favorite_products {
+  padding: 0 150px;
+}
+
 * {
   margin: 0;
   padding: 0;
