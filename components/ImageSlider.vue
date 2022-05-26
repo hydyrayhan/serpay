@@ -5,20 +5,20 @@
       :options="imageSliderOptions"
     >
       <swiper-slide>
-        <nuxt-link to="/" class="news__slider__item"> 
+        <div  class="news__slider__item"> 
             <div class="news__slider__item__image">
               <!-- <img v-bind:src="$config.url+'/'+i.image" alt=""> -->
               <img src="~/assets/images/delete/product.png" alt="">
             </div>
-        </nuxt-link>
+        </div>
         </swiper-slide>
       <swiper-slide>
-        <nuxt-link to="/" class="news__slider__item"> 
+        <div  class="news__slider__item"> 
             <div class="news__slider__item__image">
               <!-- <img v-bind:src="$config.url+'/'+i.image" alt=""> -->
               <img src="~/assets/images/delete/product2.png" alt="">
             </div>
-        </nuxt-link>
+        </div>
         </swiper-slide>
         <div slot="pagination" class="swiper-pagination"></div>
 

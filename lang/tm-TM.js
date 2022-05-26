@@ -38,5 +38,12 @@ export default {
     news:"Täzeler",
     poorTOrich:"Gymmatdan arzana",
     richTOpoor:"Arzandan gymmada",
+    kind:"Görnüş",
+    size:"Size",
+    quantity:"Mukdar",
+    sum:"Jemi",
+    addCart:"Sebede goş",
+    addLiked:"Halanlaryma goş",
+    detail:"Maglumat",
 }
   

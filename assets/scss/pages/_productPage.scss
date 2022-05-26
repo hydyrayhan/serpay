@@ -1,0 +1,296 @@
+.productPage{
+  @include flex(row,space-between,flex-start);
+
+  &_images{
+    min-width: 45%;
+    max-width: 45%;
+    .big_image{
+      width: 100%;
+      margin-bottom: 15px;
+      img{
+        width: 100%;
+      }
+    }
+    .small_image{
+      display: flex;
+      margin-bottom: 70px;
+      &_image{
+        margin-right: 10px;
+        border-radius: 2px;
+        height: 75px;
+        width: 75px;
+        cursor: pointer;
+        img{
+          height: 75px;
+          width: 75px;
+        }
+      }
+      &_image.active{
+        border: 1px solid #FEBE13;;
+      }
+    }
+  }
+
+  &_info{
+    min-width: 53%;
+    max-width: 53%;
+
+    @include flex(column,space-between,flex-start);
+
+    .info_price{
+      @include flex(row, flex-start);
+      margin-bottom: 20px;
+      &_new{
+        margin-right: 30px;
+        span{
+          &:first-child{
+            color: $red;
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-right: 8px;
+          }
+          &:last-child{
+            color: #616161;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            background: #DEDEDE;
+            border-radius: 3px;
+          }
+        }
+      }
+      &_old{
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        font-family: Inter;
+        color: #888888;
+        margin-right: 40px;
+        position: relative;
+        span{
+          position: absolute;
+          left: 0;
+          top: 9px;
+          width: 100%;
+          border-bottom: 0.5px solid #FF145B;;
+        }
+      }
+      &_liked{
+        @include flex();
+        width: fit-content;
+        svg{
+          margin-right: 5px;
+        }
+        span{
+          color: #858585;
+          font-size: 12px;
+          font-weight: 600;
+          letter-spacing: 1px;
+        }
+      }
+    }
+
+    .info_name{
+      color: #292929;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+    }
+
+    .info_definition{
+      color: #292929;
+      font-size: 15px;
+      font-family: Inter;
+      margin-bottom: 30px;
+      width: 70%;
+    }
+
+    .info_title{
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: #292929;
+      margin-right: 14px;
+    }
+
+    .info_kind{
+      margin-bottom: 20px;
+      &_images{
+        margin-top: 10px;
+        display: flex;
+        .image{
+          border: 1px solid #B6B6B6;
+          border-radius: 2px;
+          width: 52px;
+          height: 52px;
+          margin-right: 15px;
+          cursor: pointer;
+          @include flex();
+          img{
+            width: 50px;
+            height: 50px;
+          }
+        }
+        .image.active{
+          border: 1px solid #FEBE13;
+        }
+      }
+    }
+
+    .info_size{
+      margin-bottom: 50px;
+      &_sizes{
+        margin-top: 10px;
+        display: flex;
+        .size{
+          background: #FFFFFF;
+          // opacity: 0.4;
+          border: 1px solid #DEDEDE;
+          border-radius: 2px;
+          color: #292929;
+          font-weight: 600;
+          letter-spacing: 1px;
+          font-size: 16px;
+          padding: 7px 10px;
+          margin-right: 10px;
+          cursor: pointer;
+        }
+        .size.active{
+          border: 1px solid #FFC700;
+        }
+        .size.disable{
+          opacity: 0.5;
+        }
+      }
+    }
+
+    .info_quantity-totalPrice{
+      @include flex;
+      .info_quantity{
+        @include flex;
+        margin-right: 70px;
+        &_count{
+          @include flex;
+          .btn{
+            padding: 7px 10px;
+            background: #FFFFFF;
+            border: 1px solid #DEDEDE;
+            border-radius: 2px;
+            @include flex();
+            height: 30px;
+            cursor: pointer;
+          }
+          .count{
+            margin: 0 10px;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #292929;
+          }
+        }
+      }
+
+      .info_totalPrice{
+        background: #FFFFFF;
+        border: 1px dashed #DBDBDB;
+        border-radius: 5px;
+        padding: 25px 30px;
+        width: 100%;
+
+        &_pricebox{
+          @include flex(row,flex-start);
+          margin-bottom: 25px;
+          .pricebox_title{
+            color: #767676;
+            letter-spacing: 1px;
+            font-weight: 600;
+            font-size: 18px;
+            margin-right: 15px;
+          }
+          .pricebox_price{
+            color: black;
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-family: Inter;
+            @include flex();
+            span{
+              margin-left: 6px;
+              background: #CBCBCB;
+              border-radius: 3px;
+              padding: 3px 5px;
+              font-size: 12px;
+              font-family: Inter;
+              letter-spacing: 1px;
+              font-weight: 600;
+              color: white;
+            }
+          }
+        }
+
+        &_buttons{
+          @include flex();
+          .btn{
+            padding: 10px 15px;
+            @include flex();
+            cursor: pointer;
+            svg{
+              margin-right: 15px;
+            }
+            span{
+              font-size: 18px;
+              font-weight: 600;
+              letter-spacing: 1px;
+            }
+          }
+
+          .addCart{
+            background: $red;
+            border-radius: 3px;
+            margin-right: 10px; 
+            span{
+              color: white;
+            }
+          }
+          .addLiked{
+            background: #FFFFFF;
+            border: 1px solid #D9D9D9;
+            border-radius: 5px;
+            span{
+              color: #616161;
+
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.productPage_teklipProducts{
+  display: flex;
+  width: 100%;
+  margin-bottom: 60px;
+  .product{
+    width: 19%;
+    margin-right: 1.25%;
+    &:nth-child(5n){
+      margin-right: 0;
+    }
+  }
+}
+
+.productPage_detail{
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 200px;
+  img{
+    width: 49%;
+    margin-right: 2%;
+    &:nth-child(2n){
+      margin-right: 0;
+    }
+  }
+}

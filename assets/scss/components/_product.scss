@@ -101,7 +101,21 @@
 }
 
 
-
+.longProductCon{
+  position: relative;
+  .like{
+    padding: 10px 13px;
+    border-radius: 5px;
+    border: 1px solid #D9D9D9;
+    width: fit-content;
+    margin: 25px 30px;
+    cursor: pointer;
+    @include flex();
+    position: absolute;
+    top: 0;
+    right: 0px;
+  }
+}
 .longProduct{
   width: 100%;
   border-radius: 10px;
@@ -168,15 +182,6 @@
         font-family: Inter;
       }
     }
-  }
-  .like{
-    padding: 10px 13px;
-    border-radius: 5px;
-    border: 1px solid #D9D9D9;
-    width: fit-content;
-    margin: 25px 30px;
-    cursor: pointer;
-    @include flex();
   }
   .newProduct{
     position: absolute;
