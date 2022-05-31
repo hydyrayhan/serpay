@@ -13,7 +13,8 @@ import LongProduct from '~/components/LongProduct';
 export default {
   components:{LongProduct},
   mounted(){
-    console.log(document.querySelector(".header_buttons_like path").style.fill = 'red')
+    document.querySelector(".header_buttons_like path").style.fill = '#FF141D'
+    document.querySelector(".header_buttons_like .text").style.color = '#FF141D'
   }
 }
 </script>

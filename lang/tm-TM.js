@@ -45,5 +45,8 @@ export default {
     addCart:"Sebede goş",
     addLiked:"Halanlaryma goş",
     detail:"Maglumat",
+    deleteFromCart:"Sebetden poz",
+    chooseAll:"Ählisini saýla",
+    orderDone:"Sargydy tamamla",
 }
   

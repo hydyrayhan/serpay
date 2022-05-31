@@ -1,0 +1,197 @@
+.cart{
+  margin-top: 50px;
+  @include flex(row,space-between,flex-start);
+  .cart_left{
+    width: 70%;
+    .product_container{
+      @include flex();
+      margin-bottom: 20px;
+    }
+    &_radio{
+      margin-right: 20px;
+    }
+    &_product{
+      width: 100%;
+      background: #F3F3F3;
+      border-radius: 10px;
+      overflow: hidden;
+      @include flex(row, space-between, flex-start);
+      &_left{
+        display: flex;
+        .images{
+          width: 220px;
+          max-height: 200px;
+          margin-right: 30px;
+          img{
+            width: 220px;
+            height: 200px;
+          }
+        }
+  
+        .info{
+          padding: 25px 0;
+          width: 60%;
+          &_price{
+            @include flex(row,flex-start);
+            margin-bottom: 10px;
+            &_new{
+              color:black;
+              font-size: 20px;
+              font-weight: 700;
+              letter-spacing: 1px;
+              font-family: Inter;
+              margin-right: 15px;
+              @include flex();
+              span{
+                padding: 1px 3px;
+                background: #DEDEDE;
+                border-radius: 3px;
+                font-size: 10px;
+                font-weight: 600;
+                letter-spacing: 1px;
+                margin-left: 5px;
+              }
+            }
+            &_old{
+              font-size: 12px;
+              color: #888888;
+              font-family: Inter;
+              font-weight: 600;
+              letter-spacing: 1px;
+              position: relative;
+              span{
+                &:first-child{
+                  font-size: 8px;
+                }
+                &:last-child{
+                  position: absolute;
+                  top: 8px;
+                  left: 0;
+                  width: 100%;
+                  border-bottom: 0.5px solid #FF145B;
+                }
+              }
+            }
+          }
+          &_name{
+            color: #545454;
+            font-family: Inter;
+            font-size: 16px;
+            margin-bottom: 10px;
+          }
+          &_definition{
+            color: #616161;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 1px;
+          }
+        }
+      }
+      .buttons{
+        padding: 25px;
+        &_quantity{
+          @include flex();
+          margin-bottom: 15px;
+          .title{
+            color: #292929;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-right: 15px;
+          }
+          .button{
+            background: #FFFFFF;
+            border: 1px solid #DEDEDE;
+            border-radius: 2px;
+            height: 35px;
+            width: 25px;
+            @include flex(row, center);
+            cursor: pointer;
+          }
+          .count{
+            background: #FFFFFF;
+            border: 1px solid #FBFBFB;
+            border-radius: 2px;
+            width: 30px;
+            height: 35px;
+            @include flex(row, center)
+          }
+        }
+        &_delete{
+          @include flex();
+          cursor: pointer;
+          border: 1px solid #838383;
+          border-radius: 5px;
+          padding: 8px 15px;
+          .title{
+            color: #747474;
+          }
+        }
+      }
+    }
+  }
+  .cart_right{
+    width: 28%;
+    background: #FBFBFB;
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.08);
+    border-radius: 15px;
+    overflow: hidden;
+    &_main{
+      padding: 25px 40px 30px;
+      .chooseAll{
+        @include flex();
+        width: fit-content;
+        padding: 10px 15px;
+        background: #FFFFFF;
+        border: 1px solid #AEAEAE;
+        border-radius: 5px;
+        margin-bottom: 30px;
+        cursor: pointer;
+        svg{
+          margin-right: 10px;
+        }
+        span{
+          font-size: 18px;
+          font-weight: 600;
+          letter-spacing: 1px;
+          color: black;
+        }
+      }
+      .totalPrice{
+        .title{
+          color: #0D0D0D;
+          font-size: 20px;
+          font-weight: 600;
+          letter-spacing: 1px;
+          margin-bottom: 5px;
+        }
+        .price{
+          color: black;
+          font-size: 32px;
+          font-weight: 700;
+          letter-spacing: 1px;
+          font-family: Inter;
+          @include flex(row,flex-start);
+          span{
+            margin-left: 9px;
+            background: #CBCBCB;
+            border-radius: 3px;
+            padding: 3px 5px;
+            color: white;
+            font-size: 12px;
+            font-family: Inter;
+          }
+        }
+      }
+    }
+    &_bottom{
+      background: #FF141D;
+      padding: 20px 0;
+      text-align: center;
+      color: white;
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+  }
+}

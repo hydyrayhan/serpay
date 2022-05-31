@@ -94,7 +94,7 @@
            </div>
            <div class="text">{{$t('liked')}}</div>
          </div>
-         <div class="header_buttons_cart btn">
+         <div class="header_buttons_cart btn" @click="$router.push('/sebet')">
            <div class="icon">
             <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g clip-path="url(#clip0_659_1232)">
@@ -254,6 +254,17 @@ export default {
       }else{
         document.querySelector(".header_buttons_like path").style.fill = '#AEAEAE'
         document.querySelector(".header_buttons_like .text").style.color = '#AEAEAE'
+      }
+      if('/sebet' == this.$route.path){
+        document.querySelectorAll(".header_buttons_cart path")[0].style.fill = '#FF141D'
+        document.querySelectorAll(".header_buttons_cart path")[1].style.fill = '#FF141D'
+        document.querySelectorAll(".header_buttons_cart path")[2].style.fill = '#FF141D'
+        document.querySelector(".header_buttons_cart .text").style.color = '#FF141D'
+      }else{
+        document.querySelectorAll(".header_buttons_cart path")[0].style.fill = '#AEAEAE'
+        document.querySelectorAll(".header_buttons_cart path")[1].style.fill = '#AEAEAE'
+        document.querySelectorAll(".header_buttons_cart path")[2].style.fill = '#AEAEAE'
+        document.querySelector(".header_buttons_cart .text").style.color = '#AEAEAE'
       }
     }
   },
