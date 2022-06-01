@@ -48,5 +48,8 @@ export default {
     deleteFromCart:"Sebetden poz",
     chooseAll:"Ählisini saýla",
     orderDone:"Sargydy tamamla",
+    ordersPage:"Sargytlarym",
+    footPrint:"Aýak yzym",
+    settings:"Sazlamalar",
 }
   
