@@ -51,5 +51,12 @@ export default {
     ordersPage:"Sargytlarym",
     footPrint:"Aýak yzym",
     settings:"Sazlamalar",
+    whereToOrder:"Sargydyňyzy nirä eltmeli",
+    address:"Salgyňyz",
+    name:"Adyňyz:",
+    phoneNumber:"Telefon belgiňiz:",
+    kindBill:"Töleg görnüşi:",
+    cash:"Nagt",
+    fromCart:"Kart arkaly",
 }
   

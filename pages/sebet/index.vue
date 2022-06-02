@@ -173,7 +173,7 @@
             <div class="price">12389<span>manat</span></div>
           </div>
         </div>
-        <div class="cart_right_bottom">{{$t('orderDone')}}</div>
+        <nuxt-link to="order" style="display:inline-block;width:100%" class="cart_right_bottom">{{$t('orderDone')}}</nuxt-link>
       </div>
     </div>
   </div>
