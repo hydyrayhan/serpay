@@ -58,5 +58,15 @@ export default {
     kindBill:"Töleg görnüşi:",
     cash:"Nagt",
     fromCart:"Kart arkaly",
+    signIn:"Içeri gir",
+    signUp:"Agza bol",
+    ordersWaiting:"Garaşýan sargytlarym",
+    ordersRejected:"Ýatyrylan Sargytlaram",
+    myAddresses:"Salgylarym",
+    logout:"Hasapdan çykmak",
+    giveId:"Login id-ňyz",
+    givePassword:"Açar soziňiz",
+    giveConfirmPass:"Açar soziňizi tassyklaň",
+    forgotPass:"Açar sözüni unutdym!",
 }
   
