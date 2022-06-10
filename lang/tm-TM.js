@@ -18,7 +18,7 @@ export default {
     discount: "Arzanladyş",
     seeAll: "Ählisini görkez",
     recommends: "Siziň halajak harytlaryňyz",
-    serveces: "Hyzmatlar",
+    services: "Hyzmatlar",
     chatToAdmin: "Admin bilen çat",
     historyOrder: "Zakaz istoriýam",
     appReklama:"7Pay programmasyny özüňize ýüklap alyň we islendik ýerden sargaň!",
@@ -68,5 +68,12 @@ export default {
     givePassword:"Açar soziňiz",
     giveConfirmPass:"Açar soziňizi tassyklaň",
     forgotPass:"Açar sözüni unutdym!",
+    choosePicture:"Surat saýlaň",
+    submit:"Submit",
+    nameAndSurname:"Adyňyz we familiýaňyz",
+    login:"Login",
+    save:"Save", 
+    cancel:"Cancel",
+    delete:"Delete",
 }
   

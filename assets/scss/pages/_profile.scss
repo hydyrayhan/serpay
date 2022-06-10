@@ -29,6 +29,29 @@
       }
     }
   }
+  .profile_header_logged{
+    border: 0.5px solid #EDEDED;
+    background: white;
+    border-radius: 8px;
+    width: 50%;
+    margin: 0 auto;
+    @include flex(column,center);
+    margin-bottom: 40px;
+    .logged_image{
+      margin-top: -70px;
+      margin-bottom: 30px;
+    }
+    .logged_name{
+      padding-bottom: 60px;
+      color: black;
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      span{
+        margin-right: 15px;
+      }
+    }
+  }
   &_main{
     &_links{
       display: flex;
@@ -53,7 +76,7 @@
           color: #414141;
           text-align: center;
         }
-        svg{
+        svg,img{
           position: absolute;
           bottom: 0;
           right: 0;

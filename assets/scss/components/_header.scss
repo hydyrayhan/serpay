@@ -46,6 +46,7 @@
         }
         .hidden_category.active{
           background-color: #FFFFFF;
+          border-top: 3px $red solid;
         }
       }
       .hidden_subcategories{
