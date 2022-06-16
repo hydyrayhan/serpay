@@ -75,5 +75,6 @@ export default {
     save:"Save", 
     cancel:"Cancel",
     delete:"Delete",
+    
 }
   

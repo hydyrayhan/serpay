@@ -15,5 +15,56 @@
       color: #0047FF;
       cursor: pointer;
     }
+    .orders_header_buttons{
+      @include flex();
+      .cancel{
+        font-size: 14px;
+        color: $darkGray;
+        margin-right: 25px;
+      }
+      .delete{
+        font-size: 14px;
+        color: $red;
+        margin-right: 25px;
+      }
+      button{
+        background: none;
+        cursor: pointer
+      }
+      .selectAll{
+        @include flex();
+        cursor: pointer;
+        border: 1px solid #AEAEAE;
+        border-radius: 10px;
+        padding: 10px 15px;
+        span{
+          margin-right: 10px;
+          @include flex();
+          &.text{
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+  .orders_products{
+    padding: 0 150px;
+    .products_time{
+      margin-bottom: 20px;
+      span.space{
+        margin-right: 40px;
+      }
+      span{
+        color: $darkGray;
+        font-size: 20px;
+        font-weight: 600;
+      }
+    }
+    .products_product{
+      @include flex();
+      .checkBox{
+        margin-right: 20px;
+      }
+    }
   }
 }
