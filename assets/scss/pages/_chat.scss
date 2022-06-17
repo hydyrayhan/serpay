@@ -1,0 +1,83 @@
+.chatPage{
+  padding: 30px 25px;
+  margin: 40px 200px;
+  background-color: white;
+  border-radius: 15px;
+  position: relative;
+  .chat{
+    overflow-y: auto;
+    padding-bottom: 70px;
+    &_box{
+      margin-bottom: 20px;
+      width: 100%;
+      @include flex(row,flex-start,flex-end);
+      .icon{
+        @include flex();
+        img{
+          width: 30px;
+          height: 30px;
+        }
+      }
+      .text{
+        font-size: 15px;
+        font-family: Inter;
+        border-radius: 15px 15px 15px 0px;
+        padding: 30px;
+        width: 48%;
+      }
+    }
+    .admin{
+      .text{
+        background: $gray;
+        color: white;
+      }
+      .icon{
+        margin-right: 10px;
+      }
+    }
+    .client{
+      display: flex;
+      flex-direction: row-reverse;
+      .text{
+        background-color: $whiteN;
+      }
+      .icon{
+        margin-left: 10px;
+      }
+    }
+  }
+  .chatPage_input{
+    @include flex();
+    width: calc(100% - 50px);
+    position: absolute;
+    bottom: 30px;
+    left: 25px;
+    input{
+      width: 100%;
+      background: $whiteN;
+      border: 1px solid #666883;
+      border-radius: 6px;
+      padding: 13px 15px;
+      font-size: 14px;
+      color: #9D9D9D;
+      margin-right: 25px;
+      &::placeholder{
+        font-size: 14px;
+        color: #9D9D9D;
+      }
+    }
+    button{
+      background: $red;
+      @include flex();
+      width: max-content;
+      padding: 10px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      span{
+        color: white;
+        margin-left: 15px;
+        font-size: 18px;
+      }
+    }
+  }
+}

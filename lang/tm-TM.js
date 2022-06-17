@@ -75,6 +75,7 @@ export default {
     save:"Save", 
     cancel:"Cancel",
     delete:"Delete",
-    
+    typeText:"Type text",
+    send:"Send",
 }
   
