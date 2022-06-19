@@ -77,5 +77,15 @@ export default {
     delete:"Delete",
     typeText:"Type text",
     send:"Send",
+    language:"Language",
+    myAddress:"My address",
+    help:"Help",
+    usage:"Terms of Use",
+    aboutUs:"About us",
+    changePass:"Change password",
+    contact:"Contact",
+    share:"Share",
+    turkmenche:"Türkmençe",
+    ruscha:"Русский", 
 }
   

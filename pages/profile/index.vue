@@ -68,7 +68,7 @@
             <div class="title">{{$t('myAddresses')}}</div>
             <img src="~/assets/images/icons/NicePng_location-icon-png_94335 1.svg" alt="">
           </nuxt-link>
-          <nuxt-link to="/" class="link">
+          <nuxt-link to="/settings" class="link">
             <div class="title">{{$t('settings')}}</div>
             <svg width="69" height="71" viewBox="0 0 69 71" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M41.5 51.875C47.23 51.875 51.875 47.23 51.875 41.5C51.875 35.77 47.23 31.125 41.5 31.125C35.77 31.125 31.125 35.77 31.125 41.5C31.125 47.23 35.77 51.875 41.5 51.875Z" stroke="#414141" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>

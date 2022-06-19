@@ -25,6 +25,7 @@
 @import './pages/signIn';
 @import './pages/orders';
 @import './pages/chat';
+@import './pages/settings';
 
 
 
@@ -49,4 +50,8 @@ body{
   overflow-x: hidden;
   // background-color: #E7E7E7;
   background-color: #FAFAFA;
+}
+
+.space{
+  height: 103px;
 }

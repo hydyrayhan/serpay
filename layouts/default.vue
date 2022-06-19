@@ -1,6 +1,9 @@
 <template>
     <div>
-        <Header />
+        <div class="fullHeaderCon">
+            <Header />
+        </div>
+        <div class="space"></div>
         <Nuxt />
         <Footer />
     </div>
