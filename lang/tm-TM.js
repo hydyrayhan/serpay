@@ -87,5 +87,13 @@ export default {
     share:"Share",
     turkmenche:"Türkmençe",
     ruscha:"Русский", 
+    noAddress:"Address yok address goshun",
+    addNewAddress:"Taze address goshmak",
+    addAddress:"Address Goshmak",
+    city:"Shaher",
+    velayat:"Velayat",
+    cityExample:"Ashgabat",
+    extra_info_for_location:"Addresiniz barada informasiya (koche,etrap we s.m)",
+    exit:"Chykmak",
 }
   

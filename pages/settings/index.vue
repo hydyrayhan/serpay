@@ -16,7 +16,7 @@
           <div class="list_text">{{$t('language')}}</div>
         </div>
       </div>
-      <nuxt-link to="" class="settings_list">
+      <nuxt-link to="/settings/addresses" class="settings_list">
         <div class="settings_list_con">
           <div class="list_icon">
             <svg width="22" height="26" viewBox="0 0 22 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -27,7 +27,7 @@
           <div class="list_text">{{$t('myAddress')}}</div>
         </div>
       </nuxt-link>
-      <nuxt-link to="" class="settings_list">
+      <nuxt-link to="/settings/statics/help" class="settings_list">
         <div class="settings_list_con">
           <div class="list_icon">
             <svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -39,7 +39,7 @@
           <div class="list_text">{{$t('help')}}</div>
         </div>
       </nuxt-link>
-      <nuxt-link to="" class="settings_list">
+      <nuxt-link to="/settings/statics/usage" class="settings_list">
         <div class="settings_list_con">
           <div class="list_icon">
             <svg width="23" height="26" viewBox="0 0 23 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -51,7 +51,7 @@
           <div class="list_text">{{$t('usage')}}</div>
         </div>
       </nuxt-link>
-      <nuxt-link to="" class="settings_list">
+      <nuxt-link to="/settings/statics/aboutUs" class="settings_list">
         <div class="settings_list_con">
           <div class="list_icon">
             <svg width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
