@@ -8,6 +8,41 @@
     font-weight: 600;
     margin-bottom: 25px;
   }
+  .address_carts{
+    margin-bottom: 40px;
+    .address_cart{
+      border: 1px solid #FFC700;
+      border-radius: 10px;
+      background: #FAFAFA;
+      padding: 20px;
+      @include flex(row,space-between,flex-start);
+      width: 100%;
+      margin-bottom: 20px;
+      .address_cart_info{
+        &_place{
+          font-size: 18px;
+          color: black;
+          margin-bottom: 10px;
+        }
+        &_note{
+          color: $darkGray;
+          font-size: 14px;
+          font-family: Inter;
+        }
+      }
+      .address_cart_buttons{
+        margin-left: 32px;
+        @include flex();
+        button{
+          cursor: pointer;
+          background: none;
+        }
+        &_edit{
+          margin-right: 25px;
+        }
+      }
+    }
+  }
   .noAddress_cart{
     border: 1px solid $gray;
     border-radius: 10px;
@@ -34,6 +69,8 @@
   }
 }
 
+
+// add address popup module style
 .address_popupBack{
   background: rgba(0, 0, 0, 0.26);
   backdrop-filter: blur(10px);
@@ -44,6 +81,70 @@
   left: 0;
 }
 
+.address_addPopup{
+  position: fixed;
+  top: calc(50% - 276px);
+  left: calc(50% - 322px);
+  background: #FFFFFF;
+  border-radius: 10px;
+  padding: 40px 50px;
+  border-radius: 10px;
+  .address_input{
+    margin-bottom: 40px;
+    .address_title{
+      color:black;
+      margin-bottom: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-left: 20px;
+    }
+    input,textarea{
+      padding: 14px 20px;
+      border-radius: 8px;
+      border: 1px solid #616161;
+      font-size: 14px;
+      font-family: Inter;
+      width: 100%;
+      &::placeholder{
+        color: $gray;
+        font-size: 14px;
+        font-family: Inter;
+      }
+    }
+  }
+  .address_buttons{
+    @include flex(row, space-around);
+    margin-top: -15px;
+    button{
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    &_exit{
+      background: none;
+      color: #8888E8;
+    }
+    &_save{
+      background: $red;
+      padding: 15px 30px;
+      color: white;
+      border-radius: 10px;
+    }
+  }
+}
+
+.deleteAddressPopup{
+  position: fixed;
+  left: calc(50% - 170px);
+  top: calc(50% - 81px);
+}
+
 .popupTitle{
-  
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: black;
+  margin-bottom: 25px;
+  text-align: center;
 }

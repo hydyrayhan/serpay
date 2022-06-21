@@ -1,0 +1,17 @@
+.hyzmatlar{
+  &_title{
+    @include flex(row,flex-start);
+    margin-bottom: 20px;
+    svg{
+      margin-right: 10px;
+    }
+    span{
+      color: $blackN;
+      font-size: 26px;
+      font-weight: 600;
+    }
+  }
+  &_carts{
+    @include flex(row,space-between,flex-start);
+  }
+}

@@ -63,7 +63,7 @@
           <div class="list_text">{{$t('aboutUs')}}</div>
         </div>
       </nuxt-link>
-      <nuxt-link to="" class="settings_list">
+      <nuxt-link to="/settings/change_password" class="settings_list">
         <div class="settings_list_con">
           <div class="list_icon">
             <svg width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -76,7 +76,7 @@
           <div class="list_text">{{$t('changePass')}}</div>
         </div>
       </nuxt-link>
-      <nuxt-link to="" class="settings_list">
+      <nuxt-link to="/settings/contact" class="settings_list">
         <div class="settings_list_con">
           <div class="list_icon">
           <svg width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
