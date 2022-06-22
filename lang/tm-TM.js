@@ -102,5 +102,6 @@ export default {
     email:"Email",
     message:"Message",
     shareAndEarn:"Paýlaş we mugt gazan!",
+    onlinePay:"Online tolegler yakynda",
 }
   

@@ -1,4 +1,5 @@
 .hyzmatlar{
+  padding: 30px 0;
   &_title{
     @include flex(row,flex-start);
     margin-bottom: 20px;
@@ -13,5 +14,187 @@
   }
   &_carts{
     @include flex(row,space-between,flex-start);
+    &_cart{
+      width: 48%;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      #gift{
+        top: -35px;
+        left: -30px;
+        position: absolute;
+      }
+      #kupon{
+        position: absolute;
+        bottom: -15px;
+        right: -30px;
+      }
+      #wifi{
+        position: absolute;
+        top: -40px;
+        left: 60px;
+      }
+      #tick{
+        position: absolute;
+        bottom: -85px;
+        left: -15px;
+      }
+      #cart{
+        position: absolute;
+        bottom: -35px;
+        right: -80px;
+      }
+      div{
+        min-width: 100%;
+        height: 250px;
+      }
+      span{
+        position: absolute;
+        top: calc(50% - 21px);
+        left: calc(50% - 184px);
+        color: $whiteN;
+        font-size: 36px;
+        font-weight: 700;
+      }
+      &:first-child{
+        div{
+          img{
+            position: absolute;
+            bottom: -50px;
+            width: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+      &:last-child{
+        div{
+          background: linear-gradient(278.24deg, #FFB8B8 5.89%, #FF3840 94.14%);
+        }
+      }
+    }
+  }
+  .hyzmatlar_products_con{
+    padding: 20px 10%;
+  }
+  .hyzmatlar_products{
+    margin-bottom: 40px;
+    &_header{
+      background: conic-gradient(from 218.57deg at 73.51% 50%, #FF141D 0deg, #FEBE13 360deg);;
+      padding: 20px 0;
+      width: 100%;
+      border-radius: 10px 10px 0px 0px;
+      .header_time{
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(10px);
+        padding: 12px;
+        border-radius: 8px;
+        width: fit-content;
+        margin: 0px auto;
+        @include flex();
+        svg{
+          margin-right: 15px;
+        }
+        .timer{
+          @include flex();
+          .span{
+            font-size: 20px;
+            color: $blackN;
+            background-color: white;
+            padding: 6px;
+            border-radius: 8px;
+          }
+          #dot{
+            color: white;
+            font-size: 20px;
+            margin: 0 5px;
+          }
+        }
+      }
+    }
+    .hyzmatlar_products_product_con{
+      position: relative;
+    }
+    &_product{
+      @include flex(row,flex-start,flex-start);
+      width: 100%;
+      background: $grayLight;
+      position: relative;
+      .product_images{
+        width: 20%;
+        height: 200px;
+        margin-right: 10px;
+        img{
+          height: 200px;
+        }
+      }
+      
+      .product_info{
+        padding: 20px;
+        width: 80%;
+        &_name{
+          font-size: 18px;
+          font-weight: 600;
+          color: $blackN;
+          margin-bottom: 15px;
+        }
+        &_range{
+          @include flex(row,flex-start);
+          margin-bottom: 30px;
+          .range{
+            width:30%;
+            height: 25px;
+            border: 1px solid #AEAEAE;
+            border-radius: 100px;
+            background: white;
+            margin-right: 20px;
+            position: relative;
+            @include flex(row, flex-start);
+            overflow: hidden;
+            .range_color{
+              // width: 63%;
+              height: 100%;
+              background:  linear-gradient(269.79deg, #FF141D 7.02%, #FEBE13 97.69%);
+            }
+            .range_percentage{
+              position: absolute;
+              top:0;
+              left:calc(50% - 11px);
+              span{
+                font-size: 11px;
+                font-weight: 600;
+                letter-spacing: 1px;
+                color: $blackN;
+              }
+            }
+          }
+          .count{
+            @include flex(row,flex-start);
+            svg{
+              margin-right: 5px;
+            }
+            span{
+              font-size: 15px;
+            }
+          }
+        }
+      }
+    }
+    .product_info_share{
+      padding: 15px 30px;
+      background-color: $red;
+      border-radius: 10px;
+      @include flex();
+      cursor: pointer;
+      position: absolute;
+      bottom: 20px;
+      left: calc(20% + 30px);
+      svg{
+        margin-right: 15px;
+      }
+      span{
+        color: white;
+        font-size: 18px;
+      }
+    }
   }
 }

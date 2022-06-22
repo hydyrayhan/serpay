@@ -10,10 +10,19 @@
 
       <div class="hyzmatlar_carts">
         <nuxt-link to="/hyzmatlar/share" class="hyzmatlar_carts_cart">
-          <img src="~/assets/images/icons/paylas.png" alt="">
+          <div>
+            <img src="~/assets/images/icons/paylas_full.png" alt="">
+          </div>
+          <img id="gift" src="~/assets/images/icons/paylas_gift.png" alt="">
+          <img id="kupon" src="~/assets/images/icons/paylas_kubak.png" alt="">
+          <span>{{$t('shareAndEarn')}}</span>
         </nuxt-link>
         <nuxt-link to="" class="hyzmatlar_carts_cart">
-          <img src="~/assets/images/icons/online.png" alt="">
+          <div></div>
+          <img id="wifi" src="~/assets/images/icons/online_wifi.png" alt="">
+          <img id="tick" src="~/assets/images/icons/online_tick.png" alt="">
+          <img id="cart" src="~/assets/images/icons/online_cart.svg" alt="">
+          <span>{{$t('onlinePay')}}</span>
         </nuxt-link>
       </div>
     </div>
