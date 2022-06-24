@@ -66,14 +66,6 @@ export default {
     element.style.minHeight = height+'px';
     height -= 130;
     chat.style.height = height+'px';
-    window.addEventListener('resize',function(){
-      let height = window.innerHeight-378;
-      const element = document.querySelector('.chatPage');
-      const chat = document.querySelector('.chat');
-      element.style.minHeight = height+'px';
-      height -= 130;
-      chat.style.height = height+'px';
-    })
   },
 }
 </script>

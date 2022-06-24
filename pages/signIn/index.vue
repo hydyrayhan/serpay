@@ -65,11 +65,6 @@ export default {
     const height = window.innerHeight-398;
     const element = document.querySelector('.signIn');
     element.style.minHeight = height+'px';
-    window.addEventListener('resize',function(){
-      const height = window.innerHeight-398;
-      const element = document.querySelector('.signIn');
-      element.style.minHeight = height+'px';
-    })
   },
   methods:{
     password(id){

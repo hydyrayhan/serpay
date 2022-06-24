@@ -193,6 +193,10 @@ export default {
     document.querySelectorAll(".header_buttons_cart path")[1].style.fill = '#FF141D'
     document.querySelectorAll(".header_buttons_cart path")[2].style.fill = '#FF141D'
     document.querySelector(".header_buttons_cart .text").style.color = '#FF141D'
+
+    const height = window.innerHeight-352;
+    const element = document.querySelector('.cart');
+    element.style.minHeight = height+'px';
   }
 }
 </script>

@@ -101,10 +101,8 @@
         <!-- category -->
       <div class="category_header">
         <div class="category_header_left">
-          <!-- <div class="icon"><img src="~/assets/images/icons/yellowBag.svg" alt="redBag"></div> -->
           <div class="name">{{$t('recommends')}}</div>
         </div>
-        <!-- <nuxt-link to="/" class="seeAll">Ählisini görkez</nuxt-link> -->
       </div>
       <div class="main_category main_like">
         <div class="main_product">

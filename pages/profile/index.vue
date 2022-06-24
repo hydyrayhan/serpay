@@ -106,11 +106,6 @@ export default {
     const height = window.innerHeight-498;
     const element = document.querySelector('.profile');
     element.style.minHeight = height+'px';
-    window.addEventListener('resize',function(){
-      const height = window.innerHeight-498;
-      const element = document.querySelector('.profile');
-      element.style.minHeight = height+'px';
-    })
   },
 
 }

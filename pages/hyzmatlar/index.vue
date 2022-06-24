@@ -35,11 +35,6 @@ export default {
     const height = window.innerHeight-300;
     const element = document.querySelector('.hyzmatlar');
     element.style.minHeight = height+'px';
-    window.addEventListener('resize',function(){
-      const height = window.innerHeight-300;
-      const element = document.querySelector('.hyzmatlar');
-      element.style.minHeight = height+'px';
-    })
   }
 }
 </script>

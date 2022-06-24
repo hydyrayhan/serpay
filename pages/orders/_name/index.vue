@@ -65,11 +65,6 @@ export default {
     const height = window.innerHeight-323;
     const element = document.querySelector('.orders');
     element.style.minHeight = height+'px';
-    window.addEventListener('resize',function(){
-      const height = window.innerHeight-323;
-      const element = document.querySelector('.orders');
-      element.style.minHeight = height+'px';
-    })
 
     const name = this.$route.params.name;
     if(name === 'footPrint'){

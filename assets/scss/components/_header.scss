@@ -11,6 +11,9 @@
   @include flex();
   padding: 30px 0;
   .header_logo{
+    @include tablet{
+      display: none;
+    }
     img{
       min-width: 120px;
     }
@@ -21,10 +24,17 @@
     padding: 10px 20px;
     @include flex;
     cursor: pointer;
+    @include tablet{
+      padding: 10px;
+      margin-right: 20px;
+    }
     .header_category_icon{
       @include flex;
     }
     .header_category_text{
+      @include tablet{
+        display: none;
+      }
       color: $white;
       margin-left: 10px;
     }
@@ -90,6 +100,9 @@
     cursor: pointer;
     border-radius: 100px;
     position: relative;
+    // @include tablet{
+    //   width: 3px;
+    // }
     input{
       background: none;
       border: none;
@@ -164,6 +177,13 @@
       }
     }
   }
+  .scan{
+    display: none;
+    margin-right: 10px;
+    @include tablet{
+      display: block
+    }
+  }
   .header_buttons{
     @include flex;
     .btn{
@@ -172,8 +192,14 @@
       font-size: 12px;
       min-height: 40px;
       cursor: pointer;
+      @include tablet{
+        margin-left: 25px;
+      }
       .text{
-        color: $gray;
+        color: $darkGray;
+      }
+      .icon{
+        height: 30px;
       }
     }
     .header_buttons_mode{
@@ -190,6 +216,12 @@
         @include flex;
       }
     }
+    &_home{
+      display: none;
+      @include tablet{
+        display: block;
+      }
+    }
     &_location{
       position: relative;
       .header_location_ul{
@@ -203,7 +235,7 @@
         z-index: 3;
         .list{
           font-size: 14px;
-          color: #AEAEAE;
+          color: $darkGray;
           padding: 3px 20px;
           margin-bottom: 8px;
           border-radius: 4px;
@@ -213,9 +245,18 @@
           }
         }
         .list.active{
-          background: #F5F5F5;
-          color: #616161;
+          background: $red;
+          color: white;
         }
+        .list.disabled{
+          color: $gray;
+          cursor: no-drop;
+        }
+      }
+    }
+    &_services{
+      @include tablet{
+        display: none;
       }
     }
     &_login{
@@ -244,6 +285,7 @@
           }
           .icon{
             margin-right: 15px;
+            @include flex();
           }
           .text{
             font-size: 16px;
@@ -265,6 +307,23 @@
           }
           .active{
             color: $red;
+          }
+        }
+        &_avatar{
+          @include flex(row,flex-start);
+          padding: 10px 20px;
+          background: linear-gradient(95.06deg, #FF141D 5.74%, #FEBE13 105.72%);
+          border-radius: 8px;
+          img{
+            width: 48;
+            height: 48px;
+            margin-right: 18px;
+          }
+          span{
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 1px;
           }
         }
       }

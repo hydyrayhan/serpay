@@ -23,17 +23,28 @@
     }
     .part_bill{
       margin-top: 45px;
-      .radios{
-        @include flex(row,flex-start);
-        .radio{
-          margin-right: 40px;
+      .bill_list{
+        box-shadow: 0px 16px 25px -5px rgba(0, 0, 0, 0.05);
+        border-radius: 8px;
+        background: #FFFFFF;
+        width: 100%;
+        text-align: center;
+        padding: 20px 0;
+        margin-bottom: 10px;
+        cursor: pointer;
+        @include flex(row,center);
+        svg{
+          margin-right: 15px;
         }
-      }
-      .title{
-        margin-bottom: 30px;
-      }
-      .active{
-        display: none;
+        span{
+          font-size: 15px;
+          font-weight: 600;
+          letter-spacing: 1px;
+          color: $blackN;
+        }
+        &.active{
+          border: 1px solid $red;
+        }
       }
       label{
         @include flex(row,flex-start);

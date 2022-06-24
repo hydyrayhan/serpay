@@ -63,11 +63,6 @@ export default {
     const height = window.innerHeight-298;
     const element = document.querySelector('.myAddresses');
     element.style.minHeight = height+'px';
-    window.addEventListener('resize',function(){
-      const height = window.innerHeight-298 ;
-      const element = document.querySelector('.myAddresses');
-      element.style.minHeight = height+'px';
-    })
   },
   watch:{
     addAddressShow(){

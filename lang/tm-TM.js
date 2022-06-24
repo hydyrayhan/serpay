@@ -58,6 +58,7 @@ export default {
     kindBill:"Töleg görnüşi:",
     cash:"Nagt",
     fromCart:"Kart arkaly",
+    onlineBill:"Online toleg",
     signIn:"Içeri gir",
     signUp:"Agza bol",
     ordersWaiting:"Garaşýan sargytlarym",
@@ -103,5 +104,9 @@ export default {
     message:"Message",
     shareAndEarn:"Paýlaş we mugt gazan!",
     onlinePay:"Online tolegler yakynda",
+    chooseShareType:"Paýlaşmagyň görnüşini saýlaň",
+    forOwn:"Ozüm üçin",
+    forFriend:"Dostym bilen",
+    top:"Top 5",
 }
   

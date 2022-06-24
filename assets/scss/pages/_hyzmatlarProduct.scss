@@ -1,0 +1,178 @@
+ .shareProduct{
+  @include flex(row,flex-start,flex-start);
+  &_images{
+    margin-right: 60px;
+    width: 45%;
+    &_big{
+      width: 100%;
+      margin-bottom: 15px;
+      img{
+        width: 100%;
+      }
+    }
+    &_smalls{
+      width: 45%;
+      @include flex(row,flex-start);
+      flex-wrap: wrap;
+      &_small{
+        cursor: pointer;
+        width: 75px;
+        margin-right: 10px;
+        img{
+          width: 100%;
+        }
+        &.active{
+          border: 1px solid #FFC700;
+        }
+      }
+    }
+  }
+
+  &_info{
+    &_name{
+      font-weight: 600;
+      font-size: 20px;
+      letter-spacing: 1px;
+      color: $blackN;
+      margin-bottom: 15px;
+    }
+    &_body{
+      font-size: 15px;
+      color: $darkGray;
+      margin-bottom: 20px;
+    }
+    .product_info_range{
+      @include flex(row,flex-start);
+      margin-bottom: 30px;
+      .range{
+        width:30%;
+        height: 25px;
+        border: 1px solid #AEAEAE;
+        border-radius: 100px;
+        background: white;
+        margin-right: 20px;
+        position: relative;
+        @include flex(row, flex-start);
+        overflow: hidden;
+        .range_color{
+          // width: 63%;
+          height: 100%;
+          background:  linear-gradient(269.79deg, #FF141D 7.02%, #FEBE13 97.69%);
+        }
+        .range_percentage{
+          position: absolute;
+          top:0;
+          left:calc(50% - 11px);
+          span{
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: $blackN;
+          }
+        }
+      }
+      .count{
+        @include flex(row,flex-start);
+        svg{
+          margin-right: 5px;
+        }
+        span{
+          font-size: 15px;
+        }
+      }
+    }
+    &_topTitle{
+      @include flex(row,flex-start);
+      margin-bottom: 15px;
+      svg{
+        margin-right: 10px;
+      }
+      &_title{
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        color: $blackN;
+      }
+    }
+    &_carts{
+      @include flex(row,flex-start,flex-start);
+      &_persons{
+        width:45%;
+        margin-right: 20px;
+        .person{
+          border: 1px solid #AEAEAE;
+          border-radius: 10px;
+          padding: 10px 20px;
+          @include flex(row,flex-start);
+          margin-bottom: 10px;
+          .person_id{
+            font-size: 16px;
+            font-family: Inter;
+            color: $red;
+            margin-right: 20px;
+          }
+          .person_image{
+            img{
+              width: 40px;
+              height: 40px;
+              border-radius: 100px;
+              margin-right: 10px;
+            }
+          }
+          .person_info{
+            .person_info_name{
+              color: $blackN;
+              font-size: 14px;
+              font-weight: 600;
+              letter-spacing: 1px;
+              margin-bottom: 10px;
+            }
+            .person_info_shared{
+              @include flex(row,flex-start);
+              svg{
+                margin-right: 5px;
+              }
+              span{
+                font-size: 15px;
+                color: $darkGray;
+              }
+            }
+          }
+        }
+      }
+      &_counttime{
+        border: 1px dashed #AEAEAE;
+        border-radius: 10px;
+        padding: 30px 65px 20px;
+        .timer{
+          @include flex(row,center);
+          margin-bottom: 24px;
+          .icon{
+            margin-right: 10px;
+          }
+          &_time{
+            span{
+              color: $blackN;
+              font-size: 26px;
+              font-weight: 600;
+              letter-spacing: 1px;
+            }
+          }
+        }
+        .share_button{
+          width: 100%;
+          padding: 15px 30px;
+          background: $red;
+          border-radius: 10px;
+          @include flex(row,center);
+          cursor: pointer;
+          span{
+            margin-left: 16px;
+            color: white;
+            font-size: 18px;
+          }
+        }
+      }
+    }
+  }
+ }

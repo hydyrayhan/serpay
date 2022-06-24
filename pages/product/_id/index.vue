@@ -5,10 +5,10 @@
       <div class="productPage_images">
         <div class="big_image"><img src="~/assets/images/delete/productPage.png" alt=""></div>
         <div class="small_image">
-          <div class="small_image_image active">
+          <div class="small_image_image active" @click="imageChange(0)">
             <img src="~/assets/images/delete/product.png" alt="">
           </div>
-          <div class="small_image_image">
+          <div class="small_image_image" @click="imageChange(1)">
             <img src="~/assets/images/delete/product3.png" alt="">
           </div>
         </div>
@@ -153,6 +153,17 @@ export default {
         },
         subcategory_name:'Sub category',
       },
+    }
+  },
+  methods:{
+    imageChange(id){
+      const big = document.querySelector('.big_image img');
+      const smalls = document.querySelectorAll('.small_image_image');
+      big.setAttribute('src',smalls[id].querySelector('img').getAttribute('src'))
+      for(let i =0; i<smalls.length; i++){
+        smalls[i].classList.remove('active');
+      }
+      smalls[id].classList.add("active");
     }
   }
 }

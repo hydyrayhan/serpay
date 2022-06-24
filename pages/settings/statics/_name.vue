@@ -17,11 +17,6 @@ export default {
     const height = window.innerHeight-299;
     const element = document.querySelector('.settings_statics');
     element.style.minHeight = height+'px';
-    window.addEventListener('resize',function(){
-      const height = window.innerHeight-299;
-      const element = document.querySelector('.settings_statics');
-      element.style.minHeight = height+'px';
-    })
   },
 }
 </script>
