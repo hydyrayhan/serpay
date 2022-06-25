@@ -91,6 +91,9 @@
   }
   .hyzmatlar_products_con{
     padding: 20px 10%;
+    @include tablet{
+      padding: 20px 0;
+    }
   }
   .hyzmatlar_products{
     margin-bottom: 40px;

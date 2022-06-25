@@ -11,7 +11,6 @@
       }
     }
     &_smalls{
-      width: 45%;
       @include flex(row,flex-start);
       flex-wrap: wrap;
       &_small{
@@ -29,6 +28,9 @@
   }
 
   &_info{
+    @include tablet{
+      width: 55%;
+    }
     &_name{
       font-weight: 600;
       font-size: 20px;
@@ -40,6 +42,9 @@
       font-size: 15px;
       color: $darkGray;
       margin-bottom: 20px;
+      @include tablet{
+        display: none;
+      }
     }
     .product_info_range{
       @include flex(row,flex-start);
@@ -54,8 +59,10 @@
         position: relative;
         @include flex(row, flex-start);
         overflow: hidden;
+        @include tablet{
+          width: 50%;
+        }
         .range_color{
-          // width: 63%;
           height: 100%;
           background:  linear-gradient(269.79deg, #FF141D 7.02%, #FEBE13 97.69%);
         }
@@ -99,6 +106,9 @@
       &_persons{
         width:45%;
         margin-right: 20px;
+        @include tablet{
+          width: 70%;
+        }
         .person{
           border: 1px solid #AEAEAE;
           border-radius: 10px;
@@ -144,11 +154,27 @@
         border: 1px dashed #AEAEAE;
         border-radius: 10px;
         padding: 30px 65px 20px;
+        @include tablet{
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          border: none;
+          width: 100%;
+          background-color: $white;
+          border-radius: 0;
+          @include flex(row,center);
+          padding: 40px 0;
+        }
         .timer{
           @include flex(row,center);
           margin-bottom: 24px;
+          @include tablet{
+            margin-bottom: 0;
+            margin-right: 40px;
+          }
           .icon{
             margin-right: 10px;
+            @include flex;
           }
           &_time{
             span{
@@ -166,6 +192,9 @@
           border-radius: 10px;
           @include flex(row,center);
           cursor: pointer;
+          @include tablet{
+            width: 40%;
+          }
           span{
             margin-left: 16px;
             color: white;

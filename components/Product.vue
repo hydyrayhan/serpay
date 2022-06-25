@@ -9,8 +9,10 @@
         </div>
         <div class="product_info_name">Lorem ipsum dolor sit.</div>
       </div>
-      <div class="product_discount_top">-20%</div>
-      <div class="product_new_top">{{$t("new")}}</div>
+      <div class="isContainer">
+        <div class="product_discount_top">-20%</div>
+        <div class="product_new_top">{{$t("new")}}</div>
+      </div>
     </nuxt-link>
     <div class="like" @click="like">
       <svg v-if="!liked" width="24" height="21" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg">

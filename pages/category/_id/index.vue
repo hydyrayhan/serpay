@@ -7,14 +7,22 @@
     <div class="category">
       <div class="category_sidebar">
         <div class="category_sidebar_header">
-          <div class="icon"><img src="~/assets/images/icons/sidebarFilter.svg" alt="sidebarFilter"></div>
-          <div class="text">{{$t('filter')}}</div>
+          <span>
+            <div class="icon"><img src="~/assets/images/icons/sidebarFilter.svg" alt="sidebarFilter"></div>
+            <div class="text">{{$t('filter')}}</div>
+          </span>
+          <div class="exit" @click="closeFilter">
+            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15.5 1.5L1.5 15.5" stroke="#272727" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M1.5 1.5L15.5 15.5" stroke="#272727" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
         </div>
 
         <div class="category_sidebar_price">
           <div class="category_sidebar_price_header">
             <div class="filter_header_text">{{$t('price')}}</div>
-            <div class="valyut">TMT</div>
+            <!-- <div class="valyut">TMT</div> -->
           </div>
           <div class="category_sidebar_price_inputs">
             <input type="text" :placeholder="$t('min')">
@@ -79,22 +87,22 @@
         </div>
 
         <div class="category_sidebar_buttons">
-          <button class="clear">{{$t('clear')}}</button>
+          <!-- <button class="clear">{{$t('clear')}}</button> -->
           <button class="filter">
-            <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M18.3332 1.5H1.6665L8.33317 9.38333V14.8333L11.6665 16.5V9.38333L18.3332 1.5Z" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17.3327 1H0.666016L7.33268 8.88333V14.3333L10.666 16V8.88333L17.3327 1Z" stroke="#616161" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-
             {{$t('startFilter')}}
           </button>
         </div>
       </div>
       <div class="category_main">
         <div class="category_main_filter">
+          <div class="category_main_name">Kir ýuwujy enjamlar</div>
           <div class="category_main_filter_left">
             <div class="left_title">
               <img src="~/assets/images/icons/headerFilter.svg" alt="headerFilter">
-              <span>{{$t('filter')}}:</span>
+              <span>{{$t('sort')}}:</span>
             </div>
             <div class="left_btn box boxBorder">
               <span>{{$t('yzygider')}}</span>
@@ -135,6 +143,88 @@
                 <path d="M3 12H3.01" stroke="#AEAEAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M3 18H3.01" stroke="#AEAEAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
+            </div>
+          </div>
+        </div>
+        <div class="category_main_tablet_filter">
+          <div class="buttons">
+            <button @click="openFilter" class="filter">
+              <svg width="19" height="16" viewBox="0 0 19 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 1H1L7.8 8.43126V13.5687L11.2 15.1398V8.43126L18 1Z" stroke="#272727" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>{{$t('filter')}}</span>
+            </button>
+            <button class="sort" @click="openSort">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 15.75V10.5" stroke="#272727" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M3 7.5V2.25" stroke="#272727" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9 15.75V9" stroke="#272727" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9 6V2.25" stroke="#272727" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M15 15.75V12" stroke="#272727" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M15 9V2.25" stroke="#272727" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M0.75 10.5H5.25" stroke="#272727" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6.75 6H11.25" stroke="#272727" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12.75 12H17.25" stroke="#272727" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>{{$t('sort')}}</span>
+
+            </button>
+            <div class="sortPopup">
+              <div class="sortPopup_header">
+                <div class="icon">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 15.75V10.5" stroke="#272727" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M3 7.5V2.25" stroke="#272727" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M9 15.75V9" stroke="#272727" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M9 6V2.25" stroke="#272727" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M15 15.75V12" stroke="#272727" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M15 9V2.25" stroke="#272727" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M0.75 10.5H5.25" stroke="#272727" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M6.75 6H11.25" stroke="#272727" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12.75 12H17.25" stroke="#272727" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span>{{$t('sort')}}</span>
+                </div>
+                <div class="exit" @click="closeSort">
+                  <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.5 1.5L1.5 15.5" stroke="#272727" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M1.5 1.5L15.5 15.5" stroke="#272727" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+
+              <div class="sortPopup_sorts">
+                <div class="sortPopup_sorts_sort" >
+                  <span>{{$t('yzygider')}}</span>
+                  <div class="checkButton">
+                    <img src="~/assets/images/icons/grayCicle.svg" alt="">
+                  </div>
+                </div>
+                <div class="sortPopup_sorts_sort" >
+                  <span>{{$t('poorTOrich')}}</span>
+                  <div class="checkButton">
+                    <img src="~/assets/images/icons/grayCicle.svg" alt="">
+                  </div>
+                </div>
+                <div class="sortPopup_sorts_sort" >
+                  <span>{{$t('richTOpoor')}}</span>
+                  <div class="checkButton">
+                    <img src="~/assets/images/icons/grayCicle.svg" alt="">
+                  </div>
+                </div>
+                <div class="sortPopup_sorts_sort" >
+                  <span>{{$t('news')}}</span>
+                  <div class="checkButton">
+                    <img src="~/assets/images/icons/grayCicle.svg" alt="">
+                  </div>
+                </div>
+                <div class="sortPopup_sorts_sort" >
+                  <span>{{$t('topSold')}}</span>
+                  <div class="checkButton">
+                    <img src="~/assets/images/icons/grayCicle.svg" alt="">
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -183,6 +273,18 @@ export default {
       }else{
         this.productView = true;
       }
+    },
+    openFilter(){
+      document.querySelector('.category_sidebar').style.display = 'block';
+    },
+    closeFilter(){
+      document.querySelector(".category_sidebar").style.display = 'none';
+    },
+    openSort(){
+      document.querySelector(".sortPopup").style.display = 'block';
+    },
+    closeSort(){
+      document.querySelector(".sortPopup").style.display = 'none';
     }
   }
 }

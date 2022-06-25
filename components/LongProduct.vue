@@ -11,8 +11,10 @@
           <div class="name">Beko Washing Machine Beko Washing Machine Beko Washing Machine Beko Washing Machine Beko Washing Machine Beko Washing Machine Beko Washing Machine</div>
         </div>
       </span>
-      <div class="newProduct">{{$t('new')}}</div>
-      <div class="discount">-20%</div>
+      <div class="isContainerLong">
+        <div class="newProduct">{{$t('new')}}</div>
+        <div class="discount">-20%</div>
+      </div>
     </nuxt-link>
     <div class="like" @click="like">
       <svg v-if="!liked" width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">

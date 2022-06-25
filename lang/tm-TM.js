@@ -24,6 +24,7 @@ export default {
     appReklama:"7Pay programmasyny özüňize ýüklap alyň we islendik ýerden sargaň!",
     home:"Baş sahypa",
     filter:"Filter",
+    sort:"Sort",
     price:"Bahasy",
     min:"min",
     max:"max",
@@ -108,5 +109,6 @@ export default {
     forOwn:"Ozüm üçin",
     forFriend:"Dostym bilen",
     top:"Top 5",
+    brandProducts:"Brand Onumleri",
 }
   

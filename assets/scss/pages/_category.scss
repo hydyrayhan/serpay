@@ -2,19 +2,19 @@
   font-size: 25px;
   color: #292929;
   margin-bottom: 20px;
+  @include tablet{
+    display: none;
+  }
 }
 
 .category{
-  // position: relative;
   min-height: 600px;
   display: flex;
+  position: relative;
   &_sidebar{
     position: relative;
     height: fit-content;
-    // position: fixed;
-    // top: 215px;
     top: 0;
-    // width: 300px;
     min-width: 20%;
     max-width: 20%;
     margin-bottom: 100px;
@@ -22,9 +22,31 @@
     padding: 22px;
     border-radius: 8px;
     padding-bottom: 65px;
+    @include tablet{
+      display: none;
+      position: absolute;
+      top: 85px;
+      left: 0;
+      min-width: 50%;
+      z-index: 10;
+      box-shadow: 14px 14px 30px rgba(0, 0, 0, 0.15);
+    }
     &_header{
-      @include flex(row,flex-start);
+      @include flex(row,space-between);
       margin-bottom: 35px;
+      .exit{
+        background: $grayLight;
+        border-radius: 5px;
+        padding: 10px;
+        cursor: pointer;
+        display: none;
+        @include tablet{
+          @include flex();
+        }
+      }
+      span{
+        @include flex(row,flex-start);
+      }
       .icon{
         @include flex;
       }
@@ -109,21 +131,20 @@
           display: none;
         }
         input:checked + div{
-          background: #000;
+          background: $red;
         }
       }
     }
     &_buttons{
-      @include flex;
+      @include flex(row,center);
 
       margin-top: 200px;
-      // position: absolute;
-      // bottom: 22px;
-      // width: calc(100% - 46px);
-      
+      @include tablet{
+        margin-top: 100px;
+      }
       button{
         background: none;
-        padding: 8px 15px;
+        padding: 15px 30px;
         font-size: 16px;
         border-radius: 5px;
         cursor: pointer;
@@ -134,27 +155,108 @@
         background: #FAFAFA;
       }
       .filter{
-        background: #FF141D;
-        color: #FFFFFF;
+        // background: #FF141D;
+        border: 1px solid $darkGray;
+        border-radius: 10px;
+        color: $darkGray;
         @include flex;
         svg{
-          margin-right: 15px;
+          margin-right: 10px;
         }
       }
     }
   }
 
   &_main{
-    // padding-left: 330px;
-    // margin-top: 40px;
     margin-top: 20px;
     margin-left: 30px;
     width: calc(80% - 30px);
+    @include tablet{
+      margin-left: 0;
+      width: 100%
+    }
+    .category_main_tablet_filter{
+      display: none;
+      position: relative;
+      .buttons{
+        @include flex;
+        button{
+          width: 49%;
+          padding: 24px 0;
+          border-radius: 10px;
+          @include flex(row,center);
+          margin-bottom: 30px;
+          cursor: pointer;
+          span{
+            color: $blackN;
+            font-size: 18px;
+          }
+          svg{
+            margin-right: 10px;
+          }
+        }
+      }
+      @include tablet{
+        display: block;
+      }
+      .sortPopup{
+        background: $whiteN;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: -5px 17px 30px rgba(0, 0, 0, 0.15);
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 49%;
+        z-index: 10;
+        cursor:default;
+        display: none;
+        &_header{
+          @include flex();
+          margin-bottom: 15px;
+          .icon{
+            @include flex(row,flex-start);
+          }
+          .exit{
+            background: $grayLight;
+            padding: 10px;
+            border-radius: 5px;
+            @include flex();
+            cursor: pointer;
+            svg{
+              margin-right: 0;
+            }
+          }
+        }
+        .sortPopup_sorts{
+          &_sort{
+            padding: 20px;
+            @include flex();
+            cursor: pointer;
+            &:hover{
+              background: #f3f3f3;
+            }
+          }
+        }
+      }
+    }
     &_filter{
       @include flex;
       margin-bottom: 25px;
+      .category_main_name{
+        display: none;
+        font-weight: 700;
+        font-size: 25px;
+        color: $blackN;
+        @include tablet{
+          display: block;
+        }
+      }
       &_left{
         @include flex(row , flex-start);
+        @include tablet{
+          display: none;
+        }
         .box{
           margin-right: 20px;
           max-height: 30px;
@@ -212,6 +314,9 @@
     &_products{
       @include flex(row , flex-start , flex-start);
       flex-wrap: wrap;
+      @include tablet{
+        padding: 0 5%;
+      }
       span.cube{
         width: 100%;
         @include flex(row , flex-start , flex-start);
@@ -222,9 +327,18 @@
         margin-bottom: 20px;
         margin-right: 1.33%;
         border-radius: 5px;
-        
         &:nth-child(4n){
           margin-right: 0;
+        }
+        @include tablet{
+          width: 32%;
+          margin-right: 2%;
+          &:nth-child(4n){
+            margin-right: auto;
+          }
+          &:nth-child(3n){
+            margin-right: 0;
+          }
         }
       }
     }
