@@ -21,7 +21,7 @@
       margin-right: 10px;
     }
     span{
-      font-size: 18px;
+      font-size: 14px;
       font-weight: 600;
       letter-spacing: 1px;
       color: black;
@@ -31,6 +31,9 @@
 .cart{
   margin-top: 50px;
   @include flex(row,space-between,flex-start);
+  @include tablet{
+    margin-top: 20px;
+  }
   .cart_left{
     width: 70%;
     @include tablet{
@@ -55,10 +58,18 @@
           width: 220px;
           max-height: 200px;
           margin-right: 30px;
+          @include tablet{
+            width: 150px;
+          }
           img{
             width: 220px;
             height: 200px;
+            @include tablet{
+              width: 150px;
+              height: 150px;
+            }
           }
+
         }
   
         .info{

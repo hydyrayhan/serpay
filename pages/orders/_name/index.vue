@@ -55,7 +55,7 @@ export default {
   components:{SimpleLongProduct},
   data(){
     return{
-      privateButton:true,
+      privateButton:false,
       checkBox:true,
       likeOrQuantity:false,
       footPrint:false,

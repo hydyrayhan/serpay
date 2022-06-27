@@ -91,8 +91,10 @@
       </div>
 
       <div class="order_bottom">
-        <div class="title">{{$t('sum')}}</div>
-        <div class="price">12345<span>manat</span></div>
+        <span class="priceCon">
+          <div class="title">{{$t('sum')}}:</div>
+          <div class="price">12345<span>manat</span></div>
+        </span>
         <nuxt-link to="/" class="order_bottom_button">{{$t('orderDone')}}</nuxt-link>
       </div>
     </div>

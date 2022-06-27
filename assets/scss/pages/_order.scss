@@ -1,6 +1,9 @@
 .order{
   width: 30%;
   margin: 50px auto;
+  @include tablet{
+    width: 70%;
+  }
   .order_title{
     font-weight: 700;
     font-size: 25px;
@@ -138,6 +141,16 @@
     padding: 25px 40px 0;
     margin-top: 25px;
     overflow: hidden;
+    @include tablet{
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.08);
+      border-radius: 13px 13px 0 0;
+      padding: 40px 50px;
+      @include flex();
+    }
     .title{
       color: #0D0D0D;
       font-size: 20px;
@@ -146,13 +159,16 @@
       margin-bottom: 5px;
     }
     .price{
-      color: #000000;
+      color: $red;
       font-size: 32px;
       font-weight: 700;
       letter-spacing: 1px;
       font-family: Inter;
       margin-bottom: 30px;
       @include flex(row, flex-start);
+      @include tablet{
+        margin-bottom: 0;
+      }
       span{
         background: #AEAEAE;
         border-radius: 3px;
@@ -176,6 +192,11 @@
       font-size: 24px;
       font-weight: 600;
       letter-spacing: 1px;
+      @include tablet{
+        padding: 20px 85px;
+        width: fit-content;
+        border-radius: 10px;
+      }
     }
   }
 }

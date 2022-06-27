@@ -48,7 +48,10 @@
     }
   }
   .orders_products{
-    padding: 0 150px;
+    padding: 0 10%;
+    @include tablet{
+      padding: 0;
+    }
     .products_time{
       margin-bottom: 20px;
       span.space{
