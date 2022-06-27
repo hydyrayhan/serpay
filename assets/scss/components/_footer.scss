@@ -29,6 +29,9 @@
     .stores{
       // @include flex(row, center);
       // margin-bottom: 25px;
+      @include tablet{
+        @include flex(column);
+      }
       img:first-child{
         margin-right: 30px;
       }

@@ -370,6 +370,7 @@ export default {
       el.style.border = 'none'
       this.search = false;
       this.searchBackground = false;
+      this.searchStart = false
       document.querySelector("body").style.overflowX = 'hidden';
       document.querySelector("body").style.overflowY = 'auto';
     },

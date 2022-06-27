@@ -1,8 +1,41 @@
+.cart_tablet_header{
+  display: none;
+  @include tablet{
+    @include flex();
+  }
+  .cart_title{
+    font-size: 25px;
+    font-weight: 700;
+    color: $blackN;
+  }
+  .chooseAll{
+    @include flex();
+    width: fit-content;
+    padding: 10px 15px;
+    background: $whiteN;
+    border: 1px solid #AEAEAE;
+    border-radius: 5px;
+    margin-top: 30px;
+    cursor: pointer;
+    svg{
+      margin-right: 10px;
+    }
+    span{
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: black;
+    }
+  }
+}
 .cart{
   margin-top: 50px;
   @include flex(row,space-between,flex-start);
   .cart_left{
     width: 70%;
+    @include tablet{
+      width: 100%;
+    }
     .product_container{
       @include flex();
       margin-bottom: 20px;
@@ -136,9 +169,26 @@
     box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.08);
     border-radius: 15px;
     overflow: hidden;
+    @include tablet{
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 8;
+      @include flex(row,center);
+      box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.08);
+      border-radius: 10px 10px 0px 0px;
+      padding: 25px 0;
+    }
     &_main{
       padding: 25px 40px 30px;
+      @include tablet{
+        padding: 0;
+      };
       .chooseAll{
+        @include tablet{
+          display: none
+        }
         @include flex();
         width: fit-content;
         padding: 10px 15px;
@@ -158,15 +208,22 @@
         }
       }
       .totalPrice{
+        @include tablet{
+          @include flex(row,center);
+        }
         .title{
           color: #0D0D0D;
           font-size: 20px;
           font-weight: 600;
           letter-spacing: 1px;
           margin-bottom: 5px;
+          @include tablet{
+            margin-bottom: 0;
+            margin-right: 10px;
+          }
         }
         .price{
-          color: black;
+          color: $red;
           font-size: 32px;
           font-weight: 700;
           letter-spacing: 1px;
@@ -177,7 +234,7 @@
             background: #CBCBCB;
             border-radius: 3px;
             padding: 3px 5px;
-            color: white;
+            color: $blackN;
             font-size: 12px;
             font-family: Inter;
           }
@@ -192,6 +249,15 @@
       font-size: 24px;
       font-weight: 600;
       letter-spacing: 1px;
+      display:inline-block;
+      width:100%;
+      @include tablet{
+        padding: 15px 30px;
+        width: fit-content;
+        border-radius: 10px;
+        font-size: 18px;
+        margin-left: 50px;
+      }
     }
   }
 }

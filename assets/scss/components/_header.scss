@@ -5,7 +5,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  z-index:10;
+  z-index:8;
 }
 .header{
   @include flex();
@@ -48,9 +48,18 @@
       box-shadow: 0px 35px 20px rgba(0, 0, 0, 0.15);
       border-radius: 0px 0px 5px 5px;
       width: 100%;
+      @include tablet{
+        width: 80%;
+        @include flex(row,flex-start,flex-start);
+      }
       .hidden_categories{
         display: flex;
         margin-bottom: 50px;
+        @include tablet{
+          @include flex(column,flex-start,flex-start);
+          min-width: 30%;
+          max-width: 30%;
+        }
         .hidden_category{
           height: 60px;
           background-color: #EFEFEF;
@@ -62,10 +71,17 @@
           letter-spacing: 1px;
           font-family: Inter;
           color: #292929;
+          @include tablet{
+            width: 100%;
+          }
         }
         .hidden_category.active{
           background-color: #FFFFFF;
           border-top: 3px $red solid;
+          @include tablet{
+            border-top: none;
+            border-left: 3px $red solid;
+          }
         }
       }
       .hidden_subcategories{
@@ -73,6 +89,16 @@
         flex-wrap: wrap;
         padding: 0 70px;
         margin-bottom: 200px;
+        @include tablet{
+          margin-bottom: 50px;
+          margin-top: 50px;
+          padding: 0 40px;
+        }
+        span{
+          @include tablet{
+            width: 32%;
+          }
+        }
         .hidden_subcategory{
           margin: 0 10px;
           @include flex(column);
@@ -113,13 +139,16 @@
     }
     &_history{
       position: absolute;
-      top: 85px;
+      top: 65px;
       left: 0;
       background: #FBFBFB;
       border-radius: 0px 0px 15px 15px;
       padding: 20px;
       z-index:5;
       width: 100%;
+      @include tablet{
+        width: 150%;
+      }
       cursor: default;
       .history_title{
         font-size: 20px;
@@ -154,7 +183,7 @@
     }
     .searched_result{
       position: absolute;
-      top: 85px;
+      top: 65px;
       left: 0;
       z-index: 5;
       width: 100%;
@@ -335,11 +364,14 @@
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(20px);
   position: fixed;
-  top: 118px;
+  top: 100px;
   left: 0;
   right: 0;
   bottom: 0;
   width: 100%;
   height: 100vh;
   z-index: 4;
+  @include tablet{
+
+  }
 }

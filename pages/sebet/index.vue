@@ -1,10 +1,20 @@
 <template>
   <div class="container">
+    <div class="cart_tablet_header">
+      <div class="cart_title">{{$t('cart')}}</div>
+      <div class="chooseAll" @click="radioButton('all')">
+        <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="10" cy="10.5" r="9.25" stroke="#FF141D" stroke-width="1.5"/>
+          <circle cx="10" cy="10.5" r="6.25" fill="#FF141D"/>
+        </svg>
+        <span>{{$t('chooseAll')}}</span>
+      </div>
+    </div>
     <div class="cart">
       <div class="cart_left">
         <div class="product_container">
-          <div class="cart_left_radio">
-            <svg v-if="!radios[0]" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <div class="cart_left_radio" @click="radioButton(0)">
+            <svg v-if="!radios[0]" width="25" height="25" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="10" cy="10" r="9.25" stroke="#AEAEAE" stroke-width="1.5"/>
             </svg>
             <svg v-else width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -55,8 +65,8 @@
           </div>
         </div>
         <div class="product_container">
-          <div class="cart_left_radio">
-            <svg v-if="!radios[0]" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <div class="cart_left_radio" @click="radioButton(1)">
+            <svg v-if="!radios[1]" width="25" height="25" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="10" cy="10" r="9.25" stroke="#AEAEAE" stroke-width="1.5"/>
             </svg>
             <svg v-else width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -107,8 +117,8 @@
           </div>
         </div>
         <div class="product_container">
-          <div class="cart_left_radio">
-            <svg v-if="!radios[0]" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <div class="cart_left_radio" @click="radioButton(2)">
+            <svg v-if="!radios[2]" width="25" height="25" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="10" cy="10" r="9.25" stroke="#AEAEAE" stroke-width="1.5"/>
             </svg>
             <svg v-else width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -136,7 +146,7 @@
                 <div class="button">
                   <svg width="6" height="2" viewBox="0 0 6 2" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M5.03906 0.3125V1.94531H0.765625V0.3125H5.03906Z" fill="#292929"/>
-                  </svg>
+                  </svg> 
                 </div>
                 <div class="count">1</div>
                 <div class="button">
@@ -159,12 +169,12 @@
           </div>
         </div>
       </div>
-      <div class="cart_right">
+      <div class="cart_right"> 
         <div class="cart_right_main">
-          <div class="chooseAll">
+          <div class="chooseAll" @click="radioButton('all')">
             <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="10" cy="10.5" r="9.25" stroke="#AEAEAE" stroke-width="1.5"/>
-              <circle cx="10" cy="10.5" r="6.25" fill="#AEAEAE"/>
+              <circle cx="10" cy="10.5" r="9.25" stroke="#FF141D" stroke-width="1.5"/>
+              <circle cx="10" cy="10.5" r="6.25" fill="#FF141D"/>
             </svg>
             <span>{{$t('chooseAll')}}</span>
           </div>
@@ -173,7 +183,7 @@
             <div class="price">12389<span>manat</span></div>
           </div>
         </div>
-        <nuxt-link to="order" style="display:inline-block;width:100%" class="cart_right_bottom">{{$t('orderDone')}}</nuxt-link>
+        <nuxt-link to="order" class="cart_right_bottom">{{$t('orderDone')}}</nuxt-link>
       </div>
     </div>
   </div>
@@ -185,7 +195,7 @@ export default {
   components:{ImageSlider},
   data(){
     return{
-      radios:[true]
+      radios:[false,false,true],
     }
   },
    mounted(){
@@ -197,6 +207,23 @@ export default {
     const height = window.innerHeight-352;
     const element = document.querySelector('.cart');
     element.style.minHeight = height+'px';
+  },
+  methods:{
+    radioButton(id){
+      if(id == 'all'){
+        for(let i = 0; i<this.radios.length; i++){
+          this.radios[i] = true;
+        }
+        const arr = this.radios
+        this.radios = []
+        this.radios = arr
+      }else{
+        this.radios[id] = !this.radios[id];
+        const arr = this.radios
+        this.radios = []
+        this.radios = arr;
+      }
+    }
   }
 }
 </script>

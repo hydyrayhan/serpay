@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Breadcrumb :positions="positions"/>
+    <!-- <Breadcrumb :positions="positions"/> -->
     <div class="productPage">
       <div class="productPage_images">
         <div class="big_image"><img src="~/assets/images/delete/productPage.png" alt=""></div>
@@ -116,28 +116,20 @@
       <img src="~/assets/images/delete/detail.png" alt="">
       <img src="~/assets/images/delete/detail.png" alt="">
     </div>
+    <ProductInfo @close-productInfo="resInfo = false" v-show="resInfo"/>
   </div>
 </template>
 
 <script>
 import Breadcrumb from '~/components/Breadcrumb';
 import Product from '~/components/Product';
+import ProductInfo from '~/components/responsive/ProductInfo';
 export default {
-  components:{Breadcrumb,Product},
+  components:{Breadcrumb,Product,ProductInfo},
   data(){
     return{
       liked:false,
-      positions:{
-        category:{
-          name:{
-            tm:"Category",
-            ru:"Category"
-          },
-          id:"1",
-          to:"/"
-        },
-        subcategory_name:'Sub category',
-      },
+      resInfo:true,
     }
   },
   methods:{

@@ -190,6 +190,9 @@
         color: #545454;
         line-height: 19px;
         font-family: Inter;
+        @include tablet{
+          width: 80%;
+        }
       }
     }
   }

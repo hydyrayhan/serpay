@@ -5,9 +5,15 @@
     letter-spacing: 1px;
     color: #292929;
     font-size: 25px;
+    @include tablet{
+      padding: 50px 0 25px;
+    }
   }
-
+ 
   &_products{
     padding: 0 150px;
+    @include tablet{
+      padding: 0;
+    }
   }
 }

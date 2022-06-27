@@ -6,6 +6,9 @@
   .news__slider__item__image{
     height: 350px;
     margin-top: 15px;
+    @include tablet{
+      height: 250px;
+    }
     img{
       border-radius: 25px;
       width: 100%;
@@ -53,24 +56,34 @@
   a{
     background-color: #f7f7f7;
     border-radius: 40px;
-    width: 250px;
+    width: 24%;
     position: relative;
     overflow: hidden;
+    @include tablet{
+      border-radius: 20px;
+      width: 32%;
+    }
     img{
-      border-radius: 42px;
-      width: 250px;
+      width: 100%;
       min-height: 250px;
       max-height: 250px;
       object-fit: cover;
+      @include tablet{
+        min-height: 150px;
+        max-height: 150px;
+        border-radius: 22px;
+      }
     }
     div:nth-child(2){
       position: absolute;
       bottom: 15px;
-      // text-align: center;
       width: 100%;
       font-size: 20px;
       font-weight: 700;
       letter-spacing: 1px;
+      @include tablet{
+        font-size: 18px;
+      }
     }
     div:nth-child(3){
       position: absolute;
@@ -86,6 +99,10 @@
     .sale_text{
       color: #FFFFFF;
       margin-left: 40px;
+      @include tablet{
+        margin-left: 0px;
+        text-align: center;
+      }
     }
     .icon{
       position: absolute;
@@ -101,28 +118,44 @@
       top: 5px;
       left: -95px;
       background-color: $yellow;
+      @include tablet{
+        top: 0;
+      }
     }
     .discount_discountIcon{
       background-color: $red;
       top: 10px;
       padding: 15px 15px 5px 15px;
       left: -120px;
+      @include tablet{
+        top:5px;
+      }
     }
     .sale_saleIcon{
       background-color: $white;
       top: 10px;
       padding: 15px 15px 5px 15px;
       left: -120px;
+      @include tablet{
+        top: 5px;
+      }
     }
   }
   .sale{
     width: 50%;
+    @include tablet{
+      width: 32%;
+    }
     .sale_image{
       width: 100%;
       img{
         width: 100%;
         min-height: 250px;
         max-height: 250px;
+        @include tablet{
+          min-height: 150px;
+          max-height: 150px;
+        }
       }
     }
   }
@@ -153,6 +186,11 @@
 }
 .main_like{
   margin-bottom: 150px;
+  .product{
+    &:nth-child(n+4){
+      display: block !important;
+    }
+  }
 }
 
 .main_product{
@@ -168,6 +206,19 @@
     }
     &:nth-child(5n){
       margin-right: 0;
+    }
+    @include tablet{
+      width: 32%;
+      margin-right: 2%;
+      &:nth-child(5n){
+        margin-right: auto;
+      }
+      &:nth-child(n+4){
+        display: none;
+      }
+      &:nth-child(3n){
+        margin-right: 0;
+      }
     }
   }
   .like{
@@ -185,10 +236,17 @@
     align-items: center;
     position: relative;
     padding: 60px 0;
+    @include tablet{
+      @include flex(column,center,center);
+    }
     .left{
       display: flex;
       align-items: center;
       max-width: 50%;
+      @include tablet{
+        max-width: 70%;
+        margin-bottom: 50px;
+      }
       .logo{
         margin-right: 25px;
       }
@@ -210,10 +268,20 @@
       #icon1{
         top: -70px;
         right: 365px;
+        @include tablet{
+          top:auto;
+          right: auto;
+          bottom: -50px;
+          left: -70px;
+        }
       }
       #icon2{
         bottom: -75px;
         right: -100px;
+        @include tablet{
+          bottom: -35px;
+          right: -60px;
+        }
       }
     }
   }
