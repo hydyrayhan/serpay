@@ -2,9 +2,10 @@
   <div class="container signInPage">
     <div class="signIn">
        <div class="signIn_main">
-        <div class="loginImage">
+        <label class="loginImage">
           <img src="~/assets/images/delete/logged.png" alt="">
-        </div>
+          <input type="file">
+        </label>
 
         <div class="title">{{$t('nameAndSurname')}}</div>
         <span class="input">

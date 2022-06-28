@@ -5,6 +5,7 @@
         </div>
         <div class="space"></div>
         <Nuxt />
+        <MobileBottomNavbar />
         <Footer />
     </div>
 </template>
@@ -12,9 +13,10 @@
 <script>
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import MobileBottomNavbar from '../components/MobileBottomNavbar'
 // import { mapGetters, mapActions } from 'vuex';
 export default {
-    components: {Header, Footer},
+    components: {Header, Footer, MobileBottomNavbar},
     created() {
         // this.$store.dispatch('cart/setProductsToCart')
         // const userToken = this.$store.getters['user/userToken']

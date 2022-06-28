@@ -126,9 +126,17 @@
     cursor: pointer;
     border-radius: 100px;
     position: relative;
-    // @include tablet{
-    //   width: 3px;
-    // }
+    @include mobile{
+      width: 70%;
+      svg{
+        &:nth-child(2){
+          margin-right: 0;
+        }
+        &:nth-child(3){
+          display: none;
+        }
+      }
+    }
     input{
       background: none;
       border: none;
@@ -231,6 +239,15 @@
         height: 30px;
       }
     }
+    .header_buttons_mode_mobile{
+      display: none;
+      background: $darkWhite;
+      padding: 0 15px;
+      border-radius: 5px;
+      @include mobile{
+        @include flex();
+      }
+    }
     .header_buttons_mode{
       @include flex;
       padding: 6px 7px;
@@ -238,6 +255,9 @@
       border-radius: 100px;
       min-height: auto;
       cursor: pointer;
+      @include mobile{
+        display: none;
+      }
       .header_buttons_mode_dark{
         margin-right: 16px;
       }
@@ -250,9 +270,25 @@
       @include tablet{
         display: block;
       }
+      @include mobile{
+        display: none;
+      }
+    }
+    &_like{
+      @include mobile{
+        display: none;
+      }
+    }
+    &_cart{
+      @include mobile{
+        display: none;
+      }
     }
     &_location{
       position: relative;
+      @include mobile{
+        display: none;
+      }
       .header_location_ul{
         position: absolute;
         top: 55px;
@@ -290,6 +326,9 @@
     }
     &_login{
       position: relative;
+      @include mobile{
+        display: none;
+      }
       .header_login_ul{
         position: absolute;
         cursor: default;

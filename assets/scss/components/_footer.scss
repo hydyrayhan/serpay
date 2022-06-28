@@ -2,11 +2,29 @@
   background: #262626;
   .container{
     padding: 49px 0 10px 0;
+    @include mobile{
+      padding: 35px 0 10px 0;
+    }
     .topContainer{
       @include flex();
       margin-bottom: 50px;
+      @include mobile{
+        @include flex(column);
+        margin-bottom: 35px;
+      }
+      .logo{
+        @include mobile{
+          margin-bottom: 25px;
+          img{
+            width: 100px;
+          }
+        }
+      }
       .pages{
         @include flex();
+        @include mobile{
+          display: none;
+        }
         .left,.right{
           @include flex(column,flex-start,flex-start);
           a{
@@ -32,11 +50,20 @@
       @include tablet{
         @include flex(column);
       }
+      @include mobile{
+        @include flex(row);
+      }
       img:first-child{
         margin-right: 30px;
+        @include mobile{
+          margin-right: 15px;
+        }
       }
       img{
         cursor: pointer;
+        @include mobile{
+          width: 130px;
+        }
       }
     }
     .footer_text{

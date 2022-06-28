@@ -54,6 +54,7 @@ export default {
   data(){
     return{
       addresses:[{city:'Ashgabat',note:"Ashgabat Mir 7"},{city:"tejen",note:"Tejen Vsoky"},{city:"Mary",note:"Mykgyllorsy shaheri"}],
+      // addresses:[],
       addressData:false,
       addAddressShow:false,
       deleteAddressShow:false,

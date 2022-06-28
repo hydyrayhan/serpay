@@ -4,6 +4,9 @@
   background-color: white;
   border-radius: 15px;
   position: relative;
+  @include tablet{
+    margin:40px 0;
+  }
   .chat{
     overflow-y: auto;
     padding-bottom: 70px;

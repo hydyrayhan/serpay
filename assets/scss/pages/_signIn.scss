@@ -2,6 +2,9 @@
   .signIn{
     margin: 70px auto;
     width: 40%;
+    @include tablet{
+      width: 70%;
+    }
     &_header{
       @include flex(row,center);
       margin-bottom: -21px;
@@ -147,6 +150,9 @@
         @include flex(column);
         margin-bottom: 30px;
         margin-top: -20px;
+        @include tablet{
+          @include flex(row,center);
+        }
         label{
           margin-top: 10px;
           border: 1px solid #AEAEAE;
@@ -157,6 +163,12 @@
           input{
             display: none;
           }
+          @include tablet{
+            margin-top: 0;
+            margin-left: 25px;
+            border-radius: 10px;
+            padding: 15px 30px;
+          }
         }
       }
       .signUpLastInput{
@@ -165,7 +177,10 @@
       .loginImage{
         margin-top: -135px;
         margin-bottom: 50px;
-        @include flex(row,center)
+        @include flex(row,center);
+        input{
+          display: none;
+        }
       }
     }
   }
