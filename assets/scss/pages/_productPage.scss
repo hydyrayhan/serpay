@@ -1,15 +1,25 @@
 .productPage{
   @include flex(row,space-between,flex-start);
-
+  @include mobile{
+    @include flex(column,flex-start,flex-start);
+  }
   &_images{
     min-width: 45%;
     max-width: 45%;
+    @include mobile{
+      min-width: 100%;
+      max-width: 100%;
+    }
     .big_image{
       width: 100%;
       height: 600px;
       margin-bottom: 15px;
       @include tablet{
         height: 350px;
+      }
+      @include mobile{
+        width: 105%;
+        margin-left: -2.5%;
       }
       img{
         width: 100%;
@@ -19,16 +29,27 @@
     .small_image{
       display: flex;
       margin-bottom: 70px;
+      @include mobile{
+        margin-bottom: 30px;
+      }
       &_image{
         overflow: hidden;
         margin-right: 10px;
         border-radius: 2px;
         height: 75px;
         width: 75px;
+        @include mobile{
+          height: 50px;
+          width: 50px;
+        }
         cursor: pointer;
         img{
           height: 75px;
           width: 75px;
+          @include mobile{
+            height: 50px;
+            width: 50px;
+          }
         }
       }
       &_image.active{
@@ -42,6 +63,10 @@
     max-width: 53%;
 
     @include flex(column,space-between,flex-start);
+    @include mobile{
+      min-width: 100%;
+      max-width: 100%;
+    }
 
     .info_price{
       @include flex(row, flex-start);
@@ -196,6 +221,10 @@
         box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.08);
         border-radius: 10px 10px 0px 0px;
       }
+      @include mobile{
+        z-index: 12;
+        padding: 0;
+      }
       .top{
         @include flex();
         margin-bottom: 20px;
@@ -248,10 +277,23 @@
         @include tablet{
           @include flex(row,center);
         }
+        @include mobile{
+          @include flex(row,space-between,center);
+          box-shadow: 0px -4px 20px -5px rgba(0, 0, 0, 0.15);
+          border-radius: 10px 10px 0px 0px;
+          overflow: hidden;
+        }
         div{
           border-radius: 10px;
           height: 60px;
           @include flex(row,center);
+        }
+        &_home{
+          display: none;
+          @include mobile{
+            display: block;
+            margin-left: 15px;
+          }
         }
         &_brand{
           border: 1px solid #AEAEAE;
@@ -260,17 +302,53 @@
           height: 60px;
           cursor: pointer;
           margin-right: 20px;
+          @include mobile{
+            display: none !important;
+          }
         }
         &_like{
           padding: 0 15px;
           border: 1px solid #AEAEAE;
           cursor: pointer;
           margin-right: 20px;
+          span{
+            display: none;
+          }
+          @include mobile{
+            border: none;
+            padding: 0;
+            span{
+              display: block;
+            }
+          }
+        }
+        &_admin{
+          display: none;
+          @include mobile{
+            display: block;
+          }
+        }
+        .mob{
+          @include mobile{
+            @include flex(column,center);
+            margin-right: 0;
+            span{
+              margin-top: 5px;
+              font-size: 10px;
+            }
+          }
         }
         &_addCart{
           padding: 0 30px;
           background: $red;
           cursor: pointer;
+          @include mobile{
+            width: 45%;
+            height: auto;
+            padding: 35px 0;
+            border-radius: 0 !important;
+            @include flex(row,center);
+          }
           span{
             color: white;
           }
@@ -287,6 +365,9 @@
   display: flex;
   width: 100%;
   margin-bottom: 60px;
+  @include mobile{
+    flex-wrap: wrap;
+  }
   .product{
     width: 19%;
     margin-right: 1.25%;
@@ -301,6 +382,20 @@
       }
       &:nth-child(4n),&:nth-child(5n){
         display: none;
+      }
+    }
+    @include mobile{
+      width: 49%;
+      margin-right: 2%;
+      margin-bottom: 10px;
+      &:nth-child(3n){
+        margin-right: auto;
+      }
+      &:nth-child(4n){
+        display: block;
+      }
+      &:nth-child(2n){
+        margin-right: 0;
       }
     }
   }

@@ -1,5 +1,6 @@
 .cart_tablet_header{
   display: none;
+  margin-top: 30px;
   @include tablet{
     @include flex();
   }
@@ -15,7 +16,7 @@
     background: $whiteN;
     border: 1px solid #AEAEAE;
     border-radius: 5px;
-    margin-top: 30px;
+    // margin-top: 30px;
     cursor: pointer;
     svg{
       margin-right: 10px;
@@ -45,6 +46,9 @@
     }
     &_radio{
       margin-right: 20px;
+      @include mobile{
+        margin-right: 5px;
+      }
     }
     &_product{
       width: 100%;
@@ -52,7 +56,7 @@
       border-radius: 10px;
       overflow: hidden;
       @include flex(row, space-between, flex-start);
-      &_left{
+      // &_left{
         display: flex;
         .images{
           width: 220px;
@@ -61,6 +65,11 @@
           @include tablet{
             width: 150px;
           }
+          @include mobile{
+            width: 140px;
+            height: 140px;
+            margin-right: 10px;
+          }
           img{
             width: 220px;
             height: 200px;
@@ -68,24 +77,43 @@
               width: 150px;
               height: 150px;
             }
+            @include mobile{
+              width: 140px;
+              height: 140px;
+            }
           }
 
+        }
+        .infoButton{
+          @include flex();
+          width: 100%;
+          @include mobile{
+            @include flex(column,flex-start,flex-start);
+            margin-bottom: 10px;
+          }
         }
   
         .info{
           padding: 25px 0;
           width: 60%;
+          @include mobile{
+            width: 100%;
+            padding: 15px 0;
+          }
           &_price{
             @include flex(row,flex-start);
             margin-bottom: 10px;
             &_new{
-              color:black;
+              color:$red;
               font-size: 20px;
               font-weight: 700;
               letter-spacing: 1px;
               font-family: Inter;
               margin-right: 15px;
               @include flex();
+              @include mobile{
+                font-size: 15px;
+              }
               span{
                 padding: 1px 3px;
                 background: #DEDEDE;
@@ -94,6 +122,9 @@
                 font-weight: 600;
                 letter-spacing: 1px;
                 margin-left: 5px;
+                @include mobile{
+                  font-size: 8px;
+                }
               }
             }
             &_old{
@@ -103,6 +134,9 @@
               font-weight: 600;
               letter-spacing: 1px;
               position: relative;
+              @include mobile{
+                font-size: 10px;
+              }
               span{
                 &:first-child{
                   font-size: 8px;
@@ -113,6 +147,9 @@
                   left: 0;
                   width: 100%;
                   border-bottom: 0.5px solid #FF145B;
+                  @include mobile{
+                    top:6px;
+                  }
                 }
               }
             }
@@ -122,26 +159,53 @@
             font-family: Inter;
             font-size: 16px;
             margin-bottom: 10px;
+            @include mobile{
+              font-size: 14px;
+              display: -webkit-box;
+              -webkit-line-clamp: 1;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              margin-bottom: 5px;
+            }
           }
           &_definition{
             color: #616161;
             font-size: 16px;
             font-weight: 600;
             letter-spacing: 1px;
+            @include mobile{
+              font-size: 14px;
+              display: -webkit-box;
+              -webkit-line-clamp: 1;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
           }
         }
-      }
+      // }
       .buttons{
         padding: 25px;
+        @include mobile{
+          padding: 0;
+          @include flex();
+        }
         &_quantity{
           @include flex();
           margin-bottom: 15px;
+          @include mobile{
+            margin-bottom: 0;
+          }
           .title{
             color: #292929;
             font-size: 18px;
             font-weight: 600;
             letter-spacing: 1px;
             margin-right: 15px;
+            @include mobile{
+              display: none;
+            }
           }
           .button{
             background: #FFFFFF;
@@ -167,8 +231,16 @@
           border: 1px solid #838383;
           border-radius: 5px;
           padding: 8px 15px;
+          @include mobile{
+            padding: 0;
+            border: none;
+            margin-left: 30px;
+          }
           .title{
             color: #747474;
+            @include mobile{
+              display: none;
+            }
           }
         }
       }
@@ -191,15 +263,23 @@
       border-radius: 10px 10px 0px 0px;
       padding: 25px 0;
     }
+    @include mobile{
+      z-index: 12;
+      bottom: 55px;
+      background: #f6f6f6;
+      border-radius: 0;
+      padding: 0;
+      @include flex();
+    }
     &_main{
       padding: 25px 40px 30px;
       @include tablet{
         padding: 0;
       };
+      @include mobile{
+        @include flex();
+      }
       .chooseAll{
-        @include tablet{
-          display: none
-        }
         @include flex();
         width: fit-content;
         padding: 10px 15px;
@@ -208,19 +288,42 @@
         border-radius: 5px;
         margin-bottom: 30px;
         cursor: pointer;
+        @include tablet{
+          display: none
+        }
+        @include mobile{
+          @include flex(column,center,center);
+          background: none;
+          border: none;
+          margin-bottom: 0;
+          text-align: center;
+        }
         svg{
           margin-right: 10px;
+          @include mobile{
+            margin-right: 0;
+            margin-bottom: 3px;
+          }
         }
         span{
           font-size: 18px;
           font-weight: 600;
           letter-spacing: 1px;
           color: black;
+          @include mobile{
+            font-size: 10px
+          }
         }
       }
       .totalPrice{
         @include tablet{
           @include flex(row,center);
+        }
+        @include mobile{
+          box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.15);
+          // padding: 20px;
+          height: 70px;
+          padding: 0 20px;
         }
         .title{
           color: #0D0D0D;
@@ -232,6 +335,9 @@
             margin-bottom: 0;
             margin-right: 10px;
           }
+          @include mobile{
+            display: none;
+          }
         }
         .price{
           color: $red;
@@ -240,6 +346,11 @@
           letter-spacing: 1px;
           font-family: Inter;
           @include flex(row,flex-start);
+          @include mobile{
+            color: black;
+            @include flex(column);
+            font-size: 14px;
+          }
           span{
             margin-left: 9px;
             background: #CBCBCB;
@@ -248,6 +359,10 @@
             color: $blackN;
             font-size: 12px;
             font-family: Inter;
+            @include mobile{
+              background: none;
+              font-size: 8px;
+            }
           }
         }
       }
@@ -268,6 +383,22 @@
         border-radius: 10px;
         font-size: 18px;
         margin-left: 50px;
+      }
+      @include mobile{
+        margin-left: 0;
+        font-size: 14px;
+        border-radius: 0;
+        padding: 0;
+        width: 60%;
+        height: 70px;
+        @include flex(row,center);
+      }
+      svg{
+        display: none;
+        margin-right: 10px;
+        @include mobile{
+          display: block;
+        }
       }
     }
   }

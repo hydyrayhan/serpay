@@ -9,16 +9,48 @@
     padding: 35px 30px;
     z-index: 9;
     min-width: 100%;
+    @include mobile{
+      padding: 20px;
+      bottom: 60px;
+      padding-bottom: 60px;
+    }
+    .productInfoComponent_Header{
+      display: none;
+      width: calc(100% + 40px);
+      margin-left: -20px;
+      padding: 0 20px 15px;
+      border-bottom: 1px solid #E7E7E7;
+      margin-bottom: 20px;
+      @include mobile{
+        @include flex();
+      }
+      .title{
+        @include flex();
+        svg{
+          margin-right: 10px;
+        }
+      }
+    }
     .info_kind,.info_size{
       display: block;
     }
     .info_price{
       margin-bottom: 0;
+      &_liked{
+        @include mobile{
+          display: none;
+        }
+      }
     }
     .product_info_resHeader{
       width: 100%;
       @include flex();
       margin-bottom: 20px;
+      .exit{
+        @include mobile{
+          display: none;
+        }
+      }
     }
     .exit{
       padding: 10px;
@@ -71,6 +103,10 @@
     .smallImages{
       padding: 50px 30px 30px;
       @include flex(row,flex-start);
+      @include mobile{
+        overflow: auto;
+        padding: 50px 20px 30px;
+      }
       &_image{
         margin-right: 15px;
         @include flex();
@@ -79,6 +115,10 @@
           width: 100px;
           height: 100px;
           object-fit: cover;
+          @include mobile{
+            width: 80px;
+            height: 80px;
+          }
         }
         &.active{
           border: 1px solid #FFC700;
@@ -95,6 +135,9 @@
       background: $grayLight;
       width: fit-content;
       @include flex();
+      @include mobile{
+        margin: 20px;
+      }
     }
   }
 }

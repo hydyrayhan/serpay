@@ -8,6 +8,9 @@
     @include tablet{
       padding: 50px 0 25px;
     }
+    @include mobile{
+      display: none;
+    }
   }
  
   &_products{

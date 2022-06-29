@@ -87,7 +87,7 @@
         </div>
 
         <div class="category_sidebar_buttons">
-          <!-- <button class="clear">{{$t('clear')}}</button> -->
+          <button class="clear">{{$t('clear')}}</button>
           <button class="filter">
             <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M17.3327 1H0.666016L7.33268 8.88333V14.3333L10.666 16V8.88333L17.3327 1Z" stroke="#616161" stroke-linecap="round" stroke-linejoin="round"/>
@@ -148,7 +148,7 @@
         </div>
         <div class="category_main_tablet_filter">
           <div class="buttons">
-            <button @click="openFilter" class="filter">
+            <button @click="openFilter()" class="filter">
               <svg width="19" height="16" viewBox="0 0 19 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18 1H1L7.8 8.43126V13.5687L11.2 15.1398V8.43126L18 1Z" stroke="#272727" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
@@ -169,6 +169,7 @@
               <span>{{$t('sort')}}</span>
 
             </button>
+            
             <div class="sortPopup">
               <div class="sortPopup_header">
                 <div class="icon">
@@ -228,6 +229,7 @@
             </div>
           </div>
         </div>
+        <div v-if="filterBg" @click="closeFilter(),closeSort()" class="sortFilterBg"></div>
         <div class="category_main_products">
           <span class="cube" v-if="productView">
             <Product v-for="i in 15" :key="i"/>
@@ -261,6 +263,7 @@ export default {
         subcategory_name:'Sub category',
       },
       productView:true,
+      filterBg:false,
     }
   },
   methods:{
@@ -276,15 +279,19 @@ export default {
     },
     openFilter(){
       document.querySelector('.category_sidebar').style.display = 'block';
+      this.filterBg = true;
     },
     closeFilter(){
       document.querySelector(".category_sidebar").style.display = 'none';
+      this.filterBg = false;
     },
     openSort(){
       document.querySelector(".sortPopup").style.display = 'block';
+      this.filterBg = true;
     },
     closeSort(){
       document.querySelector(".sortPopup").style.display = 'none';
+      this.filterBg = false;
     }
   }
 }

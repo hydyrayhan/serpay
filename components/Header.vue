@@ -4,13 +4,13 @@
        <nuxt-link to="/" class="header_logo">
          <img src="~/assets/images/logo.svg" alt="">
        </nuxt-link>
-       <div class="header_category" @click="category = !category" v-click-outside="categoryClose">
-         <div class="header_category_icon">
+       <div class="header_category" v-click-outside="categoryClose">
+         <div class="header_category_icon" @click="category = !category">
            <img v-if="category" src="~/assets/images/icons/x.svg" alt="headerCategory">
            <img v-else src="~/assets/images/icons/headerCategory.svg" alt="headerCategory">
           </div>
          <!-- <div class="header_category_icon"><img src="~/assets/images/icons/x.svg" alt="x"></div> -->
-         <div class="header_category_text">{{$t('category')}}</div>
+         <div @click="category = !category" class="header_category_text">{{$t('category')}}</div>
 
          <div class="header_category_con" v-if="category">
            <div class="hidden_categories">

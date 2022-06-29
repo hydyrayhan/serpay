@@ -1,11 +1,23 @@
  .shareProduct{
   @include flex(row,flex-start,flex-start);
+  @include mobile{
+    @include flex(column,flex-start,flex-start); 
+  }
   &_images{
     margin-right: 60px;
     width: 45%;
+    @include mobile{
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
     &_big{
       width: 100%;
       margin-bottom: 15px;
+      @include mobile{
+        width: 105%;
+        margin-left: -2.5%;
+      }
       img{
         width: 100%;
       }
@@ -17,6 +29,9 @@
         cursor: pointer;
         width: 75px;
         margin-right: 10px;
+        @include mobile{
+          width: 50px;
+        }
         img{
           width: 100%;
         }
@@ -30,6 +45,9 @@
   &_info{
     @include tablet{
       width: 55%;
+    }
+    @include mobile{
+      width: 100%;
     }
     &_name{
       font-weight: 600;
@@ -45,10 +63,16 @@
       @include tablet{
         display: none;
       }
+      @include mobile{
+        display: block;
+      }
     }
     .product_info_range{
       @include flex(row,flex-start);
       margin-bottom: 30px;
+      @include mobile{
+        margin-bottom: 25px;
+      }
       .range{
         width:30%;
         height: 25px;
@@ -62,6 +86,10 @@
         @include tablet{
           width: 50%;
         }
+        @include mobile{
+          width: 60%;
+          height: 20px;
+        }
         .range_color{
           height: 100%;
           background:  linear-gradient(269.79deg, #FF141D 7.02%, #FEBE13 97.69%);
@@ -70,11 +98,17 @@
           position: absolute;
           top:0;
           left:calc(50% - 11px);
+          @include mobile{
+            top: -2px;
+          }
           span{
             font-size: 11px;
             font-weight: 600;
             letter-spacing: 1px;
             color: $blackN;
+            @include mobile{
+              font-size: 10px;
+            }
           }
         }
       }
@@ -108,6 +142,10 @@
         margin-right: 20px;
         @include tablet{
           width: 70%;
+        }
+        @include mobile{
+          width: 100%;
+          margin-right: 0;
         }
         .person{
           border: 1px solid #AEAEAE;
@@ -165,6 +203,14 @@
           @include flex(row,center);
           padding: 40px 0;
         }
+        @include mobile{
+          z-index: 11;
+          padding: 0;
+          // width: 105%;
+          // margin-left: -2.5%;
+          overflow: hidden;
+          border-radius: 10px 10px 0px 0px;
+        }
         .timer{
           @include flex(row,center);
           margin-bottom: 24px;
@@ -172,9 +218,18 @@
             margin-bottom: 0;
             margin-right: 40px;
           }
+          @include mobile{
+            width: 50%;
+            margin-right: 0;
+          }
           .icon{
             margin-right: 10px;
             @include flex;
+            svg{
+              @include mobile{
+                width: 20px;
+              }
+            }
           }
           &_time{
             span{
@@ -182,6 +237,9 @@
               font-size: 26px;
               font-weight: 600;
               letter-spacing: 1px;
+              @include mobile{
+                font-size: 16px;
+              }
             }
           }
         }
@@ -195,10 +253,19 @@
           @include tablet{
             width: 40%;
           }
+          @include mobile{
+            width: 50%;
+            border-radius: 0;
+            padding: 25px 0;
+          }
           span{
             margin-left: 16px;
             color: white;
             font-size: 18px;
+            @include mobile{
+              font-size: 15px;
+              margin-left: 10px;
+            }
           }
         }
       }
