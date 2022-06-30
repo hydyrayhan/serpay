@@ -4,13 +4,25 @@
   @include tablet{
     width: 50%;
   }
+  @include mobile{
+    width: 100%;
+    margin: 0;
+  }
   &_title{
     color: $blackN;
     font-weight: 700;
     font-size: 25px;
     margin-bottom: 25px;
+    @include mobile{
+      display: none;
+    }
   }
-
+  .carts{
+    display: none;
+    @include mobile{
+      display: block;
+    }
+  }
   .settings_list{
     &_con{
       background: $grayLight;

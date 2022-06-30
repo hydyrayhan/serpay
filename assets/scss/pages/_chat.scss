@@ -7,9 +7,25 @@
   @include tablet{
     margin:40px 0;
   }
+  @include mobile{
+    margin-top: 0;
+    height: 90vh;
+    width: 100%;
+    border-radius: 0;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 12;
+    margin-bottom: 0;
+    background: #fafafa;
+  }
   .chat{
     overflow-y: auto;
     padding-bottom: 70px;
+    @include mobile{
+      padding-bottom: 0;
+      height: 75vh !important;
+    }
     &_box{
       margin-bottom: 20px;
       width: 100%;
@@ -27,6 +43,9 @@
         border-radius: 15px 15px 15px 0px;
         padding: 30px;
         width: 48%;
+        @include mobile{
+          width: 90%;
+        }
       }
     }
     .admin{
@@ -80,6 +99,9 @@
         color: white;
         margin-left: 15px;
         font-size: 18px;
+        @include mobile{
+          display: none;
+        }
       }
     }
   }

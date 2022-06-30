@@ -6,6 +6,9 @@
   position: relative;
   overflow: hidden;
   margin-bottom: 20px;
+  @include mobile{
+    border-radius: 5px;
+  }
   .like{
     padding: 10px 13px;
     border-radius: 5px;
@@ -17,6 +20,11 @@
     position: absolute;
     top: 0;
     right: 0px;
+    @include mobile{
+      padding: 10px;
+      border: none;
+      margin: 0;
+    }
   }
   .quantity{
     position: absolute;
@@ -26,6 +34,12 @@
     padding: 5px;
     font-size: 20px;
     font-weight: 600;
+    @include mobile{
+      top: 10px;
+      right: 10px;
+      font-size: 14px;
+      border-radius: 2px;
+    }
   }
   .left{
     @include flex(row, flex-start, flex-start);
@@ -37,14 +51,22 @@
         width: 150px;
         height: 150px;
       }
+      @include mobile{
+        width: 120px;
+        height: 120px;
+        margin-right: 15px;
+      }
       img{
-        max-height: 200px;
+        max-height: 120px;
       }
     }
 
     .longProduct_info{
       padding-top: 25px;
       width: 60%;
+      @include mobile{
+        padding-top: 15px;
+      }
       .price{
         @include flex(row ,flex-start);
         margin-bottom: 10px;
@@ -55,6 +77,10 @@
           letter-spacing: 1px;
           margin-right: 15px;
           @include flex();
+          @include mobile{
+            font-size: 15px;
+            letter-spacing: normal;
+          }
           span{
             margin-left: 5px;
             font-size: 10px;
@@ -64,6 +90,9 @@
             border-radius: 3px;
             background-color: #DEDEDE;
             padding: 1px 3px;
+            @include mobile{
+              font-size: 8px;
+            }
           }
         }
         .old{
@@ -71,8 +100,14 @@
           font-weight: 600;
           letter-spacing: 1px;
           position: relative;
+          @include mobile{
+            font-size: 10px;
+          }
           span{
             font-size: 8px;
+            @include mobile{
+              display: none;
+            }
           }
           .hr{
             position: absolute;
@@ -80,6 +115,10 @@
             width: 100%;
             left: 0;
             top: 8px;
+            @include mobile{
+              display: block;
+              top: 6px;
+            }
           }
         }
       }
@@ -90,34 +129,55 @@
         @include tablet{
           width: 90%;
         }
+        @include mobile{
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
       }
     }
   }
-  .newProduct{
+  .isContainerLong{
     position: absolute;
-    top: -35px;
-    left: -20px;
-    background: #FFC700;
-    border-radius: 10px;  
-    color: #252525;
-    transform: rotate(10.99deg);
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 1px;
-    padding: 40px 5px 10px 40px;
-    z-index: 3;
-  }
-  .discount{
-    position: absolute;
-    top: 25px;
-    left: -30px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    color: white;
-    transform: rotate(11.51deg);
-    background: #FF141D;
-    border-radius: 10px;
-    padding: 12px 5px 8px 40px;
+    top: 0px;
+    left: -10px;
     z-index: 2;
+    @include mobile{
+      left: -15px;
+    }
+    .newProduct{
+      background: #FFC700;
+      border-radius: 10px;  
+      color: #252525;
+      transform: rotate(10.27deg);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 1px;
+      padding: 20px 10px 10px 20px;
+      text-align: right;
+      position: relative;
+      z-index: 2;
+      margin-top: -10px;
+      @include mobile{
+        font-size: 10px;
+        padding: 15px 5px 10px 20px;
+      }
+    }
+    .discount{
+      text-align: right;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: white;
+      transform: rotate(10deg);
+      background: #FF141D;
+      border-radius: 10px;
+      padding: 20px 10px 10px 20px;
+      margin-top: -10px;
+      @include mobile{
+        font-size: 10px;
+      }
+    }
   }
 }

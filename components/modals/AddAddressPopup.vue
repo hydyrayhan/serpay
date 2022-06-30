@@ -10,7 +10,7 @@
       </div>
       <div class="address_input">
         <div class="address_title">{{$t('extra_info_for_location')}}</div>
-        <textarea name="" id="" cols="60" rows="10" style="resize: none;"></textarea>
+        <textarea name="" id=""  style="resize: none;"></textarea>
       </div>
 
       <div class="address_buttons">

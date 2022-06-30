@@ -5,6 +5,7 @@
         <label class="loginImage">
           <img src="~/assets/images/delete/logged.png" alt="">
           <input type="file">
+          <span>{{$t('changeProfilePicture')}}</span>
         </label>
 
         <div class="title">{{$t('nameAndSurname')}}</div>

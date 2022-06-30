@@ -5,9 +5,16 @@
     @include tablet{
       width: 70%;
     }
+    @include mobile{
+      width: 100%;
+      margin: 30px auto;
+    }
     &_header{
       @include flex(row,center);
       margin-bottom: -21px;
+      @include mobile{
+        margin-bottom: 35px;
+      }
       &_signIn{
         background-color: red;
         border: 1px solid #AEAEAE;
@@ -67,6 +74,11 @@
       box-shadow: 0px 16px 25px -5px rgba(0, 0, 0, 0.05);
       border-radius: 15px;
       padding: 70px;
+      @include mobile{
+        border: none;
+        box-shadow: none;
+        padding: 0;
+      }
       .bigTitle{
         font-weight: 600;
         font-size: 25px;
@@ -127,6 +139,9 @@
         font-size: 12px;
         margin-top: -10px;
         margin-bottom: 40px;
+        @include mobile{
+          margin-bottom: 25px;
+        }
         a{
           color: $red;
         }
@@ -173,13 +188,35 @@
       }
       .signUpLastInput{
         margin-bottom: 120px;
+        @include mobile{
+          margin-bottom: 40px;
+        }
       }
       .loginImage{
         margin-top: -135px;
         margin-bottom: 50px;
         @include flex(row,center);
+        @include mobile{
+          margin-top: 0;
+        }
         input{
           display: none;
+        }
+        img{
+          @include mobile{
+            width: 100px;
+            margin-right: 25px;
+          }
+        }
+        span{
+          display: none;
+          @include mobile{
+            display: block;
+            font-size: 14px;
+            padding: 15px 30px;
+            border: 1px solid #AEAEAE;
+            border-radius: 10px;
+          }
         }
       }
     }

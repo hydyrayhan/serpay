@@ -13,6 +13,7 @@
 
 <script>
 export default {
+  props:['data'],
   methods:{
     save(){
       console.log("lets delete")

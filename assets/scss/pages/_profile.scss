@@ -4,9 +4,15 @@
   @include tablet{
     width: 90%;
   }
+  @include mobile{
+    margin: 50px auto;
+  }
   &_header{
     @include flex(row,center);
     margin-bottom: 50px;
+    @include mobile{
+      @include flex(column,center,center);
+    }
     .signIn,.signUp{
       padding: 8px 15px;
       border-radius: 8px;
@@ -24,6 +30,10 @@
       background: #FAFAFA;
       border: 1px solid #C0C0C0;
       margin-right: 30px;
+      @include mobile{
+        margin-right: 0;
+        margin-bottom: 20px;
+      }
     }
     .signUp{
       background-color: $red;
@@ -40,9 +50,21 @@
     margin: 0 auto;
     @include flex(column,center);
     margin-bottom: 40px;
+    @include mobile{
+      width: 100%;
+    }
     .logged_image{
       margin-top: -70px;
       margin-bottom: 30px;
+      @include mobile{
+        margin-top: -50px;
+        margin-bottom: 20px;
+      }
+      img{
+        @include mobile{
+          width: 100px;
+        }
+      }
     }
     .logged_name{
       padding-bottom: 60px;
@@ -50,6 +72,10 @@
       font-size: 26px;
       font-weight: 600;
       letter-spacing: 1px;
+      @include mobile{
+        padding-bottom: 25px;
+        font-size: 20px;
+      }
       span{
         margin-right: 15px;
       }
@@ -83,11 +109,26 @@
             margin-right: 0;
           }
         }
+        @include mobile{
+          width: 32%;
+          margin-right: 2%;
+          padding: 15px;
+          height: 130px;
+          &:nth-child(4n){
+            margin-right: auto;
+          }
+          &:nth-child(3n){
+            margin-right: 0;
+          }
+        }
         .title{
           font-weight: 600;
           letter-spacing: 1px;
           color: #414141;
           text-align: center;
+          @include mobile{
+            font-size: 14px;
+          }
         }
         svg,img{
           position: absolute;

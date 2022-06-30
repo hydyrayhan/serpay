@@ -6,10 +6,16 @@
   .orders_header{
     @include flex();
     margin: 25px 0;
+    @include mobile{
+      margin: 15px 0;
+    }
     .pageName{
       font-weight: 600;
       font-size: 25px;
-      color: #272727
+      color: #272727;
+      @include mobile{
+        opacity: 0;
+      }
     }
     .privateButton{
       color: #0047FF;
@@ -17,15 +23,46 @@
     }
     .orders_header_buttons{
       @include flex();
+      .resMobileBottom{
+        @include flex();
+        @include mobile{
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          flex-direction: row-reverse;
+          z-index: 12;
+          background: $whiteN;
+        }
+      }
       .cancel{
         font-size: 14px;
         color: $darkGray;
         margin-right: 25px;
+        @include mobile{
+          color: $red;
+          margin-right: 0;
+        }
       }
       .delete{
         font-size: 14px;
         color: $red;
         margin-right: 25px;
+        @include mobile{
+          width: 50%;
+          background: $red;
+          color: white;
+          @include flex(row,center);
+          margin-right: 0;
+          padding: 27px 0;
+        }
+        svg{
+          display: none;
+          @include mobile{
+            display: block;
+            margin-right: 10px;
+          }
+        }
       }
       button{
         background: none;
@@ -37,6 +74,11 @@
         border: 1px solid #AEAEAE;
         border-radius: 10px;
         padding: 10px 15px;
+        @include mobile{
+          width: 50%;
+          border: none;
+          @include flex(row,center);
+        }
         span{
           margin-right: 10px;
           @include flex();

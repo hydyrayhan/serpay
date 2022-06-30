@@ -5,11 +5,17 @@
   @include tablet{
     width: 100%;
   }
+  @include mobile{
+    padding-top: 0;
+  }
   &_title{
     color: $blackN;
     font-size: 25px;
     font-weight: 600;
     margin-bottom: 25px;
+    @include mobile{
+      display: none;
+    }
   }
   .address_carts{
     margin-bottom: 40px;
@@ -21,6 +27,10 @@
       @include flex(row,space-between,flex-start);
       width: 100%;
       margin-bottom: 20px;
+      @include mobile{
+        border: 1px solid #AEAEAE;
+        position: relative;
+      }
       .address_cart_info{
         &_place{
           font-size: 18px;
@@ -36,12 +46,50 @@
       .address_cart_buttons{
         margin-left: 32px;
         @include flex();
+        @include mobile{
+          position: absolute;
+          top: 15px;
+          right: 15px;
+        }
+        .desktop{
+          @include flex();
+          @include mobile{
+            display: none;
+            background: #FFFFFF;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+            padding: 20px;
+            // @include flex(column,flex-start,flex-start);
+            position: absolute;
+            right: 0;
+            top: 0;
+          }
+        }
         button{
           cursor: pointer;
           background: none;
+          @include mobile{
+            @include flex();
+            &:first-child{
+              margin-bottom: 20px;
+            }
+          }
+          span{
+            display: none;
+            @include mobile{
+              display: block;
+              margin-left: 15px;
+            }
+          }
         }
         &_edit{
           margin-right: 25px;
+        }
+        .treeDots{
+          display: none;
+          @include mobile{
+            display: block;
+          }
         }
       }
     }
@@ -87,11 +135,16 @@
 .address_addPopup{
   position: fixed;
   top: calc(50% - 276px);
-  left: calc(50% - 322px);
+  left: calc(50% - 246px);
   background: #FFFFFF;
   border-radius: 10px;
   padding: 40px 50px;
   border-radius: 10px;
+  @include mobile{
+    padding: 25px 15px;
+    left: calc(50% - 150px);
+    width: 300px;
+  }
   .address_input{
     margin-bottom: 40px;
     .address_title{
@@ -101,6 +154,9 @@
       font-weight: 600;
       letter-spacing: 1px;
       margin-left: 20px;
+      @include mobile{
+        margin-left: 0;
+      }
     }
     input,textarea{
       padding: 14px 20px;
@@ -115,6 +171,9 @@
         font-family: Inter;
       }
     }
+    textarea{
+      height: 150px;
+    }
   }
   .address_buttons{
     @include flex(row, space-around);
@@ -123,10 +182,21 @@
       font-size: 18px;
       font-weight: 700;
       cursor: pointer;
+      @include mobile{
+        font-size: 16px;
+        font-weight: 600;
+      }
     }
     &_exit{
       background: none;
       color: #8888E8;
+      @include mobile{
+        margin-right: 20px;
+        color: $darkGray;
+        border: 1px solid #AEAEAE;
+        border-radius: 10px;
+        padding: 15px;
+      }
     }
     &_save{
       background: $red;
@@ -141,6 +211,9 @@
   position: fixed;
   left: calc(50% - 170px);
   top: calc(50% - 81px);
+  @include mobile{
+    left: calc(50% - 150px);
+  }
 }
 
 .popupTitle{

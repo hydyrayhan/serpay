@@ -110,5 +110,8 @@ export default {
     forFriend:"Dostym bilen",
     top:"Top 5",
     brandProducts:"Brand Onumleri",
+    changeProfilePicture:"Profil surat çalşmak",
+    carts:"Kartlarym",
+    edit:"Edit",
 }
   
