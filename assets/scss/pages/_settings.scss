@@ -17,7 +17,7 @@
       display: none;
     }
   }
-  .carts{
+  .place{
     display: none;
     @include mobile{
       display: block;
@@ -72,6 +72,11 @@
     &:hover{
       background: #f1f1f1;
       border-radius: 10px;
+    }
+    &.disabled{
+      span{
+        color: $gray;
+      }
     }
   }
 }

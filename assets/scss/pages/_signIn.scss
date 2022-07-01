@@ -221,4 +221,48 @@
       }
     }
   }
+  .code{
+    .bigTitle{
+      font-size: 24px;
+      font-weight: normal;
+      @include mobile{
+        font-size: 16px;
+        padding: 0 30px;
+      }
+      span{
+        font-weight: bold;
+      }
+    }
+    &_buttons{
+      @include flex(row,center);
+      button{
+        &:first-child{
+          border: 1px solid #AEAEAE;
+          border-radius: 10px;
+          padding: 8px 15px;
+          background: none;
+          font-size: 18px;
+          color: $darkGray;
+        }
+        &:last-child{
+          margin:0 0 0 40px;
+        }
+      }
+    }
+    &_inputs{
+      @include flex();
+      margin-bottom: 50px;
+      @include mobile{
+        padding: 0 20px;
+      }
+      input{
+        height: 60px;
+        width: 50px;
+        border: 1px solid #FF141D;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 30px;
+      }
+    }
+  }
 }

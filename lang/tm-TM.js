@@ -113,5 +113,17 @@ export default {
     changeProfilePicture:"Profil surat çalşmak",
     carts:"Kartlarym",
     edit:"Edit",
+    noCartAddCart:"Kart yok. Kart goshun",
+    addNewCart:"Taze kart goshun",
+    wantToDeleteCart:"Siz karty pozmakchymy?",
+    cartCode:"Kart belgisi",
+    cartDate:"Kartyň möhleti",
+    surnameAndName:"Familiýasy Ady",
+    monthAndYear:"Aý/Ýyl",
+    addKart:"Kart goş",
+    location:"Location",
+    sendAgain:"Täzeden iber",
+    toSet:"Dikeltmek",
+    codeTitle:"<span>+993 6*******</span> belgä tassyklaýyş sms-y ugradyldy. SMS arkaly gelen <span>tassyklaýyş kody</span> aşakda giriziň",
 }
   

@@ -1,15 +1,15 @@
 <template>
   <div class="container">
     <div class="myAddresses">
-      <div class="myAddresses_title">{{$t('myAddress')}}</div>
+      <div class="myAddresses_title">{{$t('carts')}}</div>
       <div v-if="addresses.length">
         <div class="address_carts">
-          <Address v-for="(address , i) in addresses" :key="i" :data="{id:i,address}" @edit="editAddressFunc" @delete="deleteAddress"/>
+          <Cart v-for="(address , i) in addresses" :key="i" :data="{id:i,address}" @edit="editAddressFunc" @delete="deleteAddress"/>
         </div>
       </div>
       <div v-else>
         <div class="noAddress_cart">
-          <span>{{$t('noAddress')}}</span>
+          <span>{{$t('noCartAddCart')}}</span>
         </div>
       </div>
       <button class="addAddress" @click="addAddressShow = true">
@@ -18,21 +18,21 @@
           <path d="M12 8V16" stroke="#FAFAFA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M8 12H16" stroke="#FAFAFA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <span>{{$t('addNewAddress')}}</span>     
+        <span>{{$t('addNewCart')}}</span>     
       </button>
     </div>
     
-    <AddAddress v-show="addAddressShow" :data="addressData" @close-modal="addAddressShow = false"/>
-    <DeleteAddress v-show="deleteAddressShow" :data="{page:'wantToDelete'}" @close-modal="deleteAddressShow = false"/>
+    <AddCart v-show="addAddressShow" :data="addressData" @close-modal="addAddressShow = false"/>
+    <DeleteAddress v-show="deleteAddressShow" :data="{page:'wantToDeleteCart'}" @close-modal="deleteAddressShow = false"/>
   </div>
 </template>
 
 <script>
-import AddAddress from '~/components/modals/AddAddressPopup.vue'
+import AddCart from '~/components/modals/AddCart.vue'
 import DeleteAddress from '~/components/modals/DeleteAddress.vue'
-import Address from '~/components/modals/Address.vue'
+import Cart from '~/components/modals/Cart.vue'
 export default {
-  components: { AddAddress , DeleteAddress, Address},
+  components: { AddCart , DeleteAddress, Cart},
   data(){
     return{
       addresses:[{city:'Ashgabat',note:"Ashgabat Mir 7"},{city:"tejen",note:"Tejen Vsoky"},{city:"Mary",note:"Mykgyllorsy shaheri"}],

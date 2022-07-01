@@ -16,6 +16,17 @@
           <div class="list_text">{{$t('language')}}</div>
         </div>
       </div>
+      <div class="settings_list place" @click="openLocation">
+        <div class="settings_list_con">
+          <div class="list_icon">
+            <svg width="22" height="26" viewBox="0 0 22 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.8983 15.5164C8.42271 15.5164 6.40039 13.5057 6.40039 11.0185C6.40039 8.5313 8.42271 6.53223 10.8983 6.53223C13.3739 6.53223 15.3962 8.54292 15.3962 11.0301C15.3962 13.5173 13.3739 15.5164 10.8983 15.5164ZM10.8983 8.2756C9.38737 8.2756 8.14377 9.50759 8.14377 11.0301C8.14377 12.5527 9.37575 13.7847 10.8983 13.7847C12.4208 13.7847 13.6528 12.5527 13.6528 11.0301C13.6528 9.50759 12.4092 8.2756 10.8983 8.2756Z" fill="#272727"/>
+              <path d="M10.898 25.5C9.17787 25.5 7.44612 24.8491 6.09791 23.559C2.66927 20.2583 -1.11966 14.9933 0.309904 8.72873C1.6 3.04533 6.56281 0.5 10.898 0.5C10.898 0.5 10.898 0.5 10.9096 0.5C15.2448 0.5 20.2076 3.04533 21.4977 8.74035C22.9157 15.0049 19.1267 20.2583 15.6981 23.559C14.3499 24.8491 12.6181 25.5 10.898 25.5ZM10.898 2.24338C7.51585 2.24338 3.16904 4.04486 2.01841 9.11227C0.763181 14.5865 4.20344 19.3052 7.31827 22.2922C9.32896 24.2331 12.4787 24.2331 14.4894 22.2922C17.5926 19.3052 21.0328 14.5865 19.8008 9.11227C18.6386 4.04486 14.2801 2.24338 10.898 2.24338Z" fill="#272727"/>
+            </svg>
+          </div>
+          <div class="list_text">{{$t('location')}}</div>
+        </div>
+      </div>
       <nuxt-link to="/settings/addresses" class="settings_list">
         <div class="settings_list_con">
           <div class="list_icon">
@@ -133,6 +144,69 @@
         </svg>
       </div>
     </div>
+
+    <div class="settings_languagePopup" v-if="location">
+      <div class="language" @click="changeLocation(0)">
+        <span>{{$t('ahgabat')}}</span>
+        <svg class="passive" v-if="languageLocal" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="16" height="16" rx="8" stroke="#AEAEAE" stroke-width="2"/>
+        </svg>
+        <svg class="active" v-else width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="16" height="16" rx="8" stroke="#FF141D" stroke-width="2"/>
+          <rect x="4" y="4" width="10" height="10" rx="5" fill="#FF141D"/>
+        </svg>
+      </div>
+      <div class="language disabled" @click="changeLocation(1)">
+        <span>{{$t('ahal')}}</span>
+        <svg class="passive" v-if="languageLocal2" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="16" height="16" rx="8" stroke="#AEAEAE" stroke-width="2"/>
+        </svg>
+        <svg class="active" v-else width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="16" height="16" rx="8" stroke="#FF141D" stroke-width="2"/>
+          <rect x="4" y="4" width="10" height="10" rx="5" fill="#FF141D"/>
+        </svg>
+      </div>
+      <div class="language disabled" @click="changeLocation(2)">
+        <span>{{$t('lebap')}}</span>
+        <svg class="passive" v-if="languageLocal2" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="16" height="16" rx="8" stroke="#AEAEAE" stroke-width="2"/>
+        </svg>
+        <svg class="active" v-else width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="16" height="16" rx="8" stroke="#FF141D" stroke-width="2"/>
+          <rect x="4" y="4" width="10" height="10" rx="5" fill="#FF141D"/>
+        </svg>
+      </div>
+      <div class="language disabled" @click="changeLocation(3)">
+        <span>{{$t('balkan')}}</span>
+        <svg class="passive" v-if="languageLocal2" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="16" height="16" rx="8" stroke="#AEAEAE" stroke-width="2"/>
+        </svg>
+        <svg class="active" v-else width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="16" height="16" rx="8" stroke="#FF141D" stroke-width="2"/>
+          <rect x="4" y="4" width="10" height="10" rx="5" fill="#FF141D"/>
+        </svg>
+      </div>
+      <div class="language disabled" @click="changeLocation(4)">
+        <span>{{$t('mary')}}</span>
+        <svg class="passive" v-if="languageLocal2" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="16" height="16" rx="8" stroke="#AEAEAE" stroke-width="2"/>
+        </svg>
+        <svg class="active" v-else width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="16" height="16" rx="8" stroke="#FF141D" stroke-width="2"/>
+          <rect x="4" y="4" width="10" height="10" rx="5" fill="#FF141D"/>
+        </svg>
+      </div>
+      <div class="language disabled" @click="changeLocation(5)">
+        <span>{{$t('dashoguz')}}</span>
+        <svg class="passive" v-if="languageLocal2" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="16" height="16" rx="8" stroke="#AEAEAE" stroke-width="2"/>
+        </svg>
+        <svg class="active" v-else width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="16" height="16" rx="8" stroke="#FF141D" stroke-width="2"/>
+          <rect x="4" y="4" width="10" height="10" rx="5" fill="#FF141D"/>
+        </svg>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -144,6 +218,7 @@ export default {
       languageLocal:true,
       languageLocal2:true,
       languageBack:false,
+      location:false,
     }
   },
   mounted(){
@@ -171,6 +246,14 @@ export default {
     },
     closeLanguage(){
       this.languageBack = false;
+      this.location = false;
+    },
+    openLocation(){
+      this.location = true;
+      this.languageBack = true;
+    },
+    changeLocation(id){
+      console.log(id)
     }
   }
 }

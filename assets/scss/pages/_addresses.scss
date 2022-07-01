@@ -91,6 +91,16 @@
             display: block;
           }
         }
+        &_delete{
+          @include mobile{
+            span{
+              color: $red;
+            }
+            path{
+              stroke: $red;
+            }
+          }
+        }
       }
     }
   }
@@ -140,6 +150,7 @@
   border-radius: 10px;
   padding: 40px 50px;
   border-radius: 10px;
+  width: 492px;
   @include mobile{
     padding: 25px 15px;
     left: calc(50% - 150px);

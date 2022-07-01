@@ -331,6 +331,7 @@ export default {
     },
     ...mapGetters({
       language: 'dynamicLang/language',
+      // categoryOpenVar: 'categoryOpen/categoryOpen'
     }),
   },
   methods:{
@@ -402,6 +403,7 @@ export default {
     },
     categoryClose(){
       this.category = false;
+      // this.$store.dispatch('categoryOpen/fetchCategoryOpen',true)
     },
     categoryChange(id){
       this.whitchCategory = Number(id);
