@@ -4,27 +4,31 @@
        <nuxt-link to="/" class="header_logo">
          <img src="~/assets/images/logo.svg" alt="">
        </nuxt-link>
-       <div class="header_category" v-click-outside="categoryClose">
-         <div class="header_category_icon" @click="category = !category">
-           <img v-if="category" src="~/assets/images/icons/x.svg" alt="headerCategory">
-           <img v-else src="~/assets/images/icons/headerCategory.svg" alt="headerCategory">
-          </div>
-         <!-- <div class="header_category_icon"><img src="~/assets/images/icons/x.svg" alt="x"></div> -->
-         <div @click="category = !category" class="header_category_text">{{$t('category')}}</div>
+       <div class="header_category">
+          <button class="header_category_button">
+            <div class="header_category_icon">
+              <img  src="~/assets/images/icons/x.svg" alt="headerCategory">
+              <img  src="~/assets/images/icons/headerCategory.svg" alt="headerCategory">
+              </div>
+            <!-- <div class="header_category_icon"><img src="~/assets/images/icons/x.svg" alt="x"></div> -->
+            <div class="header_category_text">{{$t('category')}}</div>
 
-         <div class="header_category_con" v-if="category">
-           <div class="hidden_categories">
-             <div class="hidden_category" @click="categoryChange(i)" :class="whitchCategory === i ? 'active' : ''" v-for="(category , i) in categories" :key="i">{{category[language.name]}}</div>
-           </div>
-           <div class="hidden_subcategories">
-             <span @click="categoryClose" v-for="(sub, i) in categories[whitchCategory].subCategories" :key="i">
-              <nuxt-link to="/category/1" class="hidden_subcategory" >
-                <div class="icon"><img :src="sub.image" alt=""></div>
-                <div class="text">{{sub[language.name]}}</div>
-              </nuxt-link>
-             </span>
-           </div>
-         </div>
+          </button>
+        <div class="header_category_con_con">
+          <div class="header_category_con">
+            <div class="hidden_categories">
+              <div class="hidden_category" @click="categoryChange(i)" :class="whitchCategory === i ? 'active' : ''" v-for="(category , i) in categories" :key="i">{{category[language.name]}}</div>
+            </div>
+            <div class="hidden_subcategories">
+              <span @click="categoryClose" v-for="(sub, i) in categories[whitchCategory].subCategories" :key="i">
+                <nuxt-link to="/category/1" class="hidden_subcategory" >
+                  <div class="icon"><img :src="sub.image" alt=""></div>
+                  <div class="text">{{sub[language.name]}}</div>
+                </nuxt-link>
+              </span>
+            </div>
+          </div>
+        </div>
        </div>
        <label class="header_search" v-click-outside="searchOutlineNone">
          <input type="text" @focus="searchOutline"  @keyup="startSearch">
@@ -318,10 +322,51 @@ export default {
   watch: {
     $route () {
      this.red();
-    }
+    },
   },
+  
   mounted(){
-   this.red();
+    this.red();
+    const el = document.querySelector('.header_category');
+    const mobileEl = document.querySelector('.mobileBottomCategory');
+    const categoryCon = document.querySelector(".header_category_con_con");
+    const categoryButton = document.querySelector(".header_category_button");
+    document.addEventListener('click',function(event){
+      if (!(el.contains(event.target)) && !(mobileEl.contains(event.target))) {
+        close();
+      }else{
+        if(categoryButton.contains(event.target)){
+          if(categoryCon.style.display !== 'block'){
+            open();
+          }else{
+            close();
+          }
+        }else if(mobileEl.contains(event.target)){
+          open();
+        }
+      }
+    })
+    function close(){
+      el.querySelectorAll('img')[0].style.display = 'none';
+      el.querySelectorAll('img')[1].style.display = 'block';
+      mobileEl.querySelector('span').style.fontWeight = 'normal';
+      mobileEl.querySelectorAll('svg rect')[1].style.fill = '#616161';
+      mobileEl.querySelectorAll('svg rect')[0].style.fill = '#616161';
+      mobileEl.querySelectorAll('svg rect')[3].style.fill = '#616161';
+      mobileEl.querySelectorAll('svg rect')[4].style.fill = '#616161';
+      categoryCon.style.display = 'none';
+    }
+    function open(){
+      console.log("Ishledim")
+      categoryCon.style.display = 'block';
+      el.querySelectorAll('img')[0].style.display = 'block';
+      el.querySelectorAll('img')[1].style.display = 'none';
+      mobileEl.querySelector('span').style.fontWeight = 'bold';
+      mobileEl.querySelectorAll('svg rect')[1].style.fill = '#FF141D';
+      mobileEl.querySelectorAll('svg rect')[0].style.fill = '#FF141D';
+      mobileEl.querySelectorAll('svg rect')[3].style.fill = '#FF141D';
+      mobileEl.querySelectorAll('svg rect')[4].style.fill = '#FF141D';
+    }
   },
   computed:{
     currentLanguage() {
@@ -331,7 +376,7 @@ export default {
     },
     ...mapGetters({
       language: 'dynamicLang/language',
-      // categoryOpenVar: 'categoryOpen/categoryOpen'
+      categoryOpenVar: 'categoryOpen/categoryOpen'
     }),
   },
   methods:{
@@ -398,12 +443,11 @@ export default {
     closeProfile(){ 
       this.profile = false;
     },
-    categoryOpen(){
-      this.category = true;
-    },
     categoryClose(){
-      this.category = false;
-      // this.$store.dispatch('categoryOpen/fetchCategoryOpen',true)
+      document.querySelector('.header_category_con_con').style.display='none'
+      const el = document.querySelector('.header_category');
+      el.querySelectorAll('img')[0].style.display = 'none';
+      el.querySelectorAll('img')[1].style.display = 'block';
     },
     categoryChange(id){
       this.whitchCategory = Number(id);

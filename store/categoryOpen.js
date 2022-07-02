@@ -10,6 +10,7 @@ export const mutations = {
 
 export const actions = {
   async fetchCategoryOpen({ commit },open) {
+    console.log(open);
     commit('SET_CATEGORYOPEN',open)
   },
 }

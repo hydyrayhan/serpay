@@ -3,7 +3,7 @@
     <nuxt-link to="/" class="list">
       <img src="~/assets/images/icons/logo.svg" alt="">
     </nuxt-link>
-    <div class="list">
+    <div class="mobileBottomCategory list">
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect y="14.5" width="18" height="3" rx="1.5" fill="#616161"/>
         <rect x="13" y="7.5" width="5" height="3" rx="1.5" fill="#616161"/>
@@ -55,7 +55,7 @@ export default {
         document.querySelector('.hyzmatlarIcon path').style.fill = '#616161';
         document.querySelector('.hyzmatlarIcon span').style.fontWeight = 'normal';
       }
-    }
+    },
   }
 }
 </script>

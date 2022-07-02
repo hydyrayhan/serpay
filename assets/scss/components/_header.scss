@@ -19,17 +19,22 @@
     }
   }
   .header_category{
-    background: linear-gradient(93.87deg, #FF141D 7.03%, #FE5E18 100%);
-    border-radius: 8px;
-    padding: 10px 20px;
-    @include flex;
-    cursor: pointer;
-    @include tablet{
-      padding: 10px;
-      margin-right: 20px;
+    &_button{
+      background: linear-gradient(93.87deg, #FF141D 7.03%, #FE5E18 100%);
+      border-radius: 8px;
+      padding: 10px 20px;
+      @include flex;
+      cursor: pointer;
+      @include tablet{
+        padding: 10px;
+        margin-right: 20px;
+      }
     }
     .header_category_icon{
       @include flex;
+      img:first-child{
+        display: none;
+      }
     }
     .header_category_text{
       @include tablet{
@@ -37,6 +42,9 @@
       }
       color: $white;
       margin-left: 10px;
+    }
+    .header_category_con_con{
+      display: none;
     }
     .header_category_con{
       position: absolute;
