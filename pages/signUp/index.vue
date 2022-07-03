@@ -1,5 +1,6 @@
 <template>
   <div class="container signInPage">
+    <div class="mobileResHeader">{{$t('signUp')}}</div>
     <div class="signIn">
       <div class="signIn_header">
         <nuxt-link to="signIn" class="signIn_header_signIn" style="border-right:none">

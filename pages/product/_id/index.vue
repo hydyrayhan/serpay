@@ -1,5 +1,17 @@
 <template>
   <div class="container">
+    <div class="productPage_mobile_header">
+        <label>
+          <svg width="9" height="16" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 15L1 8L8 1" stroke="#272727" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+
+          <input action="action" style="display:none" type="button" value="Back" onclick="window.history.go(-1); return false;" />
+        </label>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10.6667 7.99981V9.33315C10.6667 10.0685 10.0687 10.6665 9.33333 10.6665H6.66666C5.93133 10.6665 5.33333 10.0685 5.33333 9.33315V7.99981H0V13.9998C0 15.1025 0.897333 15.9998 2 15.9998H14C15.1027 15.9998 16 15.1025 16 13.9998V7.99981H10.6667ZM14.6667 13.9998C14.6667 14.3678 14.368 14.6665 14 14.6665H2C1.632 14.6665 1.33333 14.3678 1.33333 13.9998V9.33315H4C4 10.8038 5.196 11.9998 6.66666 11.9998H9.33333C10.804 11.9998 12 10.8038 12 9.33315H14.6667V13.9998ZM5.80466 3.52848L4.862 2.58581L7.05733 0.390477C7.57666 -0.128857 8.42333 -0.128857 8.94266 0.390477L11.138 2.58581L10.1953 3.52848L8.66666 1.99981V7.33314H7.33333V1.99981L5.80466 3.52848Z" fill="#272727"/>
+        </svg>
+    </div>
     <!-- <Breadcrumb :positions="positions"/> -->
     <div class="productPage">
       <div class="productPage_images">
@@ -144,7 +156,7 @@ export default {
   data(){
     return{
       liked:false,
-      resInfo:true, 
+      resInfo:false, 
     }
   },
   methods:{

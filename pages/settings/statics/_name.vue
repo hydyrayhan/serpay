@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <div class="mobileResHeader">{{$t($route.params.name)}}</div>
     <div class="settings_statics">
       <div class="settings_statics_title">{{$t($route.params.name)}}</div>
       <div class="settings_statics_text">

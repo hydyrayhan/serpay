@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <div class="mobileResHeader">{{$t('myAddress')}}</div>
     <div class="myAddresses">
       <div class="myAddresses_title">{{$t('myAddress')}}</div>
       <div v-if="addresses.length">

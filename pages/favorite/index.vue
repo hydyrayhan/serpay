@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <div class="mobileResHeader">{{$t('liked')}}</div>
     <div class="favorite_head">{{$t('liked')}}</div>
 
     <div class="favorite_products">

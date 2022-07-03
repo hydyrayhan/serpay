@@ -4,6 +4,10 @@
   @include tablet{
     width: 70%;
   }
+  @include mobile{
+    width: 100%;
+    margin-top: 0;
+  }
   .order_title{
     font-weight: 700;
     font-size: 25px;
@@ -11,13 +15,26 @@
     letter-spacing: 1px;
     margin-bottom: 25px;
     text-align: center;
+    @include mobile{
+      text-align: left;
+      font-size: 18px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #E7E7E7;
+      width: 105%;
+      margin-left: -2.5%;
+      padding-left: 2.5%;
+    }
   }
   .order_main{
     background: #FBFBFB;
     box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.08);
     border-radius: 15px;
     padding: 25px;
-    
+    @include mobile{
+      padding: 0;
+      background: none;
+      box-shadow: none;
+    }
     .title{
       margin-bottom: 10px;
       font-size: 16px;
@@ -36,6 +53,9 @@
         margin-bottom: 10px;
         cursor: pointer;
         @include flex(row,center);
+        @include mobile{
+          // background: none;
+        }
         svg{
           margin-right: 15px;
         }
@@ -151,12 +171,23 @@
       padding: 40px 50px;
       @include flex();
     }
+    @include mobile{
+      padding: 0;
+      border-radius: 0;
+    }
     .title{
       color: #0D0D0D;
       font-size: 20px;
       font-weight: 600;
       letter-spacing: 1px;
       margin-bottom: 5px;
+      @include mobile{
+        display: none;
+      }
+    }
+    .priceCon{
+      width: 40%;
+      @include flex(row,center);
     }
     .price{
       color: $red;
@@ -169,6 +200,10 @@
       @include tablet{
         margin-bottom: 0;
       }
+      @include mobile{
+        color: black;
+        font-size: 20px;
+      }
       span{
         background: #AEAEAE;
         border-radius: 3px;
@@ -179,6 +214,13 @@
         font-family: Inter;
         font-weight: 600;
         letter-spacing: 1px;
+        @include mobile{
+          margin-left: 0;
+          color: black;
+          padding: 0;
+          background: none;
+          
+        }
       }
     }
     .order_bottom_button{
@@ -196,6 +238,20 @@
         padding: 20px 85px;
         width: fit-content;
         border-radius: 10px;
+      }
+      @include mobile{
+        width: 60%;
+        font-size: 14px;
+        padding: 20px 0;
+        border-radius: 0;
+        @include flex(row,center);
+      }
+      svg{
+        display: none;
+        @include mobile{
+          display: block;
+          margin-right: 10px;
+        }
       }
     }
   }

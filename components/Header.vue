@@ -4,6 +4,13 @@
        <nuxt-link to="/" class="header_logo">
          <img src="~/assets/images/logo.svg" alt="">
        </nuxt-link>
+
+      <label class="header_back_button">
+          <svg width="9" height="16" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 15L1 8L8 1" stroke="#272727" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <input action="action" type="button" style="display:none" value="Back" onclick="window.history.go(-1); return false;" />
+      </label>
        <div class="header_category">
           <button class="header_category_button">
             <div class="header_category_icon">
@@ -322,6 +329,7 @@ export default {
   watch: {
     $route () {
      this.red();
+     this.headerRes();
     },
   },
   
@@ -357,7 +365,6 @@ export default {
       categoryCon.style.display = 'none';
     }
     function open(){
-      console.log("Ishledim")
       categoryCon.style.display = 'block';
       el.querySelectorAll('img')[0].style.display = 'block';
       el.querySelectorAll('img')[1].style.display = 'none';
@@ -367,6 +374,8 @@ export default {
       mobileEl.querySelectorAll('svg rect')[3].style.fill = '#FF141D';
       mobileEl.querySelectorAll('svg rect')[4].style.fill = '#FF141D';
     }
+
+    this.headerRes();
   },
   computed:{
     currentLanguage() {
@@ -448,11 +457,75 @@ export default {
       const el = document.querySelector('.header_category');
       el.querySelectorAll('img')[0].style.display = 'none';
       el.querySelectorAll('img')[1].style.display = 'block';
+
+      const mobileEl = document.querySelector('.mobileBottomCategory')
+
+      mobileEl.querySelector('span').style.fontWeight = 'normal';
+      mobileEl.querySelectorAll('svg rect')[1].style.fill = '#616161';
+      mobileEl.querySelectorAll('svg rect')[0].style.fill = '#616161';
+      mobileEl.querySelectorAll('svg rect')[3].style.fill = '#616161';
+      mobileEl.querySelectorAll('svg rect')[4].style.fill = '#616161';
     },
     categoryChange(id){
       this.whitchCategory = Number(id);
-    }
-  }
+    },
+    headerRes(){
+      const widthWindow = window.innerWidth;
+      if(widthWindow <= 640){
+        if(this.$route.name === 'product-id'){
+          document.querySelector('.header').style.display = 'none';
+        }else{
+          this.resFlex('.header')
+        }
+
+        if(this.$route.path === '/favorite'){
+          document.querySelector(".header_search").style.display = 'none';
+          document.querySelector(".mobileBottomNavbar").style.display = 'none';
+          document.querySelector(".header_category").style.display = 'none';
+          this.resFlex('.header_back_button')
+        }else{
+          this.resFlex('.header_search');
+          this.resFlex('.mobileBottomNavbar');
+          document.querySelector(".header_category").style.display = 'block';
+          document.querySelector(".header_back_button").style.display = 'none';
+        }
+
+        if(this.$route.path === '/sebet'){
+          document.querySelectorAll('.sebetIcon svg path')[0].style.fill = '#FF141D';
+          document.querySelectorAll('.sebetIcon svg path')[1].style.fill = 'none';
+        }else{
+          document.querySelectorAll('.sebetIcon svg path')[1].style.fill = '#616161';
+          document.querySelectorAll('.sebetIcon svg path')[0].style.fill = 'none';
+        }
+        //kop bar barde
+        if(this.$route.path === '/forgot/code' || this.$route.path === '/forgot' || this.$route.path === '/signIn' || this.$route.path === '/signUp' || this.$route.name === 'settings-statics-name' || this.$route.path === '/settings/change_password' || this.$route.path === '/settings/contact' || this.$route.path === '/settings/addresses' || this.$route.path === '/settings/carts' || this.$route.path === '/chat' || this.$route.path === '/settings' || this.$route.name === 'orders-name' || this.$route.path === '/order' || this.$route.path === '/profile/edit'){
+          document.querySelector(".mobileBottomNavbar").style.display = 'none';
+          document.querySelector(".header_search").style.display = 'none';
+          document.querySelector(".header_category").style.display = 'none';
+          this.resFlex('.header_back_button')
+        }else{
+          this.resFlex('.mobileBottomNavbar');
+          this.resFlex('.header_search');
+          document.querySelector(".header_category").style.display = 'block';
+          document.querySelector(".header_back_button").style.display = 'none';
+        }
+        if(this.$route.path === '/profile'){
+          document.querySelector(".profileIcon svg path").style.fill = '#FF141D';
+          document.querySelector(".profileIcon svg path").style.stroke = 'none';
+          document.querySelector(".profileIcon span").style.fontWeight = 'bold';
+        }else{
+          document.querySelector(".profileIcon svg path").style.fill = 'none';
+          document.querySelector(".profileIcon svg path").style.stroke = '#616161';
+          document.querySelector(".profileIcon span").style.fontWeight = 'normal';
+        }
+      }
+    },
+    resFlex(el){
+      document.querySelector(el).style.display = 'flex';
+      document.querySelector(el).style.justifyContent = 'space-between';
+      document.querySelector(el).style.aliginItems = 'center';
+    },
+  },
 }
 </script>
 

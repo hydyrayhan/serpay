@@ -1,6 +1,7 @@
 // CP = contact and PasswordChange pages
 <template>
   <div class="container CPContainer">
+    <div class="mobileResHeader">{{$t("contact")}}</div>
     <div class="CP">
       <div class="CPtitle">{{$t("contact")}}</div>
       

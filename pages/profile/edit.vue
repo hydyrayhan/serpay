@@ -1,5 +1,6 @@
 <template>
   <div class="container signInPage">
+    <div class="mobileResHeader">{{$t('profile')}} {{$t('edit')}}</div>
     <div class="signIn">
        <div class="signIn_main">
         <label class="loginImage">

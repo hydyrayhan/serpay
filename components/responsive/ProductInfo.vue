@@ -110,7 +110,7 @@
 export default {
   data:()=>({
     liked:false,
-    gallery:true,
+    gallery:false,
   }),
   methods:{
     galleryImage(id){

@@ -1,4 +1,8 @@
 .productInfoComponent{
+  display: none;
+  @include tablet{
+    display: block;
+  }
   .productPage_info{
     position: fixed;
     bottom: 100px;

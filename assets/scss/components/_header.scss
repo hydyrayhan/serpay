@@ -18,6 +18,13 @@
       min-width: 120px;
     }
   }
+  .header_back_button{
+    padding: 10px 15px;
+    width: 40px;
+    background: #EFEFEF;
+    border-radius: 5px;
+    display: none;
+  }
   .header_category{
     &_button{
       background: linear-gradient(93.87deg, #FF141D 7.03%, #FE5E18 100%);
@@ -452,5 +459,18 @@
   z-index: 4;
   @include tablet{
 
+  }
+}
+
+.mobileResHeader{
+  font-size: 20px;
+  font-weight: 600;
+  position: fixed;
+  top: 38px;
+  left: 65px;
+  z-index: 100;
+  display: none;
+  @include mobile{
+    display: block;
   }
 }

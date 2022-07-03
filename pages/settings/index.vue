@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <div class="mobileResHeader">{{$t('settings')}}</div>
     <div class="settings">
       <div class="settings_title">{{$t('settings')}}</div>
       <div @click="openLanguage" class="settings_list">

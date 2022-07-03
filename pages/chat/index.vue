@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <div class="mobileResHeader">{{$t('chatToAdmin')}}</div>
     <div class="chatPage">
       <div class="chat">
         <div class="chat_box admin">

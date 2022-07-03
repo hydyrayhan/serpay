@@ -1,5 +1,6 @@
 <template>
   <div class="container signInPage">
+    <div class="mobileResHeader">{{$t('forgotPass')}}</div>
     <div class="signIn">
       <div class="signIn_main">
         <div class="bigTitle">{{$t('forgotPass')}}</div>

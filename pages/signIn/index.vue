@@ -1,5 +1,6 @@
 <template>
   <div class="container signInPage">
+    <div class="mobileResHeader">{{$t('signIn')}}</div>
     <div class="signIn">
       <div class="signIn_header">
         <div class="signIn_header_signIn active">

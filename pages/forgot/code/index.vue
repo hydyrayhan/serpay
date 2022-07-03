@@ -1,5 +1,6 @@
 <template>
   <div class="container signInPage">
+    <div class="mobileResHeader">{{$t('changePass')}}</div>
     <div class="signIn code">
       <div class="signIn_main">
         <div class="bigTitle" v-html="$t('codeTitle')"></div>

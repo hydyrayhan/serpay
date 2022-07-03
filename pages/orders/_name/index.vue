@@ -1,5 +1,7 @@
 <template>
   <div class="orders">
+    <div class="mobileResHeader" v-if="footPrint">{{$t('footPrint')}}</div>
+    <div class="mobileResHeader" v-else>{{$t('historyOrder')}}</div>
     <div class="container">
       <div class="orders_header">
         <div class="pageName" v-if="footPrint">{{$t('footPrint')}}</div>
@@ -63,7 +65,7 @@ export default {
   components:{SimpleLongProduct},
   data(){
     return{
-      privateButton:true,
+      privateButton:false,
       checkBox:true,
       likeOrQuantity:false,
       footPrint:false,

@@ -1,7 +1,19 @@
 .productPage{
   @include flex(row,space-between,flex-start);
   @include mobile{
+    margin-top: -125px;
     @include flex(column,flex-start,flex-start);
+  }
+  &_mobile_header{
+    display: none;
+    width: 95%;
+    position: absolute;
+    left: 2.5%;
+    top: 30px;
+    
+    @include mobile{
+      @include flex();
+    }
   }
   &_images{
     min-width: 45%;
@@ -15,7 +27,7 @@
       height: 600px;
       margin-bottom: 15px;
       @include tablet{
-        height: 350px;
+        height: 360px;
       }
       @include mobile{
         width: 105%;
@@ -71,9 +83,16 @@
     .info_price{
       @include flex(row, flex-start);
       margin-bottom: 20px;
+      @include mobile{
+        width: 100%;
+        @include flex(row,);
+      }
       &_new{
         margin-right: 30px;
         @include flex();
+        @include mobile{
+          margin-right: 0px;
+        }
         span{
           &:first-child{
             color: $red;
@@ -89,6 +108,10 @@
             letter-spacing: 1px;
             background: #DEDEDE;
             border-radius: 3px;
+            padding: 1px 3px;
+            @include mobile{
+              font-size: 12px;
+            }
           }
         }
       }
@@ -100,12 +123,17 @@
         color: #888888;
         margin-right: 40px;
         position: relative;
+        @include mobile{
+          margin-right: 0px;
+          font-weight: normal;
+          letter-spacing: 0;
+        }
         span{
           position: absolute;
           left: 0;
           top: 9px;
           width: 100%;
-          border-bottom: 0.5px solid #FF145B;;
+          border-bottom: 0.5px solid #FF145B;
         }
       }
       &_liked{
@@ -343,7 +371,7 @@
           background: $red;
           cursor: pointer;
           @include mobile{
-            width: 45%;
+            width: 40%;
             height: auto;
             padding: 35px 0;
             border-radius: 0 !important;
