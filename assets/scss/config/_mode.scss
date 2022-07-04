@@ -1,0 +1,32 @@
+.mode{
+  &-bg{
+    &-black{
+      background: #272727 !important;
+    }
+    &-gray{
+      background: #616161 !important;
+    }
+  }
+  &-text{
+    &-gray{
+      color: #AEAEAE;
+    }
+    &-yellow{
+      color: #FFC700;
+    }
+    &-white{
+      color: #FAFAFA;
+    }
+  }
+  &-icon-fill{
+    &-gray{
+      fill: #AEAEAE;
+    }
+    &-white{
+      fill: #FAFAFA;
+    }
+  }
+  &-icon-stroke{
+    stroke: #AEAEAE;
+  }
+}

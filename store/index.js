@@ -19,7 +19,7 @@ export const actions = {
       // await dispatch('newProducts/fetchNews') 
       // await dispatch('categoriesVip/fetchCategories') 
       // await dispatch('categories/fetchCategories') 
-      await dispatch('dynamicLang/fetchLanguage') 
+      await dispatch('dynamicLang/fetchLanguage')
       // await dispatch('product/fetchProduct') 
       // await dispatch('banner/fetchBanner') 
       // await dispatch('markets/fetchMarkets')

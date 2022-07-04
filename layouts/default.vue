@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="fullHeaderCon">
+    <div >
+        <div class="fullHeaderCon" :class="mode=='dark'? 'dark' : ''">
             <Header />
         </div>
         <div class="space"></div>
@@ -14,7 +14,7 @@
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import MobileBottomNavbar from '../components/MobileBottomNavbar'
-// import { mapGetters, mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
 export default {
     components: {Header, Footer, MobileBottomNavbar},
     created() {
@@ -27,11 +27,26 @@ export default {
         // if (!cartPerfumes) cartPerfumes = []
         // else cartPerfumes = JSON.parse(cartPerfumes)
         // this.$store.dispatch('cart/setProductsToCart', cartPerfumes)
+
+        const datas = document.cookie.split(' ')
+        let mode;
+        for(let i = 0; i<datas.length; i++){
+            if(datas[i][0] == 'm'){
+                mode = datas[i].split('=');
+            }
+        }
+        if(mode){
+            mode = mode[1]
+        }else{
+            document.cookie = 'mode=dark';
+            mode = 'dark'
+        }
+        this.$store.dispatch('mode/setMode', mode)
     },
     computed:{
-        // ...mapGetters({
-        //     // search: 'search/search',
-        // }),
+        ...mapGetters({
+            mode: 'mode/mode',
+        }),
     },
 }
 </script>

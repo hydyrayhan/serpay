@@ -1,7 +1,7 @@
 <template>
   <div class="container signInPage">
     <div class="mobileResHeader">{{$t('signIn')}}</div>
-    <div class="signIn">
+    <div class="signIn" dark-theme="light">
       <div class="signIn_header">
         <div class="signIn_header_signIn active">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -60,7 +60,7 @@
   </div>
 </template>
 
-<script>
+<script >
 export default {
   mounted(){
     const height = window.innerHeight-398;
@@ -80,7 +80,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>

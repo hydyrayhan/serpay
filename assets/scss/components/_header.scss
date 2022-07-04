@@ -6,6 +6,9 @@
   left: 0;
   width: 100%;
   z-index:8;
+  &.dark{
+    background: $blackN;
+  }
 }
 .header{
   @include flex();
