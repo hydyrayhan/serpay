@@ -336,6 +336,9 @@
           padding: 4px 8px;
           cursor: pointer;
           @include flex();
+          &.active{
+            background:#e5e5e5;
+          }
           .icons{
             @include flex;
             margin: 0 10px;
@@ -389,6 +392,9 @@
       }
       @include mobile{
         padding: 0;
+      }
+      span.longCube{
+        width: 100%;
       }
       span.cube{
         width: 100%;

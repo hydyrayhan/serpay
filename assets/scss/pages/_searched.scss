@@ -1,0 +1,38 @@
+.searched{
+  padding: 100px 0;
+  @include mobile{
+    padding: 50px 0;
+  }
+  &_products{
+    @include flex(row, flex-start);
+    flex-wrap: wrap;
+    &_product{
+      width: 19%;
+      margin-right: 1.2%;
+      margin-bottom: 20px;
+      &:nth-child(5n){
+        margin-right: 0;
+      }
+      @include tablet{
+        width: 32%;
+        margin-right: 2%;
+        &:nth-child(3n){
+          margin-right: 0;
+        }
+        &:nth-child(5n){
+          margin-right: auto;
+        }
+      }
+      @include mobile{
+        width: 49%;
+        margin-right: 2%;
+        &:nth-child(2n){
+          margin-right: 0;
+        }
+        &:nth-child(3n){
+          margin-right: auto;
+        }
+      }
+    }
+  }
+}

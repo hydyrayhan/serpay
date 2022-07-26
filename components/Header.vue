@@ -27,9 +27,12 @@
               <div class="hidden_category" @click="categoryChange(i)" :class="whitchCategory === i ? 'active' : ''" v-for="(category , i) in categories" :key="i">{{category[language.name]}}</div>
             </div>
             <div class="hidden_subcategories">
-              <span @click="categoryClose" v-for="(sub, i) in categories[whitchCategory].subCategories" :key="i">
-                <nuxt-link to="/category/1" class="hidden_subcategory" >
-                  <div class="icon"><img :src="sub.image" alt=""></div>
+              <span @click="categoryClose" v-for="(sub, i) in categories[whitchCategory].subcategories" :key="i">
+                <nuxt-link :to="'/category/'+sub.subcategory_id" class="hidden_subcategory" >
+                  <div class="icon">
+                    <!-- <img :src="sub.image" alt=""> -->
+                    <img v-bind:src="$config.url+'/'+sub.image" alt="">
+                  </div>
                   <div class="text">{{sub[language.name]}}</div>
                 </nuxt-link>
               </span>
@@ -66,15 +69,15 @@
             </div>
            </div>
          </div>
-         <div class="searched_result" v-if="searchStart">
-           <div class="list" v-for="i in 5" :key="i">
+         <div class="searched_result" v-if="searchStart" @click="searchStart = false">
+           <nuxt-link to="/search/SearchdenGelen" class="list" v-for="i in 5" :key="i">
              <div class="icon">
               <svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M13 12.5L10.1046 9.60457M10.1046 9.60457C11.0697 8.63943 11.6667 7.30609 11.6667 5.83333C11.6667 2.88781 9.27885 0.5 6.33333 0.5C3.38781 0.5 1 2.88781 1 5.83333C1 8.77885 3.38781 11.1667 6.33333 11.1667C7.80609 11.1667 9.13943 10.5697 10.1046 9.60457Z" stroke="#474747" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
              </div>
              <div class="name">iphone</div>
-           </div>
+           </nuxt-link>
          </div>
        </label>
        
@@ -268,62 +271,62 @@ export default {
       category:false,
       whitchCategory:0,
 
-      categories:[
-        {
-          name_tm : 'Phones & accessories',
-          name_ru : 'Telefon & accessories',
-          subCategories : [
-            {
-              name_tm : "All",
-              name_ru : "Hemmesi",
-              link : "/",
-              image : require("~/assets/images/delete/sub.png")
-            },
-            {
-              name_tm : "Xiaomi",
-              name_ru : "Redmi",
-              link : "/",
-              image : require("~/assets/images/delete/sub2.png")
-            },
-            {
-              name_tm : "Apple",
-              name_ru : "Macbook",
-              link : "/",
-              image : require("~/assets/images/delete/sub3.png")
-            },
-          ]
-        },
-        {
-          name_tm : 'Clothing for Men',
-          name_ru : 'Oglanlar ucin eshikler',
-          subCategories : [
-            {
-              name_tm : "All",
-              name_ru : "Hemmesi",
-              link : "/",
-              image : require("~/assets/images/delete/sub.png")
-            },
-            {
-              name_tm : "Smartphones",
-              name_ru : "Telefonlar",
-              link : "/",
-              image : require("~/assets/images/delete/sub3.png")
-            },
-            {
-              name_tm : "Xiaomi",
-              name_ru : "Redmi",
-              link : "/",
-              image : require("~/assets/images/delete/sub2.png")
-            },
-            {
-              name_tm : "Apple",
-              name_ru : "Macbook",
-              link : "/",
-              image : require("~/assets/images/delete/sub.png")
-            },
-          ]
-        }
-      ]
+      // categories:[
+      //   {
+      //     name_tm : 'Phones & accessories',
+      //     name_ru : 'Telefon & accessories',
+      //     subCategories : [
+      //       {
+      //         name_tm : "All",
+      //         name_ru : "Hemmesi",
+      //         link : "/",
+      //         image : require("~/assets/images/delete/sub.png")
+      //       },
+      //       {
+      //         name_tm : "Xiaomi",
+      //         name_ru : "Redmi",
+      //         link : "/",
+      //         image : require("~/assets/images/delete/sub2.png")
+      //       },
+      //       {
+      //         name_tm : "Apple",
+      //         name_ru : "Macbook",
+      //         link : "/",
+      //         image : require("~/assets/images/delete/sub3.png")
+      //       },
+      //     ]
+      //   },
+      //   {
+      //     name_tm : 'Clothing for Men',
+      //     name_ru : 'Oglanlar ucin eshikler',
+      //     subCategories : [
+      //       {
+      //         name_tm : "All",
+      //         name_ru : "Hemmesi",
+      //         link : "/",
+      //         image : require("~/assets/images/delete/sub.png")
+      //       },
+      //       {
+      //         name_tm : "Smartphones",
+      //         name_ru : "Telefonlar",
+      //         link : "/",
+      //         image : require("~/assets/images/delete/sub3.png")
+      //       },
+      //       {
+      //         name_tm : "Xiaomi",
+      //         name_ru : "Redmi",
+      //         link : "/",
+      //         image : require("~/assets/images/delete/sub2.png")
+      //       },
+      //       {
+      //         name_tm : "Apple",
+      //         name_ru : "Macbook",
+      //         link : "/",
+      //         image : require("~/assets/images/delete/sub.png")
+      //       },
+      //     ]
+      //   }
+      // ]
     }
   },
   watch: {
@@ -401,6 +404,7 @@ export default {
       language: 'dynamicLang/language',
       categoryOpenVar: 'categoryOpen/categoryOpen',
       mode: 'mode/mode',
+      categories: 'categories/categories',
     }),
   },
   methods:{

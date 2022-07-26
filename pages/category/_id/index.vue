@@ -104,10 +104,10 @@
               <img src="~/assets/images/icons/headerFilter.svg" alt="headerFilter">
               <span>{{$t('sort')}}:</span>
             </div>
-            <div class="left_btn box boxBorder">
+            <div class="left_btn box boxBorder" @click="sort(1)">
               <span>{{$t('yzygider')}}</span>
             </div>
-            <div class="left_btn box boxBorder">
+            <div class="left_btn box boxBorder" @click="sort(2)">
               <span>{{$t('richTOpoor')}}</span>
               <div class="icons">
                 <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -118,10 +118,10 @@
               </div>
               <span>{{$t('poorTOrich')}}</span>
             </div>
-            <div class="left_btn box boxBorder">
+            <!-- <div class="left_btn box boxBorder" @click="sort(3)">
               <span>{{$t('news')}}</span>
-            </div>
-            <div class="left_btn box boxBorder">
+            </div> -->
+            <div class="left_btn box boxBorder" @click="sort(3)">
               <span>{{$t('topSold')}}</span>
             </div>
           </div>
@@ -213,12 +213,12 @@
                     <img src="~/assets/images/icons/grayCicle.svg" alt="">
                   </div>
                 </div>
-                <div class="sortPopup_sorts_sort" >
+                <!-- <div class="sortPopup_sorts_sort" >
                   <span>{{$t('news')}}</span>
                   <div class="checkButton">
                     <img src="~/assets/images/icons/grayCicle.svg" alt="">
                   </div>
-                </div>
+                </div> -->
                 <div class="sortPopup_sorts_sort" >
                   <span>{{$t('topSold')}}</span>
                   <div class="checkButton">
@@ -230,12 +230,12 @@
           </div>
         </div>
         <div v-if="filterBg" @click="closeFilter(),closeSort()" class="sortFilterBg"></div>
-        <div class="category_main_products">
+        <div class="category_main_products" v-if="products">
           <span class="cube" v-if="productView">
-            <Product v-for="i in 15" :key="i"/>
+            <Product v-for="(product , i) in products" :key="i" :product="product"/>
           </span>
-          <span v-else>
-            <LongProduct v-for="i in 15" :key="i"/>
+          <span class="longCube" v-else>
+            <LongProduct v-for="(product,i) in products" :key="i" :product="product"/>
           </span>
         </div>
       </div>
@@ -262,11 +262,30 @@ export default {
         },
         subcategory_name:'Sub category',
       },
+      poorRichSort:0,
       productView:true,
       filterBg:false,
+      products:[]
+    }
+  },
+  async mounted(){
+    await this.takeData();
+  },
+  watch:{
+    async $route(){
+      await this.takeData()
     }
   },
   methods:{
+    async takeData(){
+      try {
+        const categoryName = this.$route.params.id;
+        const {data} = await this.$axios.get(`/public/sub-categories/products/${categoryName}`);
+        this.products = data.products
+      } catch (err) {
+        console.log(err)
+      }
+    },
     changeView(number){
       document.querySelectorAll('.category_main_filter_right .icon')[0].classList.remove('active')
       document.querySelectorAll('.category_main_filter_right .icon')[1].classList.remove('active')
@@ -292,6 +311,49 @@ export default {
     closeSort(){
       document.querySelector(".sortPopup").style.display = 'none';
       this.filterBg = false;
+    },
+    async sort(id){
+      for(let i =0; i<3; i++){
+        document.querySelectorAll('.box')[i].classList.remove('active');
+      }
+      document.querySelectorAll('.box')[id-1].classList.add('active');
+      if(id == 2){
+        this.poorRichSort += 1;
+      }else{
+        this.poorRichSort = 0;
+      }
+      await this.fullSort(id);
+    },
+    async fullSort(sort,filter){
+      let data;
+      if(sort == 1){
+        try {
+          data = await this.$axios.get(`/public/sub-categories/products/${this.$route.params.id}`);
+          this.products = data.data.products;
+        } catch (error) {
+          console.log(error); 
+        }
+      }else if(sort == 2){
+        let localSort = 0;
+        if(this.poorRichSort%2 == 1){
+          localSort = 0;
+        }else{
+          localSort = 1;
+        } 
+        try {
+          data = await this.$axios.get(`/public/sub-categories/products/${this.$route.params.id}?sort=${localSort}`);
+          this.products = data.data.products;
+        } catch (error) {
+          console.log(error); 
+        }
+      }else if(sort == 3){
+        try {
+          data = await this.$axios.get(`/public/sub-categories/products/${this.$route.params.id}?sort=3`);
+          this.products = data.data.products;
+        } catch (error) {
+          console.log(error); 
+        }
+      }
     }
   }
 }

@@ -6,22 +6,15 @@
             class="swiper news__slider"
             :options="bannerSliderOptions"
           >
-            <swiper-slide>
-              <nuxt-link to="/" class="news__slider__item"> 
+            <swiper-slide v-for="(banner , i) in banners" :key="i">
+              <nuxt-link :to="'/'+banner.banner_id" class="news__slider__item"> 
                   <div class="news__slider__item__image">
-                    <!-- <img v-bind:src="$config.url+'/'+i.image" alt=""> -->
-                    <img src="~/assets/images/delete/banner2.png" alt="">
+                    <img v-bind:src="$config.url+'/'+banner.image" alt="">
+                    <!-- <img src="~/assets/images/delete/banner2.png" alt=""> -->
                   </div>
               </nuxt-link>
               </swiper-slide>
-            <swiper-slide>
-              <nuxt-link to="/" class="news__slider__item"> 
-                  <div class="news__slider__item__image">
-                    <!-- <img v-bind:src="$config.url+'/'+i.image" alt=""> -->
-                    <img src="~/assets/images/delete/banner2.png" alt="">
-                  </div>
-              </nuxt-link>
-              </swiper-slide>
+         
               <div slot="pagination" class="swiper-pagination"></div>
 
               <div slot="button-prev"  class="swiper-button-prev swiper-button"></div>
@@ -87,8 +80,8 @@
         <nuxt-link to="/" class="seeAll" :class="mode">{{$t('seeAll')}}</nuxt-link>
       </div>
       <div class="main_category">
-        <div class="main_product">
-          <Product v-for="i in 5" :key="i"/>
+        <div class="main_product" v-if="discountProducts">
+          <Product v-for="(product ,i) in discountProducts" :key="i" :product="product"/>
         </div>
       </div>
 
@@ -108,7 +101,7 @@
       </div>
       <div class="main_category">
         <div class="main_product">
-          <Product v-for="i in 5" :key="i"/>
+          <Product v-for="(product ,i) in newProducts" :key="i" :product="product"/>
         </div>
       </div>
 
@@ -120,7 +113,7 @@
       </div>
       <div class="main_category main_like">
         <div class="main_product">
-          <Product v-for="i in 20" :key="i" class="like"/>
+          <Product v-for="(recom, i) in recommendedProducts" :key="i" :product="recom" class="like"/>
         </div>
       </div>
     </div>
@@ -154,6 +147,10 @@ export default {
   computed:{
     ...mapGetters({
         mode: 'mode/mode',
+        banners: 'banner/banner',
+        discountProducts: 'discountProducts/products',
+        newProducts: 'newProducts/products',
+        recommendedProducts: 'recommendedProducts/products'
     }),
   },
 }

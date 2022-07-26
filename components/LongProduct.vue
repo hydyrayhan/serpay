@@ -5,15 +5,15 @@
         <ImageSlider />
         <div class="longProduct_info">
           <div class="price">
-            <div class="new">12312 <span>manat</span></div>
-            <div class="old">12312 <span>manat</span><span class="hr"></span></div>
+            <div class="new" v-if="product.price">{{product.price}} <span>manat</span></div>
+            <div class="old" v-if="product.price_old">{{product.price_old}} <span>manat</span><span class="hr"></span></div>
           </div>
-          <div class="name">Beko Washing Machine Beko Washing Machine Beko Washing Machine Beko Washing Machine Beko Washing Machine Beko Washing Machine Beko Washing Machine</div>
+          <div class="name" v-if="product[language.name]">{{product[language.name]}}</div>
         </div>
       </span>
       <div class="isContainerLong">
         <div class="newProduct">{{$t('new')}}</div>
-        <div class="discount">-20%</div>
+        <div class="discount" v-if="product.discount">{{product.discount}}%</div>
       </div>
     </nuxt-link>
     <div class="like" @click="like">
@@ -29,18 +29,32 @@
 
 <script>
 import ImageSlider from '~/components/ImageSlider';
+import {mapGetters} from 'vuex';
 export default {
   components:{ImageSlider},
+  props: {
+    product: {
+      type: Object,
+    },
+  },
   data(){
     return{
       liked:false,
     }
   },
+  mounted(){
+    this.liked = this.product.isLiked
+  },
   methods:{
     like(){
       this.liked = !this.liked;
     }
-  }
+  },
+  computed:{
+    ...mapGetters({
+      language: 'dynamicLang/language'
+    }),
+  },
 }
 </script>
 

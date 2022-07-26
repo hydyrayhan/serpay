@@ -1,16 +1,16 @@
 <template>
   <div class="product">
-    <nuxt-link to="/product/1">
-      <ImageSlider />
+    <nuxt-link :to="'/product/'+product.product_id">
+      <ImageSlider :images="product.images"/>
       <div class="product_info">
         <div class="product_info_price">
-          <div class="new">18310 <span>TMT</span></div>
-          <div class="old">12345 <span>TMT</span><span class="hr"></span></div>
+          <div class="new" v-if="product.price">{{product.price}} <span>TMT</span></div>
+          <div class="old" v-if="product.price_old">{{product.price_old}} <span>TMT</span><span class="hr"></span></div>
         </div>
-        <div class="product_info_name">Lorem ipsum dolor sit.</div>
+        <div class="product_info_name" v-if="product[language.name]">{{product[language.name]}}</div>
       </div>
       <div class="isContainer">
-        <div class="product_discount_top">-20%</div>
+        <div class="product_discount_top" v-if="product.discount">{{product.discount}}%</div>
         <div class="product_new_top">{{$t("new")}}</div>
       </div>
     </nuxt-link>
@@ -27,18 +27,32 @@
 
 <script>
 import ImageSlider from '~/components/ImageSlider';
+import {mapGetters} from 'vuex';
 export default {
   components:{ImageSlider},
+  props: {
+    product: {
+      type: Object,
+    },
+  },
   data(){
     return{
       liked:false,
     }
   },
+  mounted(){
+    this.liked = this.product.isLiked
+  },
   methods:{
     like(){
       this.liked = !this.liked;
     }
-  }
+  },
+  computed:{
+    ...mapGetters({
+      language: 'dynamicLang/language'
+    }),
+  },
 }
 </script>
 
