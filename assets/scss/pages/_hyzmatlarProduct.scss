@@ -49,6 +49,47 @@
     @include mobile{
       width: 100%;
     }
+    &.dark{
+      .shareProduct_info_name,.shareProduct_info_body,.shareProduct_info_topTitle_title{
+        color: white;
+      }
+      .shareProduct_info_topTitle{
+        svg{
+          path:last-child{
+            stroke: white;
+          }
+        }
+      }
+      .product_info_range{
+        .count{
+          span{
+            color: white;
+          }
+          svg{
+            path{
+              stroke: white;
+            }
+          }
+        }  
+      }
+      .shareProduct_info_carts_persons .person .person_info{
+        .person_info_name{
+          color: white;
+        }
+      }
+      .shareProduct_info_carts_counttime .timer{
+        .icon{
+          svg{
+            path{
+              fill: white;
+            }
+          }
+        }
+        .timer_time span{
+          color: white;
+        }
+      }
+    }
     &_name{
       font-weight: 600;
       font-size: 20px;

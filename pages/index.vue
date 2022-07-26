@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="indexPage" :class="mode">
     <div class="container">
       <div class="main_banner">
         <swiper
@@ -73,12 +73,18 @@
     </div>
     <div class="container">
       <!-- category -->
-      <div class="category_header">
+      <div class="category_header" :class="mode">
         <div class="category_header_left">
-          <div class="icon"><img src="~/assets/images/icons/redBag.svg" alt="redBag"></div>
+          <div class="icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="#272727" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="#FF141D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M3 6H21" stroke="#272727" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
           <div class="name">{{$t('discount')}}</div>
         </div>
-        <nuxt-link to="/" class="seeAll">{{$t('seeAll')}}</nuxt-link>
+        <nuxt-link to="/" class="seeAll" :class="mode">{{$t('seeAll')}}</nuxt-link>
       </div>
       <div class="main_category">
         <div class="main_product">
@@ -87,12 +93,18 @@
       </div>
 
       <!-- category -->
-      <div class="category_header">
+      <div class="category_header" :class="mode">
         <div class="category_header_left">
-          <div class="icon"><img src="~/assets/images/icons/yellowBag.svg" alt="redBag"></div>
+          <div class="icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 2L3 6V20C3 20.5304 3.21071 21.0391 3.58579 21.4142C3.96086 21.7893 4.46957 22 5 22H19C19.5304 22 20.0391 21.7893 20.4142 21.4142C20.7893 21.0391 21 20.5304 21 20V6L18 2H6Z" stroke="#272727" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M16 10C16 11.0609 15.5786 12.0783 14.8284 12.8284C14.0783 13.5786 13.0609 14 12 14C10.9391 14 9.92172 13.5786 9.17157 12.8284C8.42143 12.0783 8 11.0609 8 10" stroke="#FFC700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M3 6H21" stroke="#272727" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
           <div class="name">{{$t('newProducts')}}</div>
         </div>
-        <nuxt-link to="/" class="seeAll">{{$t('seeAll')}}</nuxt-link>
+        <nuxt-link to="/" class="seeAll" :class="mode">{{$t('seeAll')}}</nuxt-link>
       </div>
       <div class="main_category">
         <div class="main_product">
@@ -117,6 +129,7 @@
 
 <script>
 import Product from '~/components/Product';
+import { mapGetters } from 'vuex';
 export default {
   components:{Product},
   data(){
@@ -137,6 +150,11 @@ export default {
         },
       },
     }
-  }
+  },
+  computed:{
+    ...mapGetters({
+        mode: 'mode/mode',
+    }),
+  },
 }
 </script>

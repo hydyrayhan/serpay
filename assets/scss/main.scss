@@ -63,4 +63,7 @@ body{
 
 .space{
   height: 103px;
+  @include mobile{
+    height: 100px;
+  }
 }

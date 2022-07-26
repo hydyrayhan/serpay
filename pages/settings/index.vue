@@ -223,7 +223,7 @@ export default {
     }
   },
   mounted(){
-    const height = window.innerHeight-536;
+    const height = window.innerHeight-296;
     const element = document.querySelector('.settings');
     element.style.minHeight = height+'px';
     this.changeLanguage(this.$i18n.locale)

@@ -3,7 +3,7 @@
     <div class="mobileResHeader" v-if="footPrint">{{$t('footPrint')}}</div>
     <div class="mobileResHeader" v-else>{{$t('historyOrder')}}</div>
     <div class="container">
-      <div class="orders_header">
+      <div class="orders_header" :class="mode">
         <div class="pageName" v-if="footPrint">{{$t('footPrint')}}</div>
         <div class="pageName" v-else>{{$t('historyOrder')}}</div>
         <div class="privateButton" v-if="privateButton">Private</div>
@@ -33,7 +33,7 @@
     <hr>
     <div class="container">
       <div class="orders_products">
-        <div class="products_time">
+        <div class="products_time" :class="mode">
           <span v-if="!privateButton" class="space"></span>
           <span>13/05/2022</span>
         </div>
@@ -61,6 +61,7 @@
 
 <script>
 import SimpleLongProduct from '~/components/SimpleLongProduct';
+import { mapGetters } from 'vuex';
 export default {
   components:{SimpleLongProduct},
   data(){
@@ -72,7 +73,7 @@ export default {
     }
   },
   mounted(){
-    const height = window.innerHeight-323;
+    const height = window.innerHeight-273;
     const element = document.querySelector('.orders');
     element.style.minHeight = height+'px';
 
@@ -80,6 +81,11 @@ export default {
     if(name === 'footPrint'){
       this.footPrint = true;
     }
+  },
+  computed:{
+    ...mapGetters({
+      mode: 'mode/mode',
+    }),
   },
 }
 </script>

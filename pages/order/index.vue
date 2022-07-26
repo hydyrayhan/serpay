@@ -124,7 +124,7 @@ export default {
     }
   },
   mounted(){
-    const height = window.innerHeight-402;
+    const height = window.innerHeight-302;
     const element = document.querySelector('.order');
     element.style.minHeight = height+'px';
   },

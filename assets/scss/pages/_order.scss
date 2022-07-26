@@ -1,6 +1,7 @@
 .order{
   width: 30%;
-  margin: 50px auto;
+  margin: 0px auto;
+  padding: 50px 0;
   @include tablet{
     width: 70%;
   }
@@ -187,7 +188,9 @@
     }
     .priceCon{
       width: 40%;
-      @include flex(row,center);
+      @include mobile{
+        @include flex(column,center);
+      }
     }
     .price{
       color: $red;

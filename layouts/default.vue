@@ -1,10 +1,12 @@
 <template>
     <div >
-        <div class="fullHeaderCon" :class="mode=='dark'? 'dark' : ''">
+        <div class="fullHeaderCon" :class="mode">
             <Header />
         </div>
         <div class="space"></div>
-        <Nuxt />
+        <div class="nuxt" :class="mode">
+            <Nuxt />
+        </div>
         <MobileBottomNavbar />
         <Footer />
     </div>
@@ -48,5 +50,7 @@ export default {
             mode: 'mode/mode',
         }),
     },
+    methods:{
+    }
 }
 </script>

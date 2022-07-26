@@ -9,6 +9,8 @@
   padding: 15px 30px;
   display: none;
   z-index: 10;
+
+ 
   @include mobile{
     @include flex();
   }
@@ -22,6 +24,34 @@
     }
     span{
       font-size: 10px;
+    }
+  }
+
+  &.dark{
+    background-color: #272727;
+    .mobileBottomCategory{
+      svg{
+        rect{
+          fill: $gray;
+        }
+      }
+    }
+    .sebetIcon{
+      svg{
+        path:last-child{
+          stroke: $gray;
+        }
+      }
+    }
+    .profileIcon{
+      svg{
+        path,circle{
+          stroke: $gray;
+        }
+      }
+    }
+    span{
+      color: $gray;
     }
   }
 }

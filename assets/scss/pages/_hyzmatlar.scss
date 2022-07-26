@@ -9,6 +9,11 @@
     @include mobile{
       display: none;
     }
+    &.dark{
+      span{
+        color: white;
+      }
+    }
     svg{
       margin-right: 10px;
       width: 20px;
@@ -99,6 +104,7 @@
         font-size: 36px;
         font-weight: 700;
         @include mobile{
+          left: 0;
           font-size: 20px;
           width: 100%;
           text-align: center;
@@ -135,6 +141,7 @@
   }
   .hyzmatlar_products{
     margin-bottom: 40px;
+    overflow: hidden;
     &_header{
       background: conic-gradient(from 218.57deg at 73.51% 50%, #FF141D 0deg, #FEBE13 360deg);;
       padding: 20px 0;

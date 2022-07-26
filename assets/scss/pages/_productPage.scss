@@ -4,6 +4,8 @@
     margin-top: -125px;
     @include flex(column,flex-start,flex-start);
   }
+  padding: 30px 0;
+  
   &_mobile_header{
     display: none;
     width: 95%;
@@ -30,6 +32,7 @@
         height: 360px;
       }
       @include mobile{
+        height: 550px;
         width: 105%;
         margin-left: -2.5%;
       }
@@ -73,6 +76,30 @@
   &_info{
     min-width: 53%;
     max-width: 53%;
+    &.dark{
+      .info_name,.info_definition,.info_title{
+        color: white;
+      }
+      .info_quantity-totalPrice{
+        .top{
+          .top_mukdar{
+            .top_mukdar_title{
+              color: white;
+            }
+            .top_mukdar_count{
+              span,button{
+                color: white;
+              }
+            }
+          }
+        }
+        .bottom{
+          .bottom_brand{
+            color: white;
+          }
+        }
+      }
+    }
 
     @include flex(column,space-between,flex-start);
     @include mobile{
@@ -432,7 +459,7 @@
 .productPage_detail{
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 200px;
+  padding-bottom: 200px;
   img{
     width: 49%;
     margin-right: 2%;

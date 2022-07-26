@@ -103,7 +103,7 @@ export default {
     }
   },
   mounted(){
-    const height = window.innerHeight-498;
+    const height = window.innerHeight-298;
     const element = document.querySelector('.profile');
     element.style.minHeight = height+'px';
   },

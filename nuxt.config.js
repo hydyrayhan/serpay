@@ -31,6 +31,8 @@ export default {
     { src: '~/plugins/v-click-outside'},
   ],
 
+  // loading: '~/components/Loading.vue',
+
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 

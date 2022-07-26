@@ -5,9 +5,26 @@
   }
   .orders_header{
     @include flex();
-    margin: 25px 0;
+    padding: 25px 0;
     @include mobile{
-      margin: 15px 0;
+      padding: 15px 0;
+    }
+    &.dark{
+      .pageName{
+        color: white;
+      }
+      .orders_header_buttons{
+        .cancel{
+          color: white;
+        }
+        .resMobileBottom{
+          .selectAll{
+            .text{
+              color: white;
+            }
+          }
+        }
+      }
     }
     .pageName{
       font-weight: 600;
@@ -103,6 +120,11 @@
         color: $darkGray;
         font-size: 20px;
         font-weight: 600;
+      }
+      &.dark{
+        span{
+          color: white;
+        }
       }
     }
     .products_product{

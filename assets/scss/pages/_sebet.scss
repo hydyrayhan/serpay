@@ -1,6 +1,6 @@
 .cart_tablet_header{
   display: none;
-  margin-top: 30px;
+  padding-top: 30px;
   @include tablet{
     @include flex();
   }
@@ -30,7 +30,7 @@
   }
 }
 .cart{
-  margin-top: 50px;
+  padding-top: 50px;
   @include flex(row,space-between,flex-start);
   @include tablet{
     margin-top: 20px;

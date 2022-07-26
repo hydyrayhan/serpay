@@ -15,6 +15,7 @@
  
   &_products{
     padding: 0 150px;
+    padding-bottom: 50px;
     @include tablet{
       padding: 0;
     }

@@ -13,11 +13,10 @@ export const actions = {
     commit('SET_MODE', mode)
   },
   changeMode({ commit },mode){
-    console.log(mode);
-    if(mode ==='dark'){
+    if(mode ==='dark' || mode === 'dark;'){
       mode='light'
       document.cookie = 'mode=light'
-    }else if(mode === 'light'){
+    }else if(mode === 'light' || mode === 'light;'){
       mode='dark'
       document.cookie = 'mode=dark'
     }

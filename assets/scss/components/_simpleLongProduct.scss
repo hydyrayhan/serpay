@@ -57,7 +57,13 @@
         margin-right: 15px;
       }
       img{
-        max-height: 120px;
+        max-height: 200px;
+        @include tablet{
+          max-height: 150px;
+        }
+        @include mobile{
+          max-height: 120px;
+        }
       }
     }
 

@@ -31,7 +31,7 @@
 <script>
 export default {
   mounted(){
-    const height = window.innerHeight-330;
+    const height = window.innerHeight-270;
     const element = document.querySelector('.CPContainer');
     element.style.minHeight = height+'px';
   },

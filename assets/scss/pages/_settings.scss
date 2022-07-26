@@ -1,6 +1,7 @@
 .settings{
   width: 30%;
-  margin: 120px auto;
+  margin: 0px auto;
+  padding: 120px 0;
   @include tablet{
     width: 50%;
   }
@@ -108,5 +109,8 @@
   &_text{
     font-size: 14px;
     color: $darkGray;
+    &.dark{
+      color: white;
+    }
   }
 }

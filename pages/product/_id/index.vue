@@ -26,7 +26,7 @@
         </div>
       </div>
 
-      <div class="productPage_info">
+      <div class="productPage_info" :class="mode">
         <div class="info_price">
           <div class="info_price_new"><span>12345</span><span>manat</span></div>
           <div class="info_price_old">12345manat <span></span></div>
@@ -121,11 +121,11 @@
       </div>
     </div>
 
-    <div class="category_header">
+    <div class="category_header" :class="mode">
       <div class="category_header_left">
         <div class="name">{{$t('recommendation')}}</div>
       </div>
-      <nuxt-link to="/" class="seeAll">{{$t('seeAll')}}</nuxt-link>
+      <nuxt-link to="/" class="seeAll" :class="mode">{{$t('seeAll')}}</nuxt-link>
     </div>
 
     <div class="productPage_teklipProducts">
@@ -151,6 +151,7 @@
 import Breadcrumb from '~/components/Breadcrumb';
 import Product from '~/components/Product';
 import ProductInfo from '~/components/responsive/ProductInfo';
+import { mapGetters } from 'vuex';
 export default {
   components:{Breadcrumb,Product,ProductInfo},
   data(){
@@ -158,6 +159,11 @@ export default {
       liked:false,
       resInfo:false, 
     }
+  },
+  computed:{
+    ...mapGetters({
+      mode: 'mode/mode',
+    }),
   },
   methods:{
     imageChange(id){

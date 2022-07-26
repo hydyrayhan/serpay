@@ -162,6 +162,17 @@
     cursor: pointer;
     border-radius: 100px;
     position: relative;
+    &.dark{
+      background-color: $darkGray;
+      input{
+        color: white;
+      }
+      svg{
+        path{
+          fill: $whiteN;
+        }
+      }
+    }
     @include mobile{
       width: 70%;
       svg{
@@ -288,12 +299,34 @@
       .icon{
         height: 30px;
       }
+      &.dark{
+        .icon{
+          svg{
+            path{
+              fill: $gray;
+            }
+          }
+        }
+        .text{
+          color: $gray;
+        }
+      }
     }
     .header_buttons_mode_mobile{
       display: none;
       background: $darkWhite;
       padding: 0 15px;
       border-radius: 5px;
+
+      &.dark{
+        background: $darkGray;
+        svg{
+          path{
+            fill: $yellow;
+          }
+        }
+      }
+      
       @include mobile{
         @include flex();
       }
@@ -305,6 +338,14 @@
       border-radius: 100px;
       min-height: auto;
       cursor: pointer;
+      &.dark{
+        background-color: $darkGray;
+        svg{
+          path{
+            fill: $gray;
+          }
+        }
+      }
       @include mobile{
         display: none;
       }
