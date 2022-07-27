@@ -125,5 +125,6 @@ export default {
     sendAgain:"Täzeden iber",
     toSet:"Dikeltmek",
     codeTitle:"<span>+993 6*******</span> belgä tassyklaýyş sms-y ugradyldy. SMS arkaly gelen <span>tassyklaýyş kody</span> aşakda giriziň",
+    giveCode:"Kody giriziň!"
 }
   

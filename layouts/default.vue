@@ -21,8 +21,8 @@ export default {
     components: {Header, Footer, MobileBottomNavbar},
     created() {
         // this.$store.dispatch('cart/setProductsToCart')
-        // const userToken = this.$store.getters['user/userToken']
-        // if (userToken) this.$axios.setHeader('Authorization', `Bearer ${userToken}`)
+        const userToken = this.$store.getters['user/userToken']
+        if (userToken) this.$axios.setHeader('Authorization', `Bearer ${userToken}`)
     },
     mounted() {
         // let cartPerfumes = localStorage.getItem('cart-products')
@@ -35,13 +35,14 @@ export default {
         for(let i = 0; i<datas.length; i++){
             if(datas[i][0] == 'm'){
                 mode = datas[i].split('=');
+                break
             }
         }
         if(mode){
             mode = mode[1]
         }else{
-            document.cookie = 'mode=dark';
-            mode = 'dark'
+            document.cookie = 'mode=light';
+            mode = 'light'
         }
         this.$store.dispatch('mode/setMode', mode)
     },

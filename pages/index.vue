@@ -106,7 +106,7 @@
       </div>
 
         <!-- category -->
-      <div class="category_header">
+      <div class="category_header" :class="mode">
         <div class="category_header_left">
           <div class="name">{{$t('recommends')}}</div>
         </div>

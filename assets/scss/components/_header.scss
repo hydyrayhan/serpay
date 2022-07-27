@@ -422,6 +422,23 @@
       @include mobile{
         display: none;
       }
+      img{
+        width: 42px;
+        height: 42px;
+        border-radius: 50px;
+        object-fit: cover;
+      }
+      .icon.dark{
+        svg{
+          path{
+            stroke: $gray;
+            fill: none !important;
+          }
+        }
+      }
+      .text.dark{
+        color: $gray;
+      }
       .header_login_ul{
         position: absolute;
         cursor: default;
@@ -476,9 +493,10 @@
           background: linear-gradient(95.06deg, #FF141D 5.74%, #FEBE13 105.72%);
           border-radius: 8px;
           img{
-            width: 48;
+            width: 48px;
             height: 48px;
             margin-right: 18px;
+            object-fit: cover;
           }
           span{
             color: white;

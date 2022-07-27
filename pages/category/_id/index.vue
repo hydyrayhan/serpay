@@ -25,8 +25,8 @@
             <!-- <div class="valyut">TMT</div> -->
           </div>
           <div class="category_sidebar_price_inputs">
-            <input type="text" :placeholder="$t('min')">
-            <input type="text" :placeholder="$t('max')">
+            <input type="text" :placeholder="$t('min')" v-model="filterData.min">
+            <input type="text" :placeholder="$t('max')" v-model="filterData.max">
           </div>
         </div>
 
@@ -37,7 +37,7 @@
               <div class="checkbutton">
                 <span class="text">{{$t('man')}}</span> 
                 <label for="man">
-                  <input type="checkbox" name="man" id="man">
+                  <input type="checkbox" name="man" id="man" v-model="filterData.man">
                   <div class="check">
                     <img src="~/assets/images/icons/checkbox-icon.svg" alt="checkbox-icon">
                   </div>
@@ -46,7 +46,7 @@
               <div class="checkbutton">
                 <span class="text">{{$t('woman')}}</span> 
                 <label for="woman">
-                  <input type="checkbox" name="woman" id="woman">
+                  <input type="checkbox" name="woman" id="woman" v-model="filterData.woman">
                   <div class="check">
                     <img src="~/assets/images/icons/checkbox-icon.svg" alt="checkbox-icon">
                   </div>
@@ -55,7 +55,7 @@
               <div class="checkbutton">
                 <span class="text">{{$t('child')}}</span> 
                 <label for="child">
-                  <input type="checkbox" name="child" id="child">
+                  <input type="checkbox" name="child" id="child" v-model="filterData.child">
                   <div class="check">
                     <img src="~/assets/images/icons/checkbox-icon.svg" alt="checkbox-icon">
                   </div>
@@ -69,7 +69,7 @@
           <div class="checkbutton">
             <span class="text">{{$t('discount')}}</span> 
             <label for="discount">
-              <input type="checkbox" name="discount" id="discount">
+              <input type="checkbox" name="discount" id="discount" v-model="filterData.discount">
               <div class="check">
                 <img src="~/assets/images/icons/checkbox-icon.svg" alt="checkbox-icon">
               </div>
@@ -78,7 +78,7 @@
           <div class="checkbutton">
             <span class="text">{{$t('new')}}</span> 
             <label for="new">
-              <input type="checkbox" name="new" id="new">
+              <input type="checkbox" name="new" id="new" v-model="filterData.new">
               <div class="check">
                 <img src="~/assets/images/icons/checkbox-icon.svg" alt="checkbox-icon">
               </div>
@@ -88,7 +88,7 @@
 
         <div class="category_sidebar_buttons">
           <button class="clear">{{$t('clear')}}</button>
-          <button class="filter">
+          <button class="filter" @click="sort()">
             <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M17.3327 1H0.666016L7.33268 8.88333V14.3333L10.666 16V8.88333L17.3327 1Z" stroke="#616161" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -195,19 +195,19 @@
               </div>
 
               <div class="sortPopup_sorts">
-                <div class="sortPopup_sorts_sort" >
+                <div class="sortPopup_sorts_sort" @click="sort(1)">
                   <span>{{$t('yzygider')}}</span>
                   <div class="checkButton">
                     <img src="~/assets/images/icons/grayCicle.svg" alt="">
                   </div>
                 </div>
-                <div class="sortPopup_sorts_sort" >
+                <div class="sortPopup_sorts_sort" @click="sort(2)">
                   <span>{{$t('poorTOrich')}}</span>
                   <div class="checkButton">
                     <img src="~/assets/images/icons/grayCicle.svg" alt="">
                   </div>
                 </div>
-                <div class="sortPopup_sorts_sort" >
+                <div class="sortPopup_sorts_sort" @click="sort(2,2)">
                   <span>{{$t('richTOpoor')}}</span>
                   <div class="checkButton">
                     <img src="~/assets/images/icons/grayCicle.svg" alt="">
@@ -219,7 +219,7 @@
                     <img src="~/assets/images/icons/grayCicle.svg" alt="">
                   </div>
                 </div> -->
-                <div class="sortPopup_sorts_sort" >
+                <div class="sortPopup_sorts_sort" @click="sort(3)">
                   <span>{{$t('topSold')}}</span>
                   <div class="checkButton">
                     <img src="~/assets/images/icons/grayCicle.svg" alt="">
@@ -265,7 +265,16 @@ export default {
       poorRichSort:0,
       productView:true,
       filterBg:false,
-      products:[]
+      products:[],
+      filterData:{
+        min:'',
+        max:'',
+        man:false,
+        woman:false,
+        child:false,
+        discount:false,
+        new:false
+      }
     }
   },
   async mounted(){
@@ -312,27 +321,44 @@ export default {
       document.querySelector(".sortPopup").style.display = 'none';
       this.filterBg = false;
     },
-    async sort(id){
+    async sort(id,id2){
+
       for(let i =0; i<3; i++){
         document.querySelectorAll('.box')[i].classList.remove('active');
       }
-      document.querySelectorAll('.box')[id-1].classList.add('active');
-      if(id == 2){
-        this.poorRichSort += 1;
-      }else{
-        this.poorRichSort = 0;
-      }
-      await this.fullSort(id);
-    },
-    async fullSort(sort,filter){
-      let data;
-      if(sort == 1){
-        try {
-          data = await this.$axios.get(`/public/sub-categories/products/${this.$route.params.id}`);
-          this.products = data.data.products;
-        } catch (error) {
-          console.log(error); 
+      if(id){
+        document.querySelectorAll('.box')[id-1].classList.add('active');
+  
+        for(let i =0; i<4; i++){
+          let tablet = document.querySelectorAll('.sortPopup_sorts_sort')[i];
+          const img = require('~/assets/images/icons/grayCicle.svg')
+          tablet.querySelector('.checkButton img').setAttribute('src',img)
         }
+        const img = require('~/assets/images/icons/redCicle.svg')
+        if(id == 1 || (id == 2 && !id2)){
+          document.querySelectorAll('.sortPopup_sorts_sort')[id-1].querySelector('.checkButton img').setAttribute('src',img);
+        }else if(id2){
+          document.querySelectorAll('.sortPopup_sorts_sort')[2].querySelector('.checkButton img').setAttribute('src',img);
+        }else if(id==3){
+          document.querySelectorAll('.sortPopup_sorts_sort')[id].querySelector('.checkButton img').setAttribute('src',img);
+        }
+  
+        
+        if(id == 2){
+          this.poorRichSort += 1;
+        }else{
+          this.poorRichSort = 0;
+        }
+        await this.fullSort(id);
+      }else{
+        await this.fullSort();
+      }
+    },
+    async fullSort(sort){
+      let data;
+      let sortNumber;
+      if(sort == 1){
+        sortNumber = ''
       }else if(sort == 2){
         let localSort = 0;
         if(this.poorRichSort%2 == 1){
@@ -340,20 +366,24 @@ export default {
         }else{
           localSort = 1;
         } 
-        try {
-          data = await this.$axios.get(`/public/sub-categories/products/${this.$route.params.id}?sort=${localSort}`);
-          this.products = data.data.products;
-        } catch (error) {
-          console.log(error); 
-        }
+        sortNumber = localSort
       }else if(sort == 3){
-        try {
-          data = await this.$axios.get(`/public/sub-categories/products/${this.$route.params.id}?sort=3`);
-          this.products = data.data.products;
-        } catch (error) {
-          console.log(error); 
-        }
+        sortNumber = 3
       }
+
+      
+      const sex = []
+      this.filterData.man ? sex.push("M") : '';
+      this.filterData.woman ? sex.push("F") : '';
+      this.filterData.child ? sex.push("U") : '';
+      try {
+        data = await this.$axios.get(`/public/sub-categories/products/${this.$route.params.id}?sort=${sortNumber}&max_price=${this.filterData.max}&min_price=${this.filterData.min}&is_new=${this.filterData.new}&discount=${this.filterData.discount}&sex=${sex}`);
+        this.products = data.data.products;
+      } catch (error) {
+        console.log(error); 
+      }
+
+
     }
   }
 }

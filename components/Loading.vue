@@ -1,6 +1,7 @@
 <template>
-  <div v-if="loading" class="loading-page">
-    <p>Loading...</p>
+  <div class="loading-page">
+    <div class="loader-back"></div>
+    <div class="loader"></div>
   </div>
 </template>
 
@@ -21,13 +22,5 @@
 </script>
 
 <style scoped>
-  .loading-page{
-    background: red;
-    width: 100%;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 100000000;
-  }
+
 </style>

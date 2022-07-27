@@ -3,17 +3,17 @@ export const actions = {
     // await dispatch('nav/setNav')
 
     try {
-      // const user = this.$cookies.get('user')
-      // const userToken = this.$cookies.get('user-token')
+      const user = this.$cookies.get('user')
+      const userToken = this.$cookies.get('user-token')
 
-      // if (user) {
-      //   dispatch('user/setUser', user)
-      // }
+      if (user) {
+        dispatch('user/setUser', user)
+      }
 
-      // if (userToken) {
-      //   await dispatch('user/setUserToken', userToken)
-      //   await this.$axios.setHeader('Authorization', `Bearer ${userToken}`)
-      // }
+      if (userToken) {
+        await dispatch('user/setUserToken', userToken)
+        await this.$axios.setHeader('Authorization', `Bearer ${userToken}`)
+      }
 
       // await dispatch('discountProducts/fetchDiscounts')
       // await dispatch('newProducts/fetchNews') 

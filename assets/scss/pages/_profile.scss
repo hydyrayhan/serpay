@@ -57,12 +57,19 @@
     .logged_image{
       margin-top: -70px;
       margin-bottom: 30px;
+      img{
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 120px;
+      }
       @include mobile{
         margin-top: -50px;
         margin-bottom: 20px;
       }
       img{
         @include mobile{
+          height: 100px;
           width: 100px;
         }
       }

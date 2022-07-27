@@ -1,6 +1,6 @@
 <template>
-  <div class="longProductCon">
-    <nuxt-link to="/product/1" class="longProduct">
+  <div class="longProductCon" v-if="product">
+    <nuxt-link to="/product/1" class="longProduct" >
       <span class="left">
         <ImageSlider />
         <div class="longProduct_info">
@@ -12,7 +12,7 @@
         </div>
       </span>
       <div class="isContainerLong">
-        <div class="newProduct">{{$t('new')}}</div>
+        <div class="newProduct" v-if="product.isNew">{{$t('new')}}</div>
         <div class="discount" v-if="product.discount">{{product.discount}}%</div>
       </div>
     </nuxt-link>
@@ -43,7 +43,7 @@ export default {
     }
   },
   mounted(){
-    this.liked = this.product.isLiked
+    this.product ? (this.product.isLiked ? this.liked = this.product.isLiked : this.liked = false) : ''
   },
   methods:{
     like(){

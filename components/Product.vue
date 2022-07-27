@@ -11,7 +11,7 @@
       </div>
       <div class="isContainer">
         <div class="product_discount_top" v-if="product.discount">{{product.discount}}%</div>
-        <div class="product_new_top">{{$t("new")}}</div>
+        <div class="product_new_top" v-if="product.isNew">{{$t("new")}}</div>
       </div>
     </nuxt-link>
     <div class="like" @click="like">

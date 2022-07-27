@@ -11,7 +11,7 @@ export default {
     socketUrl: process.env.SERVER_URL,
   },
   publicRuntimeConfig:{
-    url:process.env.SERVER_URL || 'http://localhost:3000',
+    url:process.env.SERVER_URL || 'http://localhost:4000',
   },
   head: {
     title: 'serpay',
@@ -60,6 +60,7 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     // '@nuxtjs/pwa',
+    'cookie-universal-nuxt',
     [
       '@nuxtjs/i18n',
       {

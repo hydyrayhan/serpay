@@ -23,10 +23,10 @@
           </button>
         <div class="header_category_con_con">
           <div class="header_category_con">
-            <div class="hidden_categories">
+            <div class="hidden_categories" v-if="categories">
               <div class="hidden_category" @click="categoryChange(i)" :class="whitchCategory === i ? 'active' : ''" v-for="(category , i) in categories" :key="i">{{category[language.name]}}</div>
             </div>
-            <div class="hidden_subcategories">
+            <div class="hidden_subcategories" v-if="categories && categories[whitchCategory].subcategories">
               <span @click="categoryClose" v-for="(sub, i) in categories[whitchCategory].subcategories" :key="i">
                 <nuxt-link :to="'/category/'+sub.subcategory_id" class="hidden_subcategory" >
                   <div class="icon">
@@ -159,20 +159,24 @@
            </div>
            <div class="text">{{$t('cart')}}</div>
          </div>
-         <div class="header_buttons_login btn" @click="openProfile" v-click-outside="closeProfile">
-          <img src="~/assets/images/delete/logged.png" width="42px" alt="">
-           <!-- <div class="icon">
+         <div class="header_buttons_login btn"  @click="openProfile" v-click-outside="closeProfile">
+          <span v-if="user">
+            <img v-if="user.image" v-bind:src="$config.url+'/'+user.image" width="42px" alt="">
+            <img v-else src="~/assets/images/icons/defaultImageChoose.svg" alt="">
+          </span>
+           <div v-else class="icon" :class="mode">
             <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M19 21V19C19 17.9391 18.5786 16.9217 17.8284 16.1716C17.0783 15.4214 16.0609 15 15 15H7C5.93913 15 4.92172 15.4214 4.17157 16.1716C3.42143 16.9217 3 17.9391 3 19V21" stroke="#616161" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M11 11C13.2091 11 15 9.20914 15 7C15 4.79086 13.2091 3 11 3C8.79086 3 7 4.79086 7 7C7 9.20914 8.79086 11 11 11Z" stroke="#616161" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
            </div>
-           <div class="text">{{$t('profile')}}</div> -->
+           <div class="text" :class="mode" v-if="!user">{{$t('profile')}}</div>
 
           <div class="header_login_ul" v-if="profile">
-            <div class="header_login_ul_avatar">
-              <img src="~/assets/images/delete/logged.png" alt="">
-              <span> Adam Johnsons</span>
+            <div class="header_login_ul_avatar" v-if="user">
+              <img v-if="user.image" v-bind:src="$config.url+'/'+user.image" alt="">
+              <img v-else src="~/assets/images/icons/defaultImageChoose.svg" alt="">
+              <span>{{user.nickname}}</span>
             </div>
             <span @click="closeProfile">
             <nuxt-link to="/profile" class="list">
@@ -270,63 +274,6 @@ export default {
       searchStart:false,
       category:false,
       whitchCategory:0,
-
-      // categories:[
-      //   {
-      //     name_tm : 'Phones & accessories',
-      //     name_ru : 'Telefon & accessories',
-      //     subCategories : [
-      //       {
-      //         name_tm : "All",
-      //         name_ru : "Hemmesi",
-      //         link : "/",
-      //         image : require("~/assets/images/delete/sub.png")
-      //       },
-      //       {
-      //         name_tm : "Xiaomi",
-      //         name_ru : "Redmi",
-      //         link : "/",
-      //         image : require("~/assets/images/delete/sub2.png")
-      //       },
-      //       {
-      //         name_tm : "Apple",
-      //         name_ru : "Macbook",
-      //         link : "/",
-      //         image : require("~/assets/images/delete/sub3.png")
-      //       },
-      //     ]
-      //   },
-      //   {
-      //     name_tm : 'Clothing for Men',
-      //     name_ru : 'Oglanlar ucin eshikler',
-      //     subCategories : [
-      //       {
-      //         name_tm : "All",
-      //         name_ru : "Hemmesi",
-      //         link : "/",
-      //         image : require("~/assets/images/delete/sub.png")
-      //       },
-      //       {
-      //         name_tm : "Smartphones",
-      //         name_ru : "Telefonlar",
-      //         link : "/",
-      //         image : require("~/assets/images/delete/sub3.png")
-      //       },
-      //       {
-      //         name_tm : "Xiaomi",
-      //         name_ru : "Redmi",
-      //         link : "/",
-      //         image : require("~/assets/images/delete/sub2.png")
-      //       },
-      //       {
-      //         name_tm : "Apple",
-      //         name_ru : "Macbook",
-      //         link : "/",
-      //         image : require("~/assets/images/delete/sub.png")
-      //       },
-      //     ]
-      //   }
-      // ]
     }
   },
   watch: {
@@ -367,11 +314,8 @@ export default {
               mode = datas[i].split('=');
           }
       }
-      if(mode[1] == 'dark'){
-        buttonColor = "#AEAEAE"
-      }else{
-        buttonColor = "#616161"
-      }
+      mode ? (mode[1] == 'dark' ? buttonColor = "#AEAEAE" : buttonColor = '#616161') : ''
+
       el.querySelectorAll('img')[0].style.display = 'none';
       el.querySelectorAll('img')[1].style.display = 'block';
       mobileEl.querySelector('span').style.fontWeight = 'normal';
@@ -405,6 +349,7 @@ export default {
       categoryOpenVar: 'categoryOpen/categoryOpen',
       mode: 'mode/mode',
       categories: 'categories/categories',
+      user:'user/user'
     }),
   },
   methods:{
@@ -417,11 +362,8 @@ export default {
               mode = datas[i].split('=');
           }
       }
-      if(mode[1] == 'dark'){
-        buttonColor = "#AEAEAE"
-      }else{
-        buttonColor = "#616161"
-      }
+      mode ? (mode[1] == 'dark' ? buttonColor = "#AEAEAE" : buttonColor = '#616161') : ''
+      
       return buttonColor;
     },
     red(){
@@ -433,11 +375,8 @@ export default {
               mode = datas[i].split('=');
           }
       }
-      if(mode[1] == 'dark'){
-        buttonColor = "#AEAEAE"
-      }else{
-        buttonColor = "#616161"
-      }
+      mode ? (mode[1] == 'dark' ? buttonColor = "#AEAEAE" : buttonColor = '#616161') : ''
+      
       if('/favorite' == this.$route.path){
         document.querySelector(".header_buttons_like path").style.fill = '#FF141D'
         document.querySelector(".header_buttons_like .text").style.color = '#FF141D'

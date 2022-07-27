@@ -12,7 +12,7 @@ export const actions = {
   async fetchCategories({ commit },extra) {
     let file;
     try{
-      const { data } = await this.$axios.get(`/public/categories`);
+      const { data } = await this.$axios.get(`/public/categories`)
       file = data;
     }catch(err){
       console.log(err);
