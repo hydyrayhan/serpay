@@ -52,13 +52,14 @@
         </span>
 
         <div class="title">{{$t('giveConfirmPass')}}</div>
-        <span class="input signUpLastInput">
+        <span class="input signUpLastInputt">
           <input type="password" v-model="newUser.passwordConfirm">
           <svg @click="password(3)" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M1 12C1 12 5 4 12 4C19 4 23 12 23 12C23 12 19 20 12 20C5 20 1 12 1 12Z" stroke="#666883" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="#666883" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </span>
+        <div class="error signUpLastInput" style="color:red;display:none">{{$t('passwordLetterMore6')}}</div>
 
         <button class="signButton" @click="sendData">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -108,23 +109,32 @@ export default {
     },
     async sendData(){
       if(this.newUser.password != this.newUser.passwordConfirm){
-        document.querySelector(".signUpLastInput").style.border = '1px solid red'; 
+        document.querySelector(".signUpLastInputt").style.border = '1px solid red'; 
         this.newUser.passwordConfirm = ''
+      }else if(!this.newUser.nickname || !this.newUser.user_checked_phone || !this.newUser.password){
+        this.$toast.success(this.$t("fillFreeSpace"));
+      }else if(this.newUser.password.length<6){
+        document.querySelector(".error").style.display = 'block';
       }else{
+        this.$nuxt.$emit("loading");
         try {
-          const res = await this.$axios.post("/users/signup",{user_phone:this.newUser.user_checked_phone})          
+          const res = await this.$axios.post("/users/signup",{user_phone:this.newUser.user_checked_phone})
           console.log(res.data.id);
           if(res.status == 200){
             this.confirmPopup = true;
+            this.$nuxt.$emit("loading");
             this.code = res.data.id;
           }
-        } catch (error) {
-          console.log(error);
+        } catch ({response}) {
+          console.log(response.data.message);
+          this.$toast.success(this.$t("numberAlreadyHas"));
+          this.$nuxt.$emit("loading");
         }
       }
     },
     async codeCheck(){
       if(this.userCode === this.code){
+        this.$nuxt.$emit("loading");
         try {
           const data = await this.$axios.post("/users/signup",this.newUser)
           if(data.status==201){
@@ -135,20 +145,28 @@ export default {
                 this.$store.dispatch('user/setUser', dataa.data)
                 this.$cookies.set('user', dataa.data)
                 this.$cookies.set('user-token', data.data.token)
-                // this.$store.dispatch('cart/fetchCartPerfumes')
+                this.$nuxt.$emit("loading");
+                this.$store.dispatch('discountProducts/fetchDiscounts',{globalUser:'users',limit:5,offset:0})
+                this.$store.dispatch('newProducts/fetchNews',{globalUser:'users',limit:5,offset:0})
+                this.$store.dispatch('recommendedProducts/fetchRecommended',{globalUser:'users',limit:30,offset:0})
                 this.$router.push('/')
               }
             }else{
-              this.$router.push('/');
-              console.log(data);
+              this.$nuxt.$emit("loading");
               this.$store.dispatch('user/setUserToken', data.data.token)
               this.$store.dispatch('user/setUser', data.data.data.user)
+              this.$store.dispatch('discountProducts/fetchDiscounts',{globalUser:'users',limit:5,offset:0})
+              this.$store.dispatch('newProducts/fetchNews',{globalUser:'users',limit:5,offset:0})
+              this.$store.dispatch('recommendedProducts/fetchRecommended',{globalUser:'users',limit:30,offset:0})
               this.$cookies.set('user', data.data.data.user)
               this.$cookies.set('user-token', data.data.token)
+              this.$router.push('/');
             }
           }
-        } catch (error) {
-          console.log(error);
+        } catch ({response}) {
+          console.log(response.data.message)
+          this.$toast.success(this.$t("nameAlreadyHas"));
+          this.$nuxt.$emit("loading");
         }
         this.confirmPopup = false;
         this.userCode = '';
@@ -168,6 +186,7 @@ export default {
     const height = window.innerHeight-398;
     const element = document.querySelector('.signIn');
     element.style.minHeight = height+'px';
+    
   },
 }
 </script>

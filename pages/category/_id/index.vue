@@ -237,6 +237,7 @@
           <span class="longCube" v-else>
             <LongProduct v-for="(product,i) in products" :key="i" :product="product"/>
           </span>
+          <button class="loadMore" @click="loadMore()">{{$t('loadMore')}}</button>
         </div>
       </div>
     </div>
@@ -247,10 +248,16 @@
 import Breadcrumb from '~/components/Breadcrumb';
 import Product from '~/components/Product';
 import LongProduct from '~/components/LongProduct';
+import {mapGetters} from 'vuex';
 export default {
   components:{Breadcrumb, Product, LongProduct},
   data(){
     return{
+      limit:5,
+      limitAdd:5,
+      offset:0,
+      count:0,
+      user:'public',
       positions:{
         category:{
           name:{
@@ -277,6 +284,11 @@ export default {
       }
     }
   },
+  computed:{
+    ...mapGetters({
+      userGlobal:'user/user'
+    })
+  },
   async mounted(){
     await this.takeData();
   },
@@ -287,13 +299,38 @@ export default {
   },
   methods:{
     async takeData(){
+      if(this.userGlobal){
+        this.user = 'users';
+      }
       try {
         const categoryName = this.$route.params.id;
-        const {data} = await this.$axios.get(`/public/sub-categories/products/${categoryName}`);
-        this.products = data.products
+        if(categoryName == 'newProducts'){
+          const {data} = await this.$axios.get(`/${this.user}/products/new?limit=${this.limit}&offset=${this.offset}`);
+          this.products = data.new_products;
+          this.count = data.count;
+        }else if(categoryName == 'discountProducts'){
+          const {data} = await this.$axios.get(`/${this.user}/products/discount?limit=${this.limit}&offset=${this.offset}`);
+          console.log(data)
+          this.products = data.discount_products
+        }else if(categoryName == 'saleProducts'){
+          // const {data} = await this.$axios.get(`/${this.user}/products/action?limit=${this.limit}&offset=${this.offset}`);
+          // console.log(data);
+          // this.products = data.action_products
+        }else{
+          const {data} = await this.$axios.get(`/${this.user}/sub-categories/products/${categoryName}?limit=${this.limit}&offset=${this.offset}`);
+          this.count = data.count
+          this.products = data.products
+        }
       } catch (err) {
         console.log(err)
       }
+    },
+    loadMore(){
+      this.limit += this.limitAdd;
+      if(this.limit > this.count){
+        document.querySelector(".loadMore").style.display = 'none'
+      }
+      this.fullSort();
     },
     changeView(number){
       document.querySelectorAll('.category_main_filter_right .icon')[0].classList.remove('active')
@@ -377,8 +414,20 @@ export default {
       this.filterData.woman ? sex.push("F") : '';
       this.filterData.child ? sex.push("U") : '';
       try {
-        data = await this.$axios.get(`/public/sub-categories/products/${this.$route.params.id}?sort=${sortNumber}&max_price=${this.filterData.max}&min_price=${this.filterData.min}&is_new=${this.filterData.new}&discount=${this.filterData.discount}&sex=${sex}`);
-        this.products = data.data.products;
+        if(this.$route.params.id == 'newProducts'){
+          const {data} = await this.$axios.get(`/${this.user}/products/new?sort=${sortNumber}&max_price=${this.filterData.max}&min_price=${this.filterData.min}&is_new=${this.filterData.new}&discount=${this.filterData.discount}&sex=${sex}&limit=${this.limit}&offset=${this.offset}`);
+          this.products = data.new_products;
+        }else if(this.$route.params.id == 'discountProducts'){
+          const {data} = await this.$axios.get(`/${this.user}/products/discount?sort=${sortNumber}&max_price=${this.filterData.max}&min_price=${this.filterData.min}&is_new=${this.filterData.new}&discount=${this.filterData.discount}&sex=${sex}&limit=${this.limit}&offset=${this.offset}`);
+          this.products = data.discount_products;
+        }else if(this.$route.params.id == 'saleProducts'){
+          const {data} = await this.$axios.get(`/${this.user}/products/action?sort=${sortNumber}&max_price=${this.filterData.max}&min_price=${this.filterData.min}&is_new=${this.filterData.new}&discount=${this.filterData.discount}&sex=${sex}&limit=${this.limit}&offset=${this.offset}`);
+          this.products = data.discount_products;
+        }
+        else{
+          data = await this.$axios.get(`/${this.user}/sub-categories/products/${this.$route.params.id}?sort=${sortNumber}&max_price=${this.filterData.max}&min_price=${this.filterData.min}&is_new=${this.filterData.new}&discount=${this.filterData.discount}&sex=${sex}&limit=${this.limit}&offset=${this.offset}`);
+          this.products = data.data.products;
+        }
       } catch (error) {
         console.log(error); 
       }

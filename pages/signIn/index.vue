@@ -23,12 +23,12 @@
       </div>
 
       <div class="signIn_main">
-        <div class="title">{{$t('giveId')}}</div>
-        <span class="input"><input type="text"></span>
+        <div class="title">{{$t('phoneNumber')}}</div>
+        <span class="input"><input type="text" placeholder="+993" v-model="loginData.user_phone"></span>
 
         <div class="title">{{$t('givePassword')}}</div>
         <span class="input">
-          <input type="password">
+          <input type="password" v-model="loginData.password">
           <svg @click="password(1)" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M1 12C1 12 5 4 12 4C19 4 23 12 23 12C23 12 19 20 12 20C5 20 1 12 1 12Z" stroke="#666883" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="#666883" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -36,8 +36,8 @@
         </span>
 
         <div class="title">{{$t('giveConfirmPass')}}</div>
-        <span class="input">
-          <input type="password">
+        <span class="input secondPassword">
+          <input type="password" v-model="loginData.password2">
           <svg @click="password(2)" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M1 12C1 12 5 4 12 4C19 4 23 12 23 12C23 12 19 20 12 20C5 20 1 12 1 12Z" stroke="#666883" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="#666883" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -47,7 +47,7 @@
           <nuxt-link to="/forgot">{{$t('forgotPass')}}</nuxt-link>
         </div>
 
-        <button class="signButton">
+        <button class="signButton" @click="send">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M15 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H15" stroke="#FAFAFA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M10 17L15 12L10 7" stroke="#FAFAFA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -62,6 +62,15 @@
 
 <script >
 export default {
+  data(){
+    return {
+      loginData:{
+        user_phone:"",
+        password:"",
+        password2:"",
+      }
+    }
+  },
   mounted(){
     const height = window.innerHeight-258;
     const element = document.querySelector('.signIn');
@@ -75,6 +84,35 @@ export default {
         el.setAttribute('type','text');
       }else{
         el.setAttribute('type','password');
+      }
+    },
+    async send(){
+      if(!this.loginData.password || !this.loginData.user_phone){
+        this.$toast.success(this.$t("fillFreeSpace"))
+      }else if(this.loginData.password === this.loginData.password2){
+        this.$nuxt.$emit("loading");
+        try {
+          const data = await this.$axios.post("/users/login",this.loginData);
+          console.log(data);
+          if(data.status === 200){
+            this.$store.dispatch('user/setUserToken', data.data.token);
+            this.$store.dispatch('user/setUser', data.data.data.user)
+            this.$store.dispatch('discountProducts/fetchDiscounts',{globalUser:'users',limit:5,offset:0})
+            this.$store.dispatch('newProducts/fetchNews',{globalUser:'users',limit:5,offset:0})
+            this.$store.dispatch('recommendedProducts/fetchRecommended',{globalUser:'users',limit:30,offset:0})
+            this.$cookies.set('user', data.data.data.user)
+            this.$cookies.set('user-token', data.data.token)
+            this.$nuxt.$emit("loading");
+            this.$router.push('/');
+          }
+        } catch ({response}) {
+          console.log(response.data.message);
+          this.$toast.success(this.$t("nameOrPassError"))
+          this.$nuxt.$emit("loading");
+        }
+      }else{
+        document.querySelector(".secondPassword").style.border = '1px solid red'; 
+        this.loginData.password2 = ''
       }
     }
   }

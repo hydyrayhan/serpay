@@ -331,6 +331,9 @@
       
       @include mobile{
         @include flex();
+        .header_buttons_mode_dark{
+          display: flex
+        }
       }
     }
     .header_buttons_mode{
@@ -347,7 +350,13 @@
             fill: $gray;
           }
         }
+        .active{
+          svg path{
+            fill: white !important;
+          }
+        } 
       }
+      
       @include mobile{
         display: none;
       }
@@ -356,6 +365,11 @@
       }
       .mode{
         @include flex;
+        &.active{
+          svg path{
+            fill: $red;
+          }
+        }
       }
     }
     &_home{

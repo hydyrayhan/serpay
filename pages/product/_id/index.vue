@@ -13,23 +13,22 @@
         </svg>
     </div>
     <!-- <Breadcrumb :positions="positions"/> -->
-    <div class="productPage">
+    <div class="productPage" v-if="product">
       <div class="productPage_images">
-        <div class="big_image"><img src="~/assets/images/delete/productPage.png" alt=""></div>
-        <div class="small_image">
-          <div class="small_image_image active" @click="imageChange(0)">
-            <img src="~/assets/images/delete/product.png" alt="">
-          </div>
-          <div class="small_image_image" @click="imageChange(1)">
-            <img src="~/assets/images/delete/product3.png" alt="">
+        <div class="big_image">
+          <img v-bind:src="$config.url+'/'+product.images[0].image" v-if="product.images[0].image" alt="">
+        </div>
+        <div class="small_image" v-if="product.images.length>1">
+          <div class="small_image_image active" v-for="(image,i) in product.images" :key="i" @click="imageChange(i)">
+            <img v-bind:src="$config.url+'/'+image.image" v-if="image.image" alt="">
           </div>
         </div>
       </div>
 
       <div class="productPage_info" :class="mode">
         <div class="info_price">
-          <div class="info_price_new"><span>12345</span><span>manat</span></div>
-          <div class="info_price_old">12345manat <span></span></div>
+          <div class="info_price_new" v-if="product.price"><span>{{product.price}}</span><span>manat</span></div>
+          <div class="info_price_old" v-if="product.price_old">{{product.price_old}}manat <span></span></div>
           <div class="info_price_liked">
             <svg v-if="!liked" width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M17.2711 0.891479C16.1919 0.908265 15.1363 1.20951 14.2109 1.76478C13.2854 2.32006 12.5229 3.1097 12.0002 4.05398C11.4776 3.1097 10.7151 2.32006 9.78959 1.76478C8.86414 1.20951 7.80854 0.908265 6.72941 0.891479C5.00915 0.966221 3.38838 1.71876 2.2212 2.9847C1.05403 4.25064 0.435317 5.92707 0.500245 7.64773C0.500245 12.0053 5.08683 16.7644 8.93358 19.9911C9.79245 20.7128 10.8784 21.1085 12.0002 21.1085C13.1221 21.1085 14.208 20.7128 15.0669 19.9911C18.9137 16.7644 23.5002 12.0053 23.5002 7.64773C23.5652 5.92707 22.9465 4.25064 21.7793 2.9847C20.6121 1.71876 18.9913 0.966221 17.2711 0.891479ZM13.8354 18.5248C13.3218 18.9574 12.6718 19.1946 12.0002 19.1946C11.3287 19.1946 10.6787 18.9574 10.165 18.5248C5.24112 14.3934 2.41691 10.4298 2.41691 7.64773C2.3514 6.43516 2.76801 5.24589 3.57588 4.33927C4.38376 3.43266 5.51734 2.88227 6.72941 2.80815C7.94148 2.88227 9.07506 3.43266 9.88294 4.33927C10.6908 5.24589 11.1074 6.43516 11.0419 7.64773C11.0419 7.90189 11.1429 8.14565 11.3226 8.32537C11.5023 8.50509 11.7461 8.60606 12.0002 8.60606C12.2544 8.60606 12.4982 8.50509 12.6779 8.32537C12.8576 8.14565 12.9586 7.90189 12.9586 7.64773C12.8931 6.43516 13.3097 5.24589 14.1175 4.33927C14.9254 3.43266 16.059 2.88227 17.2711 2.80815C18.4831 2.88227 19.6167 3.43266 20.4246 4.33927C21.2325 5.24589 21.6491 6.43516 21.5836 7.64773C21.5836 10.4298 18.7594 14.3934 13.8354 18.521V18.5248Z" fill="#616161"/>
@@ -37,15 +36,15 @@
             <svg v-else width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M17.2706 0.891602C16.1915 0.908387 15.1359 1.20963 14.2104 1.7649C13.2849 2.32018 12.5224 3.10983 11.9998 4.0541C11.4771 3.10983 10.7146 2.32018 9.78911 1.7649C8.86365 1.20963 7.80805 0.908387 6.72892 0.891602C5.00866 0.966343 3.38789 1.71889 2.22071 2.98482C1.05354 4.25076 0.434829 5.92719 0.499757 7.64785C0.499757 12.0054 5.08634 16.7645 8.93309 19.9912C9.79196 20.7129 10.8779 21.1086 11.9998 21.1086C13.1216 21.1086 14.2075 20.7129 15.0664 19.9912C18.9132 16.7645 23.4998 12.0054 23.4998 7.64785C23.5647 5.92719 22.946 4.25076 21.7788 2.98482C20.6116 1.71889 18.9909 0.966343 17.2706 0.891602Z" fill="#FF141D"/>
             </svg>
-            <span>1233</span>
+            <span>{{product.likeCount}}</span>
           </div>
         </div>
 
-        <div class="info_name">Beko Washing Machine  White 5kg</div> 
+        <div class="info_name">{{product[language.name]}}</div> 
 
-        <div class="info_definition">Men Jeans Oversize Black Blue Loose Big Size Jeans For Men Casual Fat Trousers Men's Cargo Pants Pantalon Homme 8XL 10XL Pants</div>
+        <div class="info_definition">{{product[language.body]}}</div>
 
-        <div class="info_kind">
+        <div class="info_kind" v-if="product.product_colors.length">
           <div class="info_title">{{$t('kind')}}</div>
           <div class="info_kind_images">
             <div class="image active"><img src="~/assets/images/delete/product3.png" alt=""></div>
@@ -53,12 +52,11 @@
           </div>
         </div>
 
-        <div class="info_size">
+        <div class="info_size" v-if="product.product_sizes.length">
           <div class="info_title">{{$t('size')}}</div>
           <div class="info_size_sizes">
-            <div class="size">3 kg</div>
-            <div class="size active">5 kg</div>
-            <div class="size">7 kg</div>
+            <div class="size" v-for="(size,i) in product.product_sizes" :key="i" @click="sizeChange(i)">{{size.size}}</div>
+            <!-- <div class="size active">5 kg</div> -->
           </div>
         </div>
 
@@ -73,7 +71,7 @@
               </div>
             </div>
             <div class="top_price">
-              18310<span>manat</span>
+              {{product.price}}<span>manat</span>
             </div>
           </div>
           <div class="bottom">
@@ -83,8 +81,8 @@
               </svg>
               <span>{{$t('home')}}</span>
             </nuxt-link>
-            <div class="bottom_brand">{{$t('brandProducts')}}</div>
-            <div class="bottom_like mob" @click="liked = !liked">
+            <div class="bottom_brand" @click="$router.push(`/brand/${product.brand.brand_id}`)">{{$t('brandProducts')}}</div>
+            <div class="bottom_like mob" @click="likeFunction">
               <svg v-if="!liked" width="24" height="21" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16.7755 0.390625C15.6963 0.40741 14.6407 0.708651 13.7153 1.26393C12.7898 1.8192 12.0273 2.60885 11.5046 3.55312C10.982 2.60885 10.2194 1.8192 9.29399 1.26393C8.36853 0.708651 7.31294 0.40741 6.2338 0.390625C4.51354 0.465366 2.89277 1.21791 1.7256 2.48385C0.558421 3.74978 -0.0602882 5.42621 0.00463939 7.14687C0.00463939 11.5044 4.59122 16.2635 8.43797 19.4902C9.29685 20.212 10.3828 20.6076 11.5046 20.6076C12.6265 20.6076 13.7124 20.212 14.5713 19.4902C18.4181 16.2635 23.0046 11.5044 23.0046 7.14687C23.0696 5.42621 22.4509 3.74978 21.2837 2.48385C20.1165 1.21791 18.4957 0.465366 16.7755 0.390625ZM13.3398 18.024C12.8262 18.4565 12.1762 18.6937 11.5046 18.6937C10.8331 18.6937 10.1831 18.4565 9.66943 18.024C4.74551 13.8926 1.92131 9.92892 1.92131 7.14687C1.85579 5.93431 2.27241 4.74503 3.08028 3.83842C3.88815 2.93181 5.02174 2.38142 6.2338 2.30729C7.44587 2.38142 8.57946 2.93181 9.38733 3.83842C10.1952 4.74503 10.6118 5.93431 10.5463 7.14687C10.5463 7.40104 10.6473 7.6448 10.827 7.82452C11.0067 8.00424 11.2505 8.10521 11.5046 8.10521C11.7588 8.10521 12.0026 8.00424 12.1823 7.82452C12.362 7.6448 12.463 7.40104 12.463 7.14687C12.3975 5.93431 12.8141 4.74503 13.6219 3.83842C14.4298 2.93181 15.5634 2.38142 16.7755 2.30729C17.9875 2.38142 19.1211 2.93181 19.929 3.83842C20.7369 4.74503 21.1535 5.93431 21.088 7.14687C21.088 9.92892 18.2638 13.8926 13.3398 18.0201V18.024Z" fill="#616161"/>
               </svg>
@@ -101,7 +99,7 @@
               </svg>
               <span>{{$t('chatToAdmin')}}</span>
             </nuxt-link>
-            <div class="bottom_addCart">
+            <div class="bottom_addCart" @click="addToCart">
               <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_1997_15920)">
                 <path d="M18.9373 3.8975C18.7029 3.6162 18.4094 3.38996 18.0777 3.23485C17.746 3.07973 17.3843 2.99955 17.0181 3H3.54477L3.50977 2.7075C3.43814 2.09952 3.14592 1.53894 2.68851 1.13206C2.2311 0.725186 1.64029 0.500285 1.0281 0.5L0.843099 0.5C0.622085 0.5 0.410124 0.587797 0.253843 0.744078C0.097563 0.900358 0.00976563 1.11232 0.00976562 1.33333C0.00976563 1.55435 0.097563 1.76631 0.253843 1.92259C0.410124 2.07887 0.622085 2.16667 0.843099 2.16667H1.0281C1.23221 2.16669 1.42921 2.24163 1.58174 2.37726C1.73427 2.5129 1.83172 2.69979 1.8556 2.9025L3.00227 12.6525C3.12131 13.6665 3.6085 14.6015 4.37136 15.28C5.13421 15.9585 6.11964 16.3334 7.1406 16.3333H15.8431C16.0641 16.3333 16.2761 16.2455 16.4324 16.0893C16.5886 15.933 16.6764 15.721 16.6764 15.5C16.6764 15.279 16.5886 15.067 16.4324 14.9107C16.2761 14.7545 16.0641 14.6667 15.8431 14.6667H7.1406C6.62481 14.6652 6.1221 14.5043 5.70138 14.2059C5.28066 13.9075 4.96253 13.4863 4.7906 13H14.7239C15.7008 13.0001 16.6467 12.6569 17.3963 12.0304C18.1459 11.4039 18.6515 10.5339 18.8248 9.5725L19.4789 5.94417C19.5442 5.58417 19.5296 5.21422 19.4359 4.86053C19.3423 4.50684 19.1721 4.17806 18.9373 3.8975ZM17.8431 5.64833L17.1881 9.27667C17.084 9.85417 16.7802 10.3767 16.3297 10.7527C15.8791 11.1287 15.3107 11.3342 14.7239 11.3333H4.5256L3.74143 4.66667H17.0181C17.1405 4.66594 17.2616 4.69218 17.3727 4.74355C17.4838 4.79491 17.5823 4.87012 17.661 4.96384C17.7398 5.05756 17.7969 5.16748 17.8284 5.28578C17.8599 5.40409 17.8649 5.52787 17.8431 5.64833Z" fill="#FAFAFA"/>
@@ -116,20 +114,27 @@
               </svg>
               <span>{{$t('addCart')}}</span>
             </div>
+            <div class="bottom_addCart hasCart" v-if="false">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 6H5H21" stroke="#616161" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6H19Z" stroke="#616161" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>{{$t('deleteFromCart')}}</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="category_header" :class="mode">
+    <div class="category_header" :class="mode" v-if="recommenendations.products.length>0">
       <div class="category_header_left">
         <div class="name">{{$t('recommendation')}}</div>
       </div>
       <nuxt-link to="/" class="seeAll" :class="mode">{{$t('seeAll')}}</nuxt-link>
     </div>
 
-    <div class="productPage_teklipProducts">
-      <Product v-for="i in 5" :key="i"/>
+    <div class="productPage_teklipProducts" v-if="recommenendations.products.length>0">
+      <Product v-for="(product,i) in recommenendations.products" :key="i" :product="product"/>
     </div>
 
     <div class="category_header">
@@ -138,10 +143,7 @@
       </div>
     </div>
     <div class="productPage_detail">
-      <img src="~/assets/images/delete/detail.png" alt="">
-      <img src="~/assets/images/delete/detail.png" alt="">
-      <img src="~/assets/images/delete/detail.png" alt="">
-      <img src="~/assets/images/delete/detail.png" alt="">
+      <img v-for="(image,i) in product.details" :key="i" v-bind:src="$config.url+'/'+image.image"  alt="">
     </div>
     <ProductInfo @close-productInfo="resInfo = false" v-show="resInfo"/>
   </div>
@@ -158,14 +160,69 @@ export default {
     return{
       liked:false,
       resInfo:false, 
+      gallery:[],
+      choosenProduct:{
+        quantity:1
+      }
     }
+  },
+  async asyncData({ $axios, route , store}) {
+    const user = store.state.user.user;
+    let globalUser = 'public';
+    if(user){
+      globalUser = 'users';
+    }
+    try {
+      const productId = route.params.id;
+      let { data } = await $axios.get(`/${globalUser}/products/${productId}`);
+      const product = data.product.oneProduct;
+      // console.log(product)
+      const {recommenendations} = data.product;
+      return { product, recommenendations }
+    } catch (err) {
+      console.log(err)
+    }
+  },
+  mounted(){
+    this.liked = this.product.isLiked;
   },
   computed:{
     ...mapGetters({
       mode: 'mode/mode',
+      language:'dynamicLang/language',
+      user:"user/user",
     }),
   },
   methods:{
+    async likeFunction(){
+      if(this.user){
+        const product_id = this.$route.params.id;
+        if(!this.liked){
+          try {
+            const res = await this.$axios.post("/users/like",{product_id})
+            console.log(res);
+            if(res.status = 200){
+              this.liked = true;
+              this.product.likeCount+=1;
+            }
+          } catch ({response}) {
+            console.log(response.data.message)
+          }
+        }else{
+          try {
+            const res = await this.$axios.delete(`/users/like/${product_id}`)
+            if(res.status = 200){
+              this.liked = false;
+              this.product.likeCount-=1;
+            }
+          } catch ({response}) {
+            console.log(response.data.message)
+          }
+        }
+      }else{
+        this.$toast.success(this.$t('firstlyRegister'))
+      }
+    },
     imageChange(id){
       const big = document.querySelector('.big_image img');
       const smalls = document.querySelectorAll('.small_image_image');
@@ -174,6 +231,26 @@ export default {
         smalls[i].classList.remove('active');
       }
       smalls[id].classList.add("active");
+    },
+    sizeChange(id){
+      let sizes = document.querySelectorAll(".size");
+      for(let i = 0; i<sizes.length; i++){
+        sizes[i].classList.remove('active');
+      }
+      sizes[id].classList.add('active');
+    },
+    async addToCart(){
+      if(this.user){
+        try {
+          const res = await this.$axios.post(`/users/to-my-cart`,{product_id:this.$route.params.id,quantity:this.choosenProduct.quantity});
+          console.log(res);
+          if(res.status == 201){
+
+          }
+        } catch (error) {
+          console.log(error)
+        }
+      }
     }
   }
 }

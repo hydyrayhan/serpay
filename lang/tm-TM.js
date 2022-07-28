@@ -125,6 +125,15 @@ export default {
     sendAgain:"Täzeden iber",
     toSet:"Dikeltmek",
     codeTitle:"<span>+993 6*******</span> belgä tassyklaýyş sms-y ugradyldy. SMS arkaly gelen <span>tassyklaýyş kody</span> aşakda giriziň",
-    giveCode:"Kody giriziň!"
+    giveCode:"Kody giriziň!",
+    wantToLogout:"Siz hasapdan çykmak isleýäňizmi?",
+    no:"Ýok",
+    loadMore:"Ýene ýüklemek",
+    passwordLetterMore6:"Password 6 charechterden uly bolmaly",
+    numberAlreadyHas:"Bu nomer eýýäm bar",
+    nameAlreadyHas:"Bu at eýýäm bar",
+    fillFreeSpace:"Boşluklary dorduryň",
+    nameOrPassError:"Adyňyz ýada açar sözüniz ýalňyş",
+    firstlyRegister:"Ilki registrasiya bolun"
 }
   

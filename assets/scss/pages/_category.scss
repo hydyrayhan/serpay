@@ -433,6 +433,14 @@
           }
         }
       }
+      .loadMore{
+        cursor: pointer;
+        background-color: $red;
+        color: white;
+        margin: 20px auto;
+        padding: 10px 20px;
+        border-radius: 5px;
+      }
     }
     .sortFilterBg{
       width: 100%;
@@ -450,3 +458,4 @@
     }
   }
 }
+

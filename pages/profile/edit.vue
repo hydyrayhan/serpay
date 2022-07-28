@@ -38,15 +38,12 @@
         </button>
        </div>
     </div>
-    <Loading v-show="load"/>
   </div>
 </template>
 
 <script>
 import {mapGetters} from 'vuex';
-import Loading from "~/components/Loading";
 export default {
-  components:{Loading},
   data(){
     return{
       userInfo:{
@@ -54,7 +51,6 @@ export default {
         nickname:"",
       },
       image:[],
-      load:false
     }
   },
   mounted(){
@@ -72,7 +68,7 @@ export default {
   },
   methods:{
     async changeData(){
-      this.load = true;
+      this.$nuxt.$emit("loading");
       try {
         const res = await this.$axios.patch('users/update-me',this.userInfo);
         this.$store.dispatch('user/setUserToken', res.data.token)
@@ -92,7 +88,7 @@ export default {
             this.$cookies.set('user-token', res.data.token)
             document.location.reload()
           }
-          this.load = false;
+          this.$nuxt.$emit("loading");
         }
       } catch (error) {
         console.log(error);

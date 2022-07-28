@@ -12,9 +12,8 @@ export const actions = {
   async fetchNews({ commit },extra) {
     let file;
     try{
-      const { data } = await this.$axios.get(`/public/products/new?limit=${extra.limit}&offset=${extra.offset}`)
+      const { data } = await this.$axios.get(`/${extra.globalUser}/products/new?limit=${extra.limit}&offset=${extra.offset}`)
       file = data.new_products;
-      // console.log(file)
     }catch(err){
       console.log(err);
     }

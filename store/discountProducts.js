@@ -12,9 +12,8 @@ export const actions = {
   async fetchDiscounts({ commit },extra) {
     let file;
     try{
-      const { data } = await this.$axios.get(`/public/products/discount?limit=${extra.limit}&offset=${extra.offset}`);
+      const { data } = await this.$axios.get(`/${extra.globalUser}/products/discount?limit=${extra.limit}&offset=${extra.offset}`);
       file = data.discount_products;
-      // console.log(file)
     }catch(err){
       console.log(err);
     }

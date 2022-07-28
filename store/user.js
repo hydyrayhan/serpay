@@ -44,4 +44,4 @@ export const getters = {
   userToken(state) {
     return state.userToken
   },
-}
+} 

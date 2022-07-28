@@ -5,24 +5,32 @@
         </div>
         <div class="space"></div>
         <div class="nuxt" :class="mode">
-            <Nuxt />
+            <Nuxt @loading="loadFunc()"/>
         </div>
         <MobileBottomNavbar />
         <Footer />
+        <Loading v-show="load"/>
     </div>
 </template>
 
 <script>
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import Loading from '../components/Loading'
 import MobileBottomNavbar from '../components/MobileBottomNavbar'
 import { mapGetters } from 'vuex';
 export default {
-    components: {Header, Footer, MobileBottomNavbar},
+    components: {Header, Footer, MobileBottomNavbar, Loading},
+    data(){
+        return{
+            load : false
+        }
+    },
     created() {
         // this.$store.dispatch('cart/setProductsToCart')
         const userToken = this.$store.getters['user/userToken']
         if (userToken) this.$axios.setHeader('Authorization', `Bearer ${userToken}`)
+        this.$nuxt.$on('loading', () => this.loadFunc())
     },
     mounted() {
         // let cartPerfumes = localStorage.getItem('cart-products')
@@ -52,6 +60,9 @@ export default {
         }),
     },
     methods:{
+        loadFunc(){
+            this.load = !this.load
+        }
     }
 }
 </script>

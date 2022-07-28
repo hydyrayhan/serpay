@@ -12,7 +12,7 @@ export const actions = {
   async fetchRecommended({ commit },extra) {
     let file;
     try{
-      const { data } = await this.$axios.get(`/public/products?limit=${extra.limit}&offset=${extra.offset}`);
+      const { data } = await this.$axios.get(`/${extra.globalUser}/products?limit=${extra.limit}&offset=${extra.offset}`);
       file = data;
     }catch(err){
       console.log(err);

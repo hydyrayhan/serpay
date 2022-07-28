@@ -24,12 +24,12 @@
 
       <div class="main_discounts">
         <span class="newDisCon">
-          <nuxt-link to="/" class="new">
+          <nuxt-link to="/category/newProducts" class="new">
             <div class="new_image"><img src="~/assets/images/delete/product.png" alt="newProduct"></div>
             <div class="new_text">{{$t('newProducts')}}</div>
             <div class="new_newIcon icon">{{$t('new')}}</div>
           </nuxt-link>
-          <nuxt-link to="/" class="discount">
+          <nuxt-link to="/category/saleProducts" class="discount">
             <div class="discount_image"><img src="~/assets/images/delete/product2.png" alt="discountProduct"></div>
             <div class="discount_text">{{$t('discountProducts')}}</div>
             <div class="discount_discountIcon icon">
@@ -39,7 +39,7 @@
             </div>
           </nuxt-link>
         </span>
-        <nuxt-link to="/" class="sale">
+        <nuxt-link to="/category/discountProducts" class="sale">
           <div class="sale_image"><img src="~/assets/images/delete/banner2.png" alt="saleProduct"></div>
           <div class="sale_text">{{$t('discountOnProducts')}}</div>
           <div class="sale_saleIcon icon">
@@ -77,7 +77,7 @@
           </div>
           <div class="name">{{$t('discount')}}</div>
         </div>
-        <nuxt-link to="/" class="seeAll" :class="mode">{{$t('seeAll')}}</nuxt-link>
+        <nuxt-link to="/category/discountProducts" class="seeAll" :class="mode">{{$t('seeAll')}}</nuxt-link>
       </div>
       <div class="main_category">
         <div class="main_product" v-if="discountProducts">
@@ -97,7 +97,7 @@
           </div>
           <div class="name">{{$t('newProducts')}}</div>
         </div>
-        <nuxt-link to="/" class="seeAll" :class="mode">{{$t('seeAll')}}</nuxt-link>
+        <nuxt-link to="/category/newProducts" class="seeAll" :class="mode">{{$t('seeAll')}}</nuxt-link>
       </div>
       <div class="main_category">
         <div class="main_product">

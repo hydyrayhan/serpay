@@ -3,7 +3,7 @@
     <div class="container">
       <div class="searched_products">
         <div class="searched_products_product" v-for="i in 19" :key="i">
-          <Product />
+          <!-- <Product /> -->
         </div>
       </div>
     </div>

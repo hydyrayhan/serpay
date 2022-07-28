@@ -2,7 +2,7 @@
   <div class="container">
     <div class="cart_tablet_header">
       <div class="cart_title">{{$t('cart')}}</div>
-      <div class="chooseAll" @click="radioButton('all')">
+      <div class="chooseAll" @click="radioButton('all')" v-if="products.length">
         <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="10" cy="10.5" r="9.25" stroke="#FF141D" stroke-width="1.5"/>
           <circle cx="10" cy="10.5" r="6.25" fill="#FF141D"/>
@@ -10,11 +10,11 @@
         <span>{{$t('chooseAll')}}</span>
       </div>
     </div>
-    <div class="cart">
-      <div class="cart_left">
-        <div class="product_container">
-          <div class="cart_left_radio" @click="radioButton(0)">
-            <svg v-if="!radios[0]" width="25" height="25" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div class="cart" >
+      <div class="cart_left" v-if="products.length">
+        <div class="product_container" v-for="(product,i) in products" :key="i">
+          <div class="cart_left_radio" @click="radioButton(i)">
+            <svg v-if="!radios[i]" width="25" height="25" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="10" cy="10" r="9.25" stroke="#AEAEAE" stroke-width="1.5"/>
             </svg>
             <svg v-else width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -23,15 +23,18 @@
             </svg>
           </div>
           <div class="cart_left_product">
-            <div class="images"><ImageSlider /></div>
+            <!-- <div class="images"><ImageSlider /></div> -->
+            <div class="images">
+              <img v-bind:src="$config.url+'/'+product.image" v-if="product.image" alt="">
+            </div>
             <div class="infoButton">
               <div class="info">
                 <div class="info_price">
-                  <div class="info_price_new">12893<span>manat</span></div>
-                  <div class="info_price_old">12893<span>manat</span><span></span></div>
+                  <div class="info_price_new" v-if="product.price>-1">{{product.price}}<span>manat</span></div>
+                  <div class="info_price_old" v-if="product.price_old">{{product.price_old}}<span>manat</span><span></span></div>
                 </div>
-                <div class="info_name">Lorem ipsum dolor sit amet consectetur.</div>
-                <div class="info_definition">Lorem ipsum dolor sit amet.</div>
+                <div class="info_name" v-if="product[language.name]">{{product[language.name]}}</div>
+                <div class="info_definition" v-if="product[language.body]">{{product[language.body]}}</div>
               </div>
 
               <div class="buttons">
@@ -42,7 +45,7 @@
                       <path d="M5.03906 0.3125V1.94531H0.765625V0.3125H5.03906Z" fill="#292929"/>
                     </svg>
                   </div>
-                  <div class="count">1</div>
+                  <div class="count" v-if="product.quantity">{{product.quantity}}</div>
                   <div class="button">
                     <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M8.27344 3.71094V5.54688H0.476562V3.71094H8.27344ZM5.36719 0.578125V8.85938H3.39062V0.578125H5.36719Z" fill="#292929"/>
@@ -64,7 +67,7 @@
           </div>
         </div>
       </div>
-      <div class="cart_right"> 
+      <div class="cart_right" v-if="products.length"> 
         <div class="cart_right_main">
           <div class="chooseAll" @click="radioButton('all')">
             <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -101,22 +104,43 @@
 
 <script>
 import ImageSlider from '~/components/ImageSlider';
+import {mapGetters} from 'vuex';
 export default {
   components:{ImageSlider},
   data(){
     return{
-      radios:[false,false,true],
+      radios:[],
+      products:[],
     }
   },
-   mounted(){
+  async mounted(){
     document.querySelectorAll(".header_buttons_cart path")[0].style.fill = '#FF141D'
     document.querySelectorAll(".header_buttons_cart path")[1].style.fill = '#FF141D'
     document.querySelectorAll(".header_buttons_cart path")[2].style.fill = '#FF141D'
     document.querySelector(".header_buttons_cart .text").style.color = '#FF141D'
 
-    const height = window.innerHeight-352;
+    const height = window.innerHeight-299;
     const element = document.querySelector('.cart');
     element.style.minHeight = height+'px';
+
+    if(this.user){
+      try {
+        const res = await this.$axios.get("/users/not-ordered");
+        this.products = res.data.not_ordered_products;
+        console.log(res);
+        for(let i = 0; i<this.products.length; i++){
+          this.radios.push(false);
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  },
+  computed:{
+    ...mapGetters({
+      language:'dynamicLang/language',
+      user:"user/user",
+    }),
   },
   methods:{
     radioButton(id){
