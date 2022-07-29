@@ -107,7 +107,7 @@ export default {
           }
         } catch ({response}) {
           console.log(response.data.message);
-          this.$toast.success(this.$t("nameOrPassError"))
+          this.$toast.success(this.$t("phoneOrPassError"))
           this.$nuxt.$emit("loading");
         }
       }else{

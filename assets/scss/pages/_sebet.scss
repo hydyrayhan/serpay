@@ -46,6 +46,7 @@
     }
     &_radio{
       margin-right: 20px;
+      cursor: pointer;
       @include mobile{
         margin-right: 5px;
       }

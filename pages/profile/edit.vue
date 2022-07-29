@@ -68,30 +68,35 @@ export default {
   },
   methods:{
     async changeData(){
-      this.$nuxt.$emit("loading");
-      try {
-        const res = await this.$axios.patch('users/update-me',this.userInfo);
-        this.$store.dispatch('user/setUserToken', res.data.token)
-        if(res.status == 200){
-          if(this.image.length > 0){
-            const ress = await this.$axios.post('users/upload-image',this.image[0]);
-            console.log(ress);
-            this.$store.dispatch('user/setUserToken', res.data.token)
-            this.$store.dispatch('user/setUser', res.data.data.user)
-            this.$cookies.set('user', res.data.data.user)
-            this.$cookies.set('user-token', res.data.token)
-            document.location.reload()
-          }else{
-            this.$store.dispatch('user/setUserToken', res.data.token)
-            this.$store.dispatch('user/setUser', res.data.data.user)
-            this.$cookies.set('user', res.data.data.user)
-            this.$cookies.set('user-token', res.data.token)
-            document.location.reload()
+      if(this.userInfo.nickname){
+        this.$nuxt.$emit("loading");
+        try {
+          const res = await this.$axios.patch('users/update-me',this.userInfo);
+          this.$store.dispatch('user/setUserToken', res.data.token)
+          if(res.status == 200){
+            if(this.image.length > 0){
+              const ress = await this.$axios.post('users/upload-image',this.image[0]);
+              console.log(ress);
+              this.$store.dispatch('user/setUserToken', res.data.token)
+              this.$store.dispatch('user/setUser', res.data.data.user)
+              this.$cookies.set('user', res.data.data.user)
+              this.$cookies.set('user-token', res.data.token)
+              document.location.reload()
+            }else{
+              this.$store.dispatch('user/setUserToken', res.data.token)
+              this.$store.dispatch('user/setUser', res.data.data.user)
+              this.$cookies.set('user', res.data.data.user)
+              this.$cookies.set('user-token', res.data.token)
+              document.location.reload()
+            }
+            this.$nuxt.$emit("loading");
           }
-          this.$nuxt.$emit("loading");
+        } catch ({response}) {
+          console.log(response.data.message)
+          this.$nuxt.$emit("loading")
         }
-      } catch (error) {
-        console.log(error);
+      }else{
+        this.$toast.success(this.$t('fillFreeSpace'))
       }
     },
     takeImage(event){

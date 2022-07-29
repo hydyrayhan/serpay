@@ -24,8 +24,18 @@
 <script>
 export default {
   props:['data'],
+  data(){
+    return {
+      address:{
+        welayat:'',
+        address:''
+      }
+    }
+  },
   methods:{
     save(){
+      // post('users/address',{address})
+      // patch('users/address/user_address_id',{address})
       if(this.data){
         console.log("Add")
       }else{

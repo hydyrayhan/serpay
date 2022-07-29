@@ -44,6 +44,25 @@ export default {
       globalId:false,
     }
   },
+  async asyncData({ $axios, route , store}) {
+    const user = store.state.user.user;
+    // let globalUser = 'public';
+    // if(user){
+    //   globalUser = 'users';
+    // }
+    if(user){
+      try {
+        let { data } = await $axios.get(`/users/address`);
+        console.log(data);
+        // const product = data.product.oneProduct;
+        // console.log(product)
+        // const {recommenendations} = data.product;
+        // return { product, recommenendations }
+      } catch ({response}) {
+        console.log(response.data.message);
+      }
+    }
+  },
  mounted(){
     const height = window.innerHeight-298;
     const element = document.querySelector('.myAddresses');
@@ -63,6 +82,7 @@ export default {
     },
     deleteAddress(){
       this.deleteAddressShow = true;
+      // delete('users/address/user_address_id)
     }
   }
 }

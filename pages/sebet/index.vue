@@ -53,7 +53,7 @@
                   </div>
                 </div>
 
-                <div class="buttons_delete">
+                <div class="buttons_delete" @click="deleteFromCart(product.product_id)">
                   <div class="icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M3 6H5H21" stroke="#747474" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -78,7 +78,7 @@
           </div>
           <div class="totalPrice">
             <div class="title">{{$t('sum')}}:</div>
-            <div class="price">12389<span>manat</span></div>
+            <div class="price">{{totalPrice}}<span>manat</span></div>
           </div>
         </div>
         <nuxt-link to="order" class="cart_right_bottom">
@@ -111,6 +111,7 @@ export default {
     return{
       radios:[],
       products:[],
+      totalPrice:0,
     }
   },
   async mounted(){
@@ -126,10 +127,11 @@ export default {
     if(this.user){
       try {
         const res = await this.$axios.get("/users/not-ordered");
-        this.products = res.data.not_ordered_products;
         console.log(res);
+        this.products = res.data.not_ordered_products;
         for(let i = 0; i<this.products.length; i++){
           this.radios.push(false);
+          this.totalPrice += this.products[i].total_price;
         }
       } catch (error) {
         console.log(error)
@@ -156,6 +158,20 @@ export default {
         const arr = this.radios
         this.radios = []
         this.radios = arr;
+      }
+    },
+    async deleteFromCart(id){
+      try {
+        const {status} = await this.$axios.delete(`/users/not-ordered/${id}`);
+        if(status == 200){
+          for(let i = 0; i<this.products.length; i++){
+            if(this.products[i].product_id == id){
+              this.products.splice(i, 1)
+            }
+          }
+        }      
+      } catch ({response}) {
+        console.log(response.data.message);
       }
     }
   }

@@ -261,13 +261,16 @@ export default {
       positions:{
         category:{
           name:{
-            tm:"Category",
-            ru:"Category"
+            tm:"",
+            ru:""
           },
           id:"1",
           to:"/"
         },
-        subcategory_name:'Sub category',
+        subcategory_name:{
+          tm:"",
+          ru:""
+        },
       },
       poorRichSort:0,
       productView:true,
@@ -308,18 +311,28 @@ export default {
           const {data} = await this.$axios.get(`/${this.user}/products/new?limit=${this.limit}&offset=${this.offset}`);
           this.products = data.new_products;
           this.count = data.count;
+          this.positions.category = null
+          this.positions.subcategory_name = null
         }else if(categoryName == 'discountProducts'){
           const {data} = await this.$axios.get(`/${this.user}/products/discount?limit=${this.limit}&offset=${this.offset}`);
           console.log(data)
           this.products = data.discount_products
+          this.positions.category = null
+          this.positions.subcategory_name = null
         }else if(categoryName == 'saleProducts'){
           // const {data} = await this.$axios.get(`/${this.user}/products/action?limit=${this.limit}&offset=${this.offset}`);
           // console.log(data);
           // this.products = data.action_products
+          this.positions.category = null
+          this.positions.subcategory_name = null
         }else{
           const {data} = await this.$axios.get(`/${this.user}/sub-categories/products/${categoryName}?limit=${this.limit}&offset=${this.offset}`);
           this.count = data.count
           this.products = data.products
+          this.positions.category.name.tm = data.subcategory.category.name_tm;
+          this.positions.category.name.ru = data.subcategory.category.name_ru;
+          this.positions.subcategory_name.tm = data.subcategory.name_tm;
+          this.positions.subcategory_name.ru = data.subcategory.name_ru;
         }
       } catch (err) {
         console.log(err)

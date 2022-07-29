@@ -39,7 +39,7 @@
         <span class="input">
           <label class="input_input">
             <span>+993</span>
-            <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;" v-model="newUser.user_checked_phone" />
+            <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==8) return false;" v-model="phoneNumber" />
           </label>
         </span>
         <div class="title">{{$t('givePassword')}}</div>
@@ -95,6 +95,7 @@ export default {
       code:'',
       userCode:'',
       image:[],
+      phoneNumber:'',
     }
   },
   methods:{
@@ -111,7 +112,7 @@ export default {
       if(this.newUser.password != this.newUser.passwordConfirm){
         document.querySelector(".signUpLastInputt").style.border = '1px solid red'; 
         this.newUser.passwordConfirm = ''
-      }else if(!this.newUser.nickname || !this.newUser.user_checked_phone || !this.newUser.password){
+      }else if(!this.newUser.nickname || !this.phoneNumber || !this.newUser.password){
         this.$toast.success(this.$t("fillFreeSpace"));
       }else if(this.newUser.password.length<6){
         document.querySelector(".error").style.display = 'block';
@@ -136,6 +137,7 @@ export default {
       if(this.userCode === this.code){
         this.$nuxt.$emit("loading");
         try {
+          this.newUser.user_checked_phone = '+993'+this.phoneNumber;
           const data = await this.$axios.post("/users/signup",this.newUser)
           if(data.status==201){
             if(this.image.length>0){
@@ -186,7 +188,6 @@ export default {
     const height = window.innerHeight-398;
     const element = document.querySelector('.signIn');
     element.style.minHeight = height+'px';
-    
   },
 }
 </script>

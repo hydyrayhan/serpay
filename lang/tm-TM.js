@@ -133,7 +133,7 @@ export default {
     numberAlreadyHas:"Bu nomer eýýäm bar",
     nameAlreadyHas:"Bu at eýýäm bar",
     fillFreeSpace:"Boşluklary dorduryň",
-    nameOrPassError:"Adyňyz ýada açar sözüniz ýalňyş",
+    phoneOrPassError:"Telefon belgiňiz ýada açar sözüniz ýalňyş",
     firstlyRegister:"Ilki registrasiya bolun"
 }
   
