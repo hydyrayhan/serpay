@@ -69,24 +69,36 @@ export default {
       label.click();
     },
     async changePass(){
-      console.log(this.user)
       if(this.user){
         if(this.password && this.password2 && this.password3){
           if(this.password2 === this.password3){
             if(this.password2.length > 5){
-              
+              this.$nuxt.$emit('loading')
+              try {
+                const {status} = await this.$axios.patch('/users/update-my-password',{currentPassword:this.password,newPassword:this.password2,newPasswordConfirm:this.password3})
+                if(status == 200){
+                  this.$toast.success(this.$t('passwordChanged'))
+                  this.$nuxt.$emit('loading')
+                }
+              } catch ({response}) {
+                this.$nuxt.$emit('loading')
+                console.log(response.data.message)
+                if(response.status == 400){
+                  this.$toast.error(this.$t('firstPassWrong'))
+                }
+              }
             }else{
-              this.$toast.success(this.$t('passwordLetterMore6'))
+              this.$toast.error(this.$t('passwordLetterMore6'))
             }
           }else{
             this.password3 = ''
             document.querySelector('#name2').style.border = '1px solid red';
           }
         }else{
-          this.$toast.success(this.$t('fillFreeSpace'))
+          this.$toast.error(this.$t('fillFreeSpace'))
         }
       }else{
-        this.$toast.success(this.$t('firstlyRegister'))
+        this.$toast.error(this.$t('firstlyRegister'))
       }
     }
   }

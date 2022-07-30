@@ -28,8 +28,8 @@
 
       <div class="productPage_info" :class="mode">
         <div class="info_price">
-          <div class="info_price_new" v-if="product.price"><span>{{dynamicProduct.price}}</span><span>manat</span></div>
-          <div class="info_price_old" v-if="product.price_old">{{dynamicProduct.price_old}}manat <span></span></div>
+          <div class="info_price_new" v-if="dynamicProduct.price"><span>{{dynamicProduct.price}}</span><span>manat</span></div>
+          <div class="info_price_old" v-if="dynamicProduct.price_old">{{dynamicProduct.price_old}}manat <span></span></div>
           <div class="info_price_liked">
             <svg v-if="!liked" width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M17.2711 0.891479C16.1919 0.908265 15.1363 1.20951 14.2109 1.76478C13.2854 2.32006 12.5229 3.1097 12.0002 4.05398C11.4776 3.1097 10.7151 2.32006 9.78959 1.76478C8.86414 1.20951 7.80854 0.908265 6.72941 0.891479C5.00915 0.966221 3.38838 1.71876 2.2212 2.9847C1.05403 4.25064 0.435317 5.92707 0.500245 7.64773C0.500245 12.0053 5.08683 16.7644 8.93358 19.9911C9.79245 20.7128 10.8784 21.1085 12.0002 21.1085C13.1221 21.1085 14.208 20.7128 15.0669 19.9911C18.9137 16.7644 23.5002 12.0053 23.5002 7.64773C23.5652 5.92707 22.9465 4.25064 21.7793 2.9847C20.6121 1.71876 18.9913 0.966221 17.2711 0.891479ZM13.8354 18.5248C13.3218 18.9574 12.6718 19.1946 12.0002 19.1946C11.3287 19.1946 10.6787 18.9574 10.165 18.5248C5.24112 14.3934 2.41691 10.4298 2.41691 7.64773C2.3514 6.43516 2.76801 5.24589 3.57588 4.33927C4.38376 3.43266 5.51734 2.88227 6.72941 2.80815C7.94148 2.88227 9.07506 3.43266 9.88294 4.33927C10.6908 5.24589 11.1074 6.43516 11.0419 7.64773C11.0419 7.90189 11.1429 8.14565 11.3226 8.32537C11.5023 8.50509 11.7461 8.60606 12.0002 8.60606C12.2544 8.60606 12.4982 8.50509 12.6779 8.32537C12.8576 8.14565 12.9586 7.90189 12.9586 7.64773C12.8931 6.43516 13.3097 5.24589 14.1175 4.33927C14.9254 3.43266 16.059 2.88227 17.2711 2.80815C18.4831 2.88227 19.6167 3.43266 20.4246 4.33927C21.2325 5.24589 21.6491 6.43516 21.5836 7.64773C21.5836 10.4298 18.7594 14.3934 13.8354 18.521V18.5248Z" fill="#616161"/>
@@ -48,10 +48,7 @@
         <div class="info_kind" v-if="product.product_colors.length">
           <div class="info_title">{{$t('kind')}}</div>
           <div class="info_kind_images">
-            <!-- <div class="image active"><img src="~/assets/images/delete/product3.png" alt=""></div>
-            <div class="image"><img src="~/assets/images/delete/product4.png" alt=""></div> -->
             <img v-for="(color,i) in product.product_colors" :key="i" v-bind:src="$config.url+'/'+color.product_images[0].image" @click="colorChange(i)" alt="">
-            <!-- <img v-for="(color,i) in product.product_colors" :key="i" v-bind:src="$config.url+'/'+color.product_images[0].image" @click="colorChange(1)" alt=""> -->
           </div>
         </div>
         
@@ -170,7 +167,7 @@
     <div class="productPage_detail">
       <img v-for="(image,i) in product.details" :key="i" v-bind:src="$config.url+'/'+image.image"  alt="">
     </div>
-    <ProductInfo @close-productInfo="resInfo = false" v-show="resInfo"/>
+    <ProductInfo @close-productInfo="resInfo = false" @color="colorChange" @size="sizeChange" @quantity="quantityChange" :product="product" :dynamicProduct="dynamicProduct" v-show="resInfo"/>
   </div>
 </template>
 
@@ -207,12 +204,16 @@ export default {
     let globalUser = 'public';
     if(user){
       globalUser = 'users';
+      try {
+        await $axios.post("/users/history",{product_id:route.params.id});
+      } catch ({response}) {
+        console.log(response.data.message);
+      }
     }
     try {
       const productId = route.params.id;
       let { data } = await $axios.get(`/${globalUser}/products/${productId}`);
       const product = data.product.oneProduct;
-      console.log(product)
       const {recommenendations} = data.product;
       return { product, recommenendations }
     } catch (err) {
@@ -237,21 +238,24 @@ export default {
         const product_id = this.$route.params.id;
         if(!this.liked){
           try {
+            this.$nuxt.$emit('loading')
             const res = await this.$axios.post("/users/like",{product_id})
-            console.log(res);
             if(res.status = 200){
               this.liked = true;
               this.product.likeCount+=1;
+              this.$nuxt.$emit('loading')
             }
           } catch ({response}) {
             console.log(response.data.message)
           }
         }else{
           try {
+            this.$nuxt.$emit('loading')
             const res = await this.$axios.delete(`/users/like/${product_id}`)
             if(res.status = 200){
               this.liked = false;
               this.product.likeCount-=1;
+              this.$nuxt.$emit('loading')
             }
           } catch ({response}) {
             console.log(response.data.message)
@@ -272,7 +276,7 @@ export default {
     },
     colorChange(id){
       this.globalColor = id;
-      if(this.product.product_colors){
+      if(this.product.product_colors.length){
         this.globalSize = 0;
         this.createDynamicProduct(id,0);
         const colors = document.querySelectorAll(".info_kind_images img");
@@ -286,6 +290,8 @@ export default {
           sizes[i].classList.remove('active');
         }
         sizes.length ? sizes[0].classList.add('active') : '';
+      }else{
+        this.createDynamicProduct(id,0);
       }
     },
     sizeChange(id){
@@ -308,9 +314,10 @@ export default {
       this.dynamicProduct.totalPrice = this.dynamicProduct.quantity * this.dynamicProduct.price;
       if(this.hasCart){
         try {
+          this.$nuxt.$emit('loading')
           const res = await this.$axios.patch(`/users/my-cart/${this.globalOrderProductId}`,{quantity:this.dynamicProduct.quantity});
           if(res.status == 200){
-            console.log('hello');
+            this.$nuxt.$emit('loading')
           }
         } catch ({response}) {
           console.log(response.data.message);
@@ -320,10 +327,12 @@ export default {
     async addToCart(){
       if(this.user){
         try {
+          this.$nuxt.$emit('loading')
           const res = await this.$axios.post(`/users/to-my-cart`,{product_id:this.$route.params.id,quantity:this.dynamicProduct.quantity,product_size_id:this.dynamicProduct.sizeId});
           if(res.status == 201){
             this.globalOrderProductId = res.data.orderproduct_id;
             this.hasCart = true;
+            this.$nuxt.$emit('loading')
           }
         } catch ({response}) {
           console.log(response.data.message);
@@ -334,9 +343,11 @@ export default {
     },
     async deleteFromCart(){
       try {
+        this.$nuxt.$emit('loading')
         const {status} = await this.$axios.delete(`/users/not-ordered/${this.$route.params.id}`);
         if(status == 200){
           this.hasCart = false;
+          this.$nuxt.$emit('loading')
         }      
       } catch ({response}) {
         console.log(response.data.message);
@@ -345,12 +356,13 @@ export default {
     async createDynamicProduct(colorId,sizeId){
       if(this.user){
         try {
-          let size;
+          let size=''
           if(this.product.product_colors.length){
             size = this.product.product_colors[colorId].product_sizes[sizeId].product_size_id
           }else if(this.product.product_sizes.length){
             size = this.product.product_sizes[sizeId].product_size_id
           }
+          this.$nuxt.$emit('loading');
           const res = await this.$axios.get(`/users/is-ordered?product_id=${this.product.product_id}&product_size_id=${size}`);
           if(res.data.status == 1){
             this.globalOrderProductId = res.data.order_product.orderproduct_id;
@@ -361,37 +373,63 @@ export default {
           }else{
             this.hasCart = false;
             this.dynamicProduct.quantity = 1;
-            this.dynamicProduct.sizeId = this.product.product_colors[this.globalColor].product_sizes[0].product_size_id;
             if(this.product.product_colors.length){
+              this.dynamicProduct.sizeId = this.product.product_colors[this.globalColor].product_sizes[sizeId].product_size_id;
               this.dynamicProduct.totalPrice = this.product.product_colors[this.globalColor].product_sizes[sizeId].price;
               this.dynamicProduct.price = this.product.product_colors[this.globalColor].product_sizes[sizeId].price;
+            }else if(this.product.product_sizes.length){
+              this.dynamicProduct.sizeId = this.product.product_sizes[sizeId].product_size_id;
+              this.dynamicProduct.totalPrice = this.product.product_sizes[sizeId].price;
+              this.dynamicProduct.price = this.product.product_sizes[sizeId].price;
+              
             }
           }
+          this.$nuxt.$emit('loading');
         } catch ({response}) {
           console.log(response.data.message);
         }
       }else{
-        console.log(this.globalColor,this.globalSize);
         if(this.product.product_colors.length){
           if(this.product.product_colors[this.globalColor].product_sizes.length){
             this.dynamicProduct.price = this.product.product_colors[this.globalColor].product_sizes[this.globalSize].price;
             this.dynamicProduct.totalPrice = this.dynamicProduct.quantity * this.product.product_colors[this.globalColor].product_sizes[this.globalSize].price;
+          }else{
+            this.dynamicProduct.price = this.product.price;
+            this.dynamicProduct.totalPrice = this.product.price;
+          }
+        }else{
+          if(this.product.product_sizes.length){
+            this.dynamicProduct.price = this.product.product_sizes[this.globalSize].price;
+            this.dynamicProduct.totalPrice = this.product.product_sizes[this.globalSize].price;
+          }else{
+            this.dynamicProduct.price = this.product.price;
+            this.dynamicProduct.totalPrice = this.product.price;
           }
         }
-        // this.dynamicProduct.price = this.product.
       }
       this.dynamicProduct.images = []
       this.dynamicProduct.sizes = []
-      if(this.product.product_colors){
+      if(this.product.product_colors.length){
         for(let i =0; i<this.product.product_colors[colorId].product_images.length; i++){
           this.dynamicProduct.images.push(this.product.product_colors[colorId].product_images[i].image);
         }
-        for(let i =0; i<this.product.product_colors[colorId].product_sizes.length; i++){
-          this.dynamicProduct.sizes.push(this.product.product_colors[colorId].product_sizes[i])
+        if(this.product.product_sizes.length){
+          for(let i =0; i<this.product.product_colors[colorId].product_sizes.length; i++){
+            this.dynamicProduct.sizes.push(this.product.product_colors[colorId].product_sizes[i])
+          }
         }
       }else{
-        for(let i =0; i<this.product.product_sizes[sizeId].length; i++){
-          this.dynamicProduct.sizes.push(this.product.product_sizes[i])
+        if(this.product.product_sizes.length){
+          for(let i = 0; i<this.product.images.length; i++){
+            this.dynamicProduct.images.push(this.product.images[i].image);
+          }
+          for(let i =0; i<this.product.product_sizes.length; i++){
+            this.dynamicProduct.sizes.push(this.product.product_sizes[i])
+          }
+        }else{
+          for(let i = 0; i<this.product.images.length; i++){
+            this.dynamicProduct.images.push(this.product.images[i].image);
+          }
         }
       } 
     },

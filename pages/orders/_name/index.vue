@@ -2,7 +2,7 @@
   <div class="orders">
     <div class="mobileResHeader" v-if="footPrint">{{$t('footPrint')}}</div>
     <div class="mobileResHeader" v-else>{{$t('historyOrder')}}</div>
-    <div class="container">
+    <div class="container" v-if="user">
       <div class="orders_header" :class="mode">
         <div class="pageName" v-if="footPrint">{{$t('footPrint')}}</div>
         <div class="pageName" v-else>{{$t('historyOrder')}}</div>
@@ -31,7 +31,7 @@
       </div>
     </div>
     <hr>
-    <div class="container">
+    <div class="container" v-if="user">
       <div class="orders_products">
         <div class="products_time" :class="mode">
           <span v-if="!privateButton" class="space"></span>
@@ -71,6 +71,24 @@ export default {
       likeOrQuantity:false,
       footPrint:false,
     }
+  },
+  async asyncData({ $axios, route , store}) {
+    const user = store.state.user.user;
+    if(user){
+      let api;
+      const name = route.params.name;
+      console.log(name);
+      if(name == 'footPrint'){
+
+      }
+      try {
+        const res = await $axios.get("/users/history");
+        console.log(res);
+      } catch ({response}) {
+        console.log(response.data.message);
+      }
+    }
+    return{user}
   },
   mounted(){
     const height = window.innerHeight-273;

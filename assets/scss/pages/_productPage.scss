@@ -15,6 +15,9 @@
     
     @include mobile{
       @include flex();
+      svg{
+        cursor: pointer;
+      }
     }
   }
   &_images{
@@ -391,19 +394,26 @@
           }
         }
         .desktopAddCart{
-          @include mobile{
-            display: none;
+          // @include flex(row,center,center);
+          display: flex !important;
+          @include tablet{
+            display: none !important;
           }
         }
         &_addCart{
+          display: none !important;
           padding: 0 30px;
           background: $red;
           cursor: pointer;
+          @include tablet{
+            display: flex !important;
+          }
           @include mobile{
             width: 40%;
             height: auto;
             padding: 35px 0;
             border-radius: 0 !important;
+            display: flex !important;
             @include flex(row,center);
           }
           span{

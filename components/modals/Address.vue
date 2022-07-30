@@ -1,8 +1,8 @@
 <template>
   <div class="address_cart" >
     <div class="address_cart_info">
-      <div class="address_cart_info_place">Ashgabat</div>
-      <div class="address_cart_info_note">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem omnis labore non dignissimos culpa id at provident. Maxime, corrupti accusamus. Nihil, accusantium modi quam deleniti ut cupiditate neque officiis consectetur!</div>
+      <div class="address_cart_info_place">{{data.address.welayat}}</div>
+      <div class="address_cart_info_note">{{data.address.address}}</div>
     </div>
     <div class="address_cart_buttons" v-click-outside="closeFunc">
       <div class="desktop">

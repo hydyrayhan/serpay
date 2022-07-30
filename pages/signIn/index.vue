@@ -93,7 +93,6 @@ export default {
         this.$nuxt.$emit("loading");
         try {
           const data = await this.$axios.post("/users/login",this.loginData);
-          console.log(data);
           if(data.status === 200){
             this.$store.dispatch('user/setUserToken', data.data.token);
             this.$store.dispatch('user/setUser', data.data.data.user)

@@ -134,6 +134,8 @@ export default {
     nameAlreadyHas:"Bu at eýýäm bar",
     fillFreeSpace:"Boşluklary dorduryň",
     phoneOrPassError:"Telefon belgiňiz ýada açar sözüniz ýalňyş",
-    firstlyRegister:"Ilki registrasiya bolun"
+    firstlyRegister:"Ilki registrasiya bolun",
+    passwordChanged:"Açar sözüňiz üýtgedildi",
+    firstPassWrong:"Birinji açar sözüňiz nädogry",
 }
   

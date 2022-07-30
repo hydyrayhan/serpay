@@ -107,11 +107,16 @@ export default {
       width:70,
     }
   },
-  mounted(){
+  async mounted(){
     const height = window.innerHeight-298;
     const element = document.querySelector('.hyzmatlar');
     element.style.minHeight = height+'px';
-    
+
+    try {
+      // const res = this.$axios.get("/")
+    } catch ({response}) {
+      console.log(response.data.message);
+    }
 
     const times = [new Date("2022-06-23 17:56:00"),new Date('2022-07-22 23:29:00')]
     const elements = document.querySelectorAll(".timer");

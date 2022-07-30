@@ -40,17 +40,18 @@
     }
     .info_price{
       margin-bottom: 0;
-      &_liked{
-        @include mobile{
-          display: none;
-        }
-      }
+      // &_liked{
+      //   @include mobile{
+      //     display: none;
+      //   }
+      // }
     }
     .product_info_resHeader{
       width: 100%;
       @include flex();
       margin-bottom: 20px;
       .exit{
+        cursor: pointer;
         @include mobile{
           display: none;
         }
@@ -60,6 +61,7 @@
       padding: 10px;
       border-radius: 5px;
       background: $grayLight;
+      cursor: pointer;
       @include flex();
     }
     .info_quantity{
@@ -76,6 +78,7 @@
         button{
           border: 1px solid #AEAEAE;
           border-radius: 2px;
+          cursor: pointer;
         }
       }
     }
@@ -116,6 +119,7 @@
         @include flex();
         border: 1px solid #AEAEAE;
         img{
+          cursor: pointer;
           width: 100px;
           height: 100px;
           object-fit: cover;
@@ -138,6 +142,7 @@
       border-radius: 5px;
       background: $grayLight;
       width: fit-content;
+      cursor: pointer;
       @include flex();
       @include mobile{
         margin: 20px;
